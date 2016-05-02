@@ -5,6 +5,7 @@
  */
 package br.com.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,11 +14,16 @@ import java.util.List;
  * @author Nakao
  */
 public class Agenda {
-    List<Consulta> consultas;
+    List<Agendamento> agendamentos;
     Dentista owner;
     
+    public Agenda(Dentista owner){
+        this.owner=owner;
+        agendamentos = new ArrayList<>();
+    }
+    
     void agendar(Date data,Dentista dentista,Cliente cliente){
-        consultas.add(new Consulta(data,dentista,cliente));
+        agendamentos.add(new Agendamento(data,dentista,cliente));
     }
     void desagendar(Date data,Dentista dentista,Cliente cliente){
         

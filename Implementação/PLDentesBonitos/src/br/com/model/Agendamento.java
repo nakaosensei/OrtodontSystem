@@ -11,12 +11,12 @@ import java.util.Date;
  *
  * @author Nakao
  */
-public class Consulta {
+public class Agendamento {
     private Date data;
     private Dentista dentista;
     private Cliente cliente;
     
-    public Consulta(Date d,Dentista de,Cliente c){
+    public Agendamento(Date d,Dentista de,Cliente c){
         this.data=d;
         this.dentista=de;
         this.cliente=c;
