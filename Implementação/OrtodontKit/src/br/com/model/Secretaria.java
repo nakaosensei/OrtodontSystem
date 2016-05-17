@@ -1,0 +1,237 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.model;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+/**
+ *
+ * @author a1061712
+ */
+@Entity
+@Table(name = "secretaria")
+@NamedQueries({
+    @NamedQuery(name = "Secretaria.findAll", query = "SELECT s FROM Secretaria s"),
+    @NamedQuery(name = "Secretaria.findById", query = "SELECT s FROM Secretaria s WHERE s.id = :id"),
+    @NamedQuery(name = "Secretaria.findByNome", query = "SELECT s FROM Secretaria s WHERE s.nome = :nome"),
+    @NamedQuery(name = "Secretaria.findByCpf", query = "SELECT s FROM Secretaria s WHERE s.cpf = :cpf"),
+    @NamedQuery(name = "Secretaria.findByRg", query = "SELECT s FROM Secretaria s WHERE s.rg = :rg"),
+    @NamedQuery(name = "Secretaria.findByTelfixo1", query = "SELECT s FROM Secretaria s WHERE s.telfixo1 = :telfixo1"),
+    @NamedQuery(name = "Secretaria.findByTelfixo2", query = "SELECT s FROM Secretaria s WHERE s.telfixo2 = :telfixo2"),
+    @NamedQuery(name = "Secretaria.findByTelcelular1", query = "SELECT s FROM Secretaria s WHERE s.telcelular1 = :telcelular1"),
+    @NamedQuery(name = "Secretaria.findByTelcelular2", query = "SELECT s FROM Secretaria s WHERE s.telcelular2 = :telcelular2"),
+    @NamedQuery(name = "Secretaria.findByRgorgaoexpedidor", query = "SELECT s FROM Secretaria s WHERE s.rgorgaoexpedidor = :rgorgaoexpedidor"),
+    @NamedQuery(name = "Secretaria.findBySexo", query = "SELECT s FROM Secretaria s WHERE s.sexo = :sexo"),
+    @NamedQuery(name = "Secretaria.findByEstadocivil", query = "SELECT s FROM Secretaria s WHERE s.estadocivil = :estadocivil"),
+    @NamedQuery(name = "Secretaria.findByEmail", query = "SELECT s FROM Secretaria s WHERE s.email = :email"),
+    @NamedQuery(name = "Secretaria.findByDatanascimento", query = "SELECT s FROM Secretaria s WHERE s.datanascimento = :datanascimento")})
+public class Secretaria implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "nome")
+    private String nome;
+    @Column(name = "cpf")
+    private Integer cpf;
+    @Column(name = "rg")
+    private Integer rg;
+    @Column(name = "telfixo1")
+    private Integer telfixo1;
+    @Column(name = "telfixo2")
+    private Integer telfixo2;
+    @Column(name = "telcelular1")
+    private Integer telcelular1;
+    @Column(name = "telcelular2")
+    private Integer telcelular2;
+    @Column(name = "rgorgaoexpedidor")
+    private String rgorgaoexpedidor;
+    @Column(name = "sexo")
+    private Character sexo;
+    @Column(name = "estadocivil")
+    private Character estadocivil;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "datanascimento")
+    @Temporal(TemporalType.DATE)
+    private Date datanascimento;
+    @JoinColumn(name = "idAgenda", referencedColumnName = "id")
+    @ManyToOne
+    private Agenda idAgenda;
+    @JoinColumn(name = "idEndereco", referencedColumnName = "id")
+    @ManyToOne
+    private Endereco idEndereco;
+
+    public Secretaria() {
+    }
+
+    public Secretaria(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Integer getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(Integer cpf) {
+        this.cpf = cpf;
+    }
+
+    public Integer getRg() {
+        return rg;
+    }
+
+    public void setRg(Integer rg) {
+        this.rg = rg;
+    }
+
+    public Integer getTelfixo1() {
+        return telfixo1;
+    }
+
+    public void setTelfixo1(Integer telfixo1) {
+        this.telfixo1 = telfixo1;
+    }
+
+    public Integer getTelfixo2() {
+        return telfixo2;
+    }
+
+    public void setTelfixo2(Integer telfixo2) {
+        this.telfixo2 = telfixo2;
+    }
+
+    public Integer getTelcelular1() {
+        return telcelular1;
+    }
+
+    public void setTelcelular1(Integer telcelular1) {
+        this.telcelular1 = telcelular1;
+    }
+
+    public Integer getTelcelular2() {
+        return telcelular2;
+    }
+
+    public void setTelcelular2(Integer telcelular2) {
+        this.telcelular2 = telcelular2;
+    }
+
+    public String getRgorgaoexpedidor() {
+        return rgorgaoexpedidor;
+    }
+
+    public void setRgorgaoexpedidor(String rgorgaoexpedidor) {
+        this.rgorgaoexpedidor = rgorgaoexpedidor;
+    }
+
+    public Character getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Character sexo) {
+        this.sexo = sexo;
+    }
+
+    public Character getEstadocivil() {
+        return estadocivil;
+    }
+
+    public void setEstadocivil(Character estadocivil) {
+        this.estadocivil = estadocivil;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getDatanascimento() {
+        return datanascimento;
+    }
+
+    public void setDatanascimento(Date datanascimento) {
+        this.datanascimento = datanascimento;
+    }
+
+    public Agenda getIdAgenda() {
+        return idAgenda;
+    }
+
+    public void setIdAgenda(Agenda idAgenda) {
+        this.idAgenda = idAgenda;
+    }
+
+    public Endereco getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(Endereco idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Secretaria)) {
+            return false;
+        }
+        Secretaria other = (Secretaria) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "br.com.model.Secretaria[ id=" + id + " ]";
+    }
+    
+}
