@@ -7,8 +7,8 @@ package br.com.controller;
 
 /**
  *
- * @author root
+ * @author nakao<nakaosensei@gmail.com>
  */
-public class Teste {
+public class teste2 {
     
 }
