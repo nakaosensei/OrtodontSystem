@@ -70,6 +70,7 @@ public class Endereco implements Serializable {
     private List<Clientedependente> clientedependenteList1;
 
     public Endereco() {
+        
     }
 
     public Endereco(Integer id) {
