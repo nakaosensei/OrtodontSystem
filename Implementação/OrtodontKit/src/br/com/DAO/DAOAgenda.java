@@ -5,10 +5,14 @@
  */
 package br.com.DAO;
 
+import br.com.model.Agenda;
+
 /**
  *
- * @author Convidado
+ * @author Lucas
  */
-public class DAOAgenda {
-    
+public class DAOAgenda extends DAOGenerico<Agenda>{
+    public DAOAgenda() {
+        super(Agenda.class);
+    }
 }

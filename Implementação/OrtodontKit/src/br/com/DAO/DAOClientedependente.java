@@ -5,10 +5,15 @@
  */
 package br.com.DAO;
 
+import br.com.model.Clientedependente;
+
 /**
  *
- * @author Convidado
+ * @author Lucas
  */
-public class DAOClientedependente {
-    
+public class DAOClientedependente extends DAOGenerico<Clientedependente>{
+    public DAOClientedependente() {
+        super(Clientedependente.class);
+    }
 }
+
