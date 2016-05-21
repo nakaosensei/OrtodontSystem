@@ -51,6 +51,7 @@ public class JFLogin extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/logo128.png"))); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Impact", 2, 18)); // NOI18N
         jLabel2.setText("Bem vindo ao Ortodont System");
 
         jTFLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Login"));
@@ -98,7 +99,9 @@ public class JFLogin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel3.setText("Powered by DreamSoft");
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Logo/nkStation16.png"))); // NOI18N
+        jLabel3.setText("Powered by Nk Station");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

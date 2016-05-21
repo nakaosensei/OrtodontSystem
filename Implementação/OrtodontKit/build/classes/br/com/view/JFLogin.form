@@ -99,6 +99,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Impact" size="18" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Bem vindo ao Ortodont System"/>
           </Properties>
         </Component>
@@ -142,7 +145,13 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Powered by DreamSoft"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="10" style="1"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/br/com/icons/Logo/nkStation16.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Powered by Nk Station"/>
       </Properties>
     </Component>
   </SubComponents>

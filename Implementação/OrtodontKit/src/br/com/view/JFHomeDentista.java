@@ -27,30 +27,78 @@ public class JFHomeDentista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabelBackGround = new javax.swing.JLabel();
+        jBAgenda = new javax.swing.JButton();
+        jBRecibo = new javax.swing.JButton();
+        jBTratamento = new javax.swing.JButton();
+        jBSecretaria = new javax.swing.JButton();
+        jBCliente = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jBReport = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jMenuTramento = new javax.swing.JMenu();
+        jMIStartTratamento = new javax.swing.JMenuItem();
+        jMICancelTratamento = new javax.swing.JMenuItem();
+        jMenuAgenda = new javax.swing.JMenu();
+        jMIAgendar = new javax.swing.JMenuItem();
+        jMIDesagendar = new javax.swing.JMenuItem();
+        jMIVer = new javax.swing.JMenuItem();
+        jMenuRecibos = new javax.swing.JMenu();
+        JMenuCadastros = new javax.swing.JMenu();
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/agenda48.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/logo32.png"))); // NOI18N
-        jLabel1.setText("Ortodont System");
+        jLabelBackGround.setFont(new java.awt.Font("TakaoPGothic", 1, 14)); // NOI18N
+        jLabelBackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/logo128.png"))); // NOI18N
+        jLabelBackGround.setText("Ortodont System");
 
-        jMenu1.setText("Tratamento");
+        jBAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/agenda48.png"))); // NOI18N
 
-        jMenuItem1.setText("Iniciar Tratamento");
-        jMenu1.add(jMenuItem1);
+        jBRecibo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/recibo48.png"))); // NOI18N
 
-        jMenuBar1.add(jMenu1);
+        jBTratamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/tratamento48.png"))); // NOI18N
 
-        jMenu2.setText("Agenda");
-        jMenuBar1.add(jMenu2);
+        jBSecretaria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/secretaria48.png"))); // NOI18N
 
-        jMenu3.setText("jMenu3");
-        jMenuBar1.add(jMenu3);
+        jBCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/cliente48.png"))); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Logo/nkStation16.png"))); // NOI18N
+        jLabel3.setText("Powered by Nk Station");
+
+        jBReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logout48.png"))); // NOI18N
+
+        jMenuTramento.setText("Tratamento");
+
+        jMIStartTratamento.setText("Iniciar Tratamento");
+        jMenuTramento.add(jMIStartTratamento);
+
+        jMICancelTratamento.setText("Cancelar Tratamento");
+        jMenuTramento.add(jMICancelTratamento);
+
+        jMenuBar1.add(jMenuTramento);
+
+        jMenuAgenda.setText("Agenda");
+
+        jMIAgendar.setText("Marcar");
+        jMenuAgenda.add(jMIAgendar);
+
+        jMIDesagendar.setText("Desmarcar");
+        jMenuAgenda.add(jMIDesagendar);
+
+        jMIVer.setText("Ver");
+        jMenuAgenda.add(jMIVer);
+
+        jMenuBar1.add(jMenuAgenda);
+
+        jMenuRecibos.setText("Recibo");
+        jMenuBar1.add(jMenuRecibos);
+
+        JMenuCadastros.setText("Cadastros");
+        jMenuBar1.add(JMenuCadastros);
 
         setJMenuBar(jMenuBar1);
 
@@ -58,17 +106,51 @@ public class JFHomeDentista extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(622, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabelBackGround, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBTratamento, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBSecretaria, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBReport, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelBackGround, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBTratamento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBSecretaria, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBReport, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3))))
         );
 
         pack();
@@ -111,11 +193,24 @@ public class JFHomeDentista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu JMenuCadastros;
+    private javax.swing.JButton jBAgenda;
+    private javax.swing.JButton jBCliente;
+    private javax.swing.JButton jBRecibo;
+    private javax.swing.JButton jBReport;
+    private javax.swing.JButton jBSecretaria;
+    private javax.swing.JButton jBTratamento;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelBackGround;
+    private javax.swing.JMenuItem jMIAgendar;
+    private javax.swing.JMenuItem jMICancelTratamento;
+    private javax.swing.JMenuItem jMIDesagendar;
+    private javax.swing.JMenuItem jMIStartTratamento;
+    private javax.swing.JMenuItem jMIVer;
+    private javax.swing.JMenu jMenuAgenda;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jMenuRecibos;
+    private javax.swing.JMenu jMenuTramento;
     // End of variables declaration//GEN-END:variables
 }
