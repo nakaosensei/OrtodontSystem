@@ -49,7 +49,7 @@ public class JFLogin extends javax.swing.JFrame {
 
         jPrincipal.setBackground(Color.WHITE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/logo128.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logo128.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Impact", 2, 18)); // NOI18N
         jLabel2.setText("Bem vindo ao Ortodont System");
@@ -73,7 +73,7 @@ public class JFLogin extends javax.swing.JFrame {
                     .addComponent(jTFLogin)
                     .addComponent(jTFSenha, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPrincipalLayout.createSequentialGroup()
-                        .addGap(0, 9, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jBLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBEsqueciSenha)

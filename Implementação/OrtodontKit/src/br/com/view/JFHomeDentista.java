@@ -52,7 +52,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabelBackGround.setFont(new java.awt.Font("TakaoPGothic", 1, 14)); // NOI18N
-        jLabelBackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/logo128.png"))); // NOI18N
+        jLabelBackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logo128.png"))); // NOI18N
         jLabelBackGround.setText("Ortodont System");
 
         jBAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/agenda48.png"))); // NOI18N
