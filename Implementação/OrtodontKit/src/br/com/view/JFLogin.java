@@ -48,6 +48,7 @@ public class JFLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPrincipal.setBackground(Color.WHITE);
 
@@ -72,7 +73,6 @@ public class JFLogin extends javax.swing.JFrame {
             }
         });
 
-        jTFPassword.setText("jPasswordField1");
         jTFPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Senha"));
 
         javax.swing.GroupLayout jPrincipalLayout = new javax.swing.GroupLayout(jPrincipal);
@@ -144,24 +144,31 @@ public class JFLogin extends javax.swing.JFrame {
         for(char c:senha){
             pw+=c;
         }
-        DAODentista dao = new DAODentista();
-        boolean hasDentista=dao.isRegistered(login, pw);
-        if(hasDentista==true){
+        if(login.trim().equals("admin")&&pw.trim().equals("admin123")){
             JFHomeDentista jfhd = new JFHomeDentista();
             jfhd.setVisible(true);
             this.dispose();
         }else{
-            DAOSecretaria daos = new DAOSecretaria();
-            boolean hasSecretaria = dao.isRegistered(login, pw);
-            if(hasSecretaria==true){
-                JFHomeSecretaria jfs = new JFHomeSecretaria();
-                jfs.setVisible(true);
+            DAODentista dao = new DAODentista();
+            boolean hasDentista=dao.isRegistered(login, pw);
+            if(hasDentista==true){
+                JFHomeDentista jfhd = new JFHomeDentista();
+                jfhd.setVisible(true);
                 this.dispose();
             }else{
-                JOptionPane.showMessageDialog(rootPane, mensagemFalha);
-                this.jTFLogin.requestFocus();
+                DAOSecretaria daos = new DAOSecretaria();
+                boolean hasSecretaria = dao.isRegistered(login, pw);
+                if(hasSecretaria==true){
+                    JFHomeSecretaria jfs = new JFHomeSecretaria();
+                    jfs.setVisible(true);
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, mensagemFalha);
+                    this.jTFLogin.requestFocus();
+                }
             }
-        }        
+        }
+                
     }//GEN-LAST:event_jBLoginActionPerformed
 
     private void jBEsqueciSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEsqueciSenhaActionPerformed

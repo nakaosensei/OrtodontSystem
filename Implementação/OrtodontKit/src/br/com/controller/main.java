@@ -5,9 +5,6 @@
  */
 package br.com.controller;
 
-import br.com.DAO.DAOEndereco;
-import br.com.model.Endereco;
-import br.com.view.JFHomeDentista;
 import br.com.view.JFLogin;
 
 /**

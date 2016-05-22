@@ -5,6 +5,9 @@
  */
 package br.com.view;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author nakao<nakaosensei@gmail.com>
@@ -16,9 +19,27 @@ public class JFAgenda extends javax.swing.JFrame {
      */
     public JFAgenda() {
         initComponents();
-        
+        this.setLocationRelativeTo(null);
+        formatarDatas();
     }
 
+    void formatarDatas() {
+        jXDate.setFormats("dd/MM/yyyy");
+        Calendar cal = Calendar.getInstance();
+        int ano = cal.get(Calendar.YEAR);
+        int mes = cal.get(Calendar.MONTH);
+        System.out.println(Calendar.JANUARY);
+        int dia = cal.get(Calendar.DAY_OF_MONTH);
+        mes++;
+        String data = dia+"/"+mes+"/"+ano;
+        jXDate.getEditor().setText(data);        
+    }
+    
+    void formatarData(String data){
+        String v[]=data.split(" ");
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,29 +49,184 @@ public class JFAgenda extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
+        jPData = new javax.swing.JPanel();
+        jXDate = new org.jdesktop.swingx.JXDatePicker();
+        jBAddAgenda = new javax.swing.JButton();
+        jBRmAgenda = new javax.swing.JButton();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        JPanelCliente = new javax.swing.JPanel();
+        jbAddCli = new javax.swing.JButton();
+        jbClearCli = new javax.swing.JButton();
+        jBRmCli = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jBGravar = new javax.swing.JButton();
+        jBSair = new javax.swing.JButton();
+        jBAbrir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+
+        jPData.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Data"));
+
+        javax.swing.GroupLayout jPDataLayout = new javax.swing.GroupLayout(jPData);
+        jPData.setLayout(jPDataLayout);
+        jPDataLayout.setHorizontalGroup(
+            jPDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDataLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jXDate, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPDataLayout.setVerticalGroup(
+            jPDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDataLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jXDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jBAddAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/add1_20.png"))); // NOI18N
+        jBAddAgenda.setText("Marcar");
+        jBAddAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAddAgendaActionPerformed(evt);
+            }
+        });
+
+        jBRmAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/close1_20.png"))); // NOI18N
+        jBRmAgenda.setText("Desmarcar");
+
+        jSplitPane1.setDividerLocation(1100);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jSplitPane1.setLeftComponent(jScrollPane2);
+        jSplitPane1.setInheritsPopupMenu(true);
+
+        jSplitPane1.setOneTouchExpandable(true);
+
+        jbAddCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/add32.png"))); // NOI18N
+
+        jbClearCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/clear32.png"))); // NOI18N
+
+        jBRmCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/close32.png"))); // NOI18N
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setText("Filtro por Clientes");
+
+        javax.swing.GroupLayout JPanelClienteLayout = new javax.swing.GroupLayout(JPanelCliente);
+        JPanelCliente.setLayout(JPanelClienteLayout);
+        JPanelClienteLayout.setHorizontalGroup(
+            JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(JPanelClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPanelClienteLayout.createSequentialGroup()
+                        .addComponent(jbAddCli, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbClearCli, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBRmCli, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        JPanelClienteLayout.setVerticalGroup(
+            JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelClienteLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbAddCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbClearCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBRmCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setRightComponent(JPanelCliente);
+
+        jBGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/save16.png"))); // NOI18N
+        jBGravar.setText("Gravar");
+
+        jBSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logout16.png"))); // NOI18N
+        jBSair.setText("Sair");
+
+        jBAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/bookOpen16.png"))); // NOI18N
+        jBAbrir.setText("Abrir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBAbrir, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBAddAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBRmAgenda))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBSair)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBGravar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jBAbrir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBRmAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBAddAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBGravar)
+                    .addComponent(jBSair)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBAddAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddAgendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBAddAgendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -58,6 +234,22 @@ public class JFAgenda extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
+    private javax.swing.JPanel JPanelCliente;
+    private javax.swing.JButton jBAbrir;
+    private javax.swing.JButton jBAddAgenda;
+    private javax.swing.JButton jBGravar;
+    private javax.swing.JButton jBRmAgenda;
+    private javax.swing.JButton jBRmCli;
+    private javax.swing.JButton jBSair;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPData;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private org.jdesktop.swingx.JXDatePicker jXDate;
+    private javax.swing.JButton jbAddCli;
+    private javax.swing.JButton jbClearCli;
     // End of variables declaration//GEN-END:variables
 }

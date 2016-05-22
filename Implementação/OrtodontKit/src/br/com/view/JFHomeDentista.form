@@ -65,6 +65,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Abrir"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIVerActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -131,16 +134,12 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMISair">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Sair"/>
-          </Properties>
-        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -192,7 +191,7 @@
                                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                                       <Component id="jBOdontograma" min="-2" pref="57" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBReport" min="-2" pref="57" max="-2" attributes="0"/>
+                                      <Component id="jBSair" min="-2" pref="57" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -230,7 +229,7 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jBReport" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jBSair" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jBOdontograma" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jBPlanoAvaliacaoDentaria" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
@@ -299,12 +298,15 @@
         <Property name="text" type="java.lang.String" value="Powered by Nk Station"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jBReport">
+    <Component class="javax.swing.JButton" name="jBSair">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/br/com/icons/Icons/logout48.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSairActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBRelatorios">
       <Properties>

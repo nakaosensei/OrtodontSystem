@@ -5,6 +5,8 @@
  */
 package br.com.view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author a1061712
@@ -17,6 +19,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
     public JFHomeDentista() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -36,7 +39,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
         jBSecretaria = new javax.swing.JButton();
         jBCliente = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jBReport = new javax.swing.JButton();
+        jBSair = new javax.swing.JButton();
         jBRelatorios = new javax.swing.JButton();
         jBOdontograma = new javax.swing.JButton();
         jBPlanoAvaliacaoDentaria = new javax.swing.JButton();
@@ -57,11 +60,11 @@ public class JFHomeDentista extends javax.swing.JFrame {
         Relatórios = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMISair = new javax.swing.JMenu();
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/agenda48.png"))); // NOI18N
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jLabelBackGround.setFont(new java.awt.Font("TakaoPGothic", 1, 14)); // NOI18N
         jLabelBackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logo128.png"))); // NOI18N
@@ -81,7 +84,12 @@ public class JFHomeDentista extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Logo/nkStation16.png"))); // NOI18N
         jLabel3.setText("Powered by Nk Station");
 
-        jBReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logout48.png"))); // NOI18N
+        jBSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logout48.png"))); // NOI18N
+        jBSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSairActionPerformed(evt);
+            }
+        });
 
         jBRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/report48.png"))); // NOI18N
 
@@ -118,6 +126,11 @@ public class JFHomeDentista extends javax.swing.JFrame {
 
         jMIVer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMIVer.setText("Abrir");
+        jMIVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIVerActionPerformed(evt);
+            }
+        });
         jMenuAgenda.add(jMIVer);
 
         jMenuBar1.add(jMenuAgenda);
@@ -156,9 +169,6 @@ public class JFHomeDentista extends javax.swing.JFrame {
 
         jMenuBar1.add(Relatórios);
 
-        jMISair.setText("Sair");
-        jMenuBar1.add(jMISair);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -192,7 +202,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
                                         .addGap(63, 63, 63)
                                         .addComponent(jBOdontograma, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jBReport, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jBPlanoAvaliacaoDentaria, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -217,7 +227,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
                             .addComponent(jBRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBReport, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBOdontograma, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBPlanoAvaliacaoDentaria, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -232,7 +242,21 @@ public class JFHomeDentista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMIDesagendarActionPerformed
 
-    
+    private void jMIVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIVerActionPerformed
+        JFAgenda jfa = new JFAgenda();
+        jfa.setVisible(true);
+    }//GEN-LAST:event_jMIVerActionPerformed
+
+    private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
+        close();
+    }//GEN-LAST:event_jBSairActionPerformed
+
+    private void close(){
+        int res = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?");
+        if(res==0){
+            this.dispose();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu JMenuCadastros;
@@ -243,7 +267,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
     private javax.swing.JButton jBPlanoAvaliacaoDentaria;
     private javax.swing.JButton jBRecibo;
     private javax.swing.JButton jBRelatorios;
-    private javax.swing.JButton jBReport;
+    private javax.swing.JButton jBSair;
     private javax.swing.JButton jBSecretaria;
     private javax.swing.JButton jBTratamento;
     private javax.swing.JButton jButton2;
@@ -255,7 +279,6 @@ public class JFHomeDentista extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIDentista;
     private javax.swing.JMenuItem jMIDesagendar;
     private javax.swing.JMenuItem jMIEmitirRecibo;
-    private javax.swing.JMenu jMISair;
     private javax.swing.JMenuItem jMISecretaria;
     private javax.swing.JMenuItem jMIStartTratamento;
     private javax.swing.JMenuItem jMIVer;
