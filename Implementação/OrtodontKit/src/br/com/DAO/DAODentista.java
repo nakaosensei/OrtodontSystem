@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.DAO;
 
 import br.com.model.Dentista;
@@ -18,9 +13,15 @@ public class DAODentista extends DAOGenerico<Dentista> {
         super(Dentista.class);
     }
     
-    public boolean isRegistered(String nome,String password) {
-        Query q =em.createQuery("SELECT e FROM Dentista e WHERE e.");
-        return true;
+    public boolean isRegistered(String login,String password) {
+        Query q =em.createQuery("SELECT e FROM Dentista e WHERE e.login= :log AND e.passwd = :senha");
+        q.setParameter("log", login);
+        q.setParameter("senha", password);
+        if(q.getResultList().isEmpty()){
+            return false;
+        }else{
+            return true;
+        }       
     }
     
 }

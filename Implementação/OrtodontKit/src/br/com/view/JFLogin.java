@@ -7,7 +7,10 @@ package br.com.view;
 
 
 
+import br.com.DAO.DAODentista;
+import br.com.DAO.DAOSecretaria;
 import java.awt.Color;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +20,8 @@ import javax.swing.JOptionPane;
 public class JFLogin extends javax.swing.JFrame {
     private static String mensagemFalhaLogin;
     private static String mensagemFalhaSenha;
-    
+    private static String mensagemFalha;
+    private static String emailSuporte;
     /**
      * Creates new form JFHome
      */
@@ -27,8 +31,9 @@ public class JFLogin extends javax.swing.JFrame {
     }
     
     private void carregarComponentes(){
-       mensagemFalhaLogin="Login incorreto";
-       mensagemFalhaSenha="Senha incorreta";
+       mensagemFalha="Login e/ou senha incorretos";
+       emailSuporte="nakaosensei@gmail.com";    
+       this.setLocationRelativeTo(null);
     }
 
     /**
@@ -44,9 +49,9 @@ public class JFLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTFLogin = new javax.swing.JTextField();
-        jTFSenha = new javax.swing.JTextField();
         jBEsqueciSenha = new javax.swing.JToggleButton();
         jBLogin = new javax.swing.JToggleButton();
+        jTFPassword = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,9 +65,12 @@ public class JFLogin extends javax.swing.JFrame {
 
         jTFLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Login"));
 
-        jTFSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Senha"));
-
         jBEsqueciSenha.setText("Esqueceu a senha?");
+        jBEsqueciSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEsqueciSenhaActionPerformed(evt);
+            }
+        });
 
         jBLogin.setText("Entrar");
         jBLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +78,8 @@ public class JFLogin extends javax.swing.JFrame {
                 jBLoginActionPerformed(evt);
             }
         });
+
+        jTFPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Senha"));
 
         javax.swing.GroupLayout jPrincipalLayout = new javax.swing.GroupLayout(jPrincipal);
         jPrincipal.setLayout(jPrincipalLayout);
@@ -80,13 +90,13 @@ public class JFLogin extends javax.swing.JFrame {
                 .addGroup(jPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTFLogin)
-                    .addComponent(jTFSenha, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPrincipalLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jBLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBEsqueciSenha)
-                        .addGap(40, 40, 40)))
+                        .addGap(40, 40, 40))
+                    .addComponent(jTFPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addContainerGap())
@@ -99,9 +109,9 @@ public class JFLogin extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jTFSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTFPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(jPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBEsqueciSenha)
                     .addComponent(jBLogin))
@@ -118,8 +128,9 @@ public class JFLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,17 +145,34 @@ public class JFLogin extends javax.swing.JFrame {
 
     private void jBLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLoginActionPerformed
         String login=jTFLogin.getText().trim();
-        String senha=jTFSenha.getText().trim();
-        if(login.equals("")){
-            JOptionPane.showMessageDialog(rootPane, mensagemFalhaLogin);
+        char senha[]=jTFPassword.getPassword();
+        String pw="";
+        for(char c:senha){
+            pw+=c;
         }
-        if(senha.equals("")){
-            JOptionPane.showMessageDialog(rootPane, mensagemFalhaSenha);
-        }
-        
-        
-        
+        DAODentista dao = new DAODentista();
+        boolean hasDentista=dao.isRegistered(login, pw);
+        if(hasDentista==true){
+            JFHomeDentista jfhd = new JFHomeDentista();
+            jfhd.setVisible(true);
+            this.dispose();
+        }else{
+            DAOSecretaria daos = new DAOSecretaria();
+            boolean hasSecretaria = dao.isRegistered(login, pw);
+            if(hasSecretaria==true){
+                JFHomeSecretaria jfs = new JFHomeSecretaria();
+                jfs.setVisible(true);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(rootPane, mensagemFalha);
+                this.jTFLogin.requestFocus();
+            }
+        }        
     }//GEN-LAST:event_jBLoginActionPerformed
+
+    private void jBEsqueciSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEsqueciSenhaActionPerformed
+        JOptionPane.showMessageDialog(null, "Envie um email para "+emailSuporte+" explicando seu caso para recuperar seu login e senha");
+    }//GEN-LAST:event_jBEsqueciSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,6 +186,6 @@ public class JFLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPrincipal;
     private javax.swing.JTextField jTFLogin;
-    private javax.swing.JTextField jTFSenha;
+    private javax.swing.JPasswordField jTFPassword;
     // End of variables declaration//GEN-END:variables
 }

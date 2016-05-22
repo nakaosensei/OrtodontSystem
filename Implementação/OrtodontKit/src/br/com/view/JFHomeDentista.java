@@ -16,6 +16,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
      */
     public JFHomeDentista() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

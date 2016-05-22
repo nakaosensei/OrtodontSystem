@@ -19,7 +19,5 @@ public class main {
         JFLogin jf = new JFLogin();
         jf.setLocationRelativeTo(null);
         jf.setVisible(true);
-        JFHomeDentista jfh = new JFHomeDentista();
-        jfh.setVisible(true);
     }
 }
