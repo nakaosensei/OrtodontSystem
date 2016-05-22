@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author a1061712
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "fichaClinica")

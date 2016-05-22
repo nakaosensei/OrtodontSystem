@@ -7,6 +7,7 @@ package br.com.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,19 +18,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
  *
- * @author a1061712
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "dentista")
 @NamedQueries({
     @NamedQuery(name = "Dentista.findAll", query = "SELECT d FROM Dentista d"),
     @NamedQuery(name = "Dentista.findById", query = "SELECT d FROM Dentista d WHERE d.id = :id"),
+    @NamedQuery(name = "Dentista.findByLogin", query = "SELECT d FROM Dentista d WHERE d.login = :login"),
+    @NamedQuery(name = "Dentista.findByPasswd", query = "SELECT d FROM Dentista d WHERE d.passwd = :passwd"),
     @NamedQuery(name = "Dentista.findByNome", query = "SELECT d FROM Dentista d WHERE d.nome = :nome"),
     @NamedQuery(name = "Dentista.findByCpf", query = "SELECT d FROM Dentista d WHERE d.cpf = :cpf"),
     @NamedQuery(name = "Dentista.findByRg", query = "SELECT d FROM Dentista d WHERE d.rg = :rg"),
@@ -50,6 +54,10 @@ public class Dentista implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Column(name = "login")
+    private String login;
+    @Column(name = "passwd")
+    private String passwd;
     @Column(name = "nome")
     private String nome;
     @Column(name = "cpf")
@@ -75,6 +83,8 @@ public class Dentista implements Serializable {
     @Column(name = "datanascimento")
     @Temporal(TemporalType.DATE)
     private Date datanascimento;
+    @OneToMany(mappedBy = "idEmitente")
+    private List<Recibo> reciboList;
     @JoinColumn(name = "idAgenda", referencedColumnName = "id")
     @ManyToOne
     private Agenda idAgenda;
@@ -95,6 +105,22 @@ public class Dentista implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
     }
 
     public String getNome() {
@@ -191,6 +217,14 @@ public class Dentista implements Serializable {
 
     public void setDatanascimento(Date datanascimento) {
         this.datanascimento = datanascimento;
+    }
+
+    public List<Recibo> getReciboList() {
+        return reciboList;
+    }
+
+    public void setReciboList(List<Recibo> reciboList) {
+        this.reciboList = reciboList;
     }
 
     public Agenda getIdAgenda() {

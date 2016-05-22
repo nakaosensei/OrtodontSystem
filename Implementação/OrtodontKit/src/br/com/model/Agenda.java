@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author a1061712
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "agenda")
@@ -36,10 +36,10 @@ public class Agenda implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAgenda")
-    private List<Evento> eventoList;
     @OneToMany(mappedBy = "idAgenda")
     private List<Dentista> dentistaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAgenda")
+    private List<Evento> eventoList;
     @OneToMany(mappedBy = "idAgenda")
     private List<Secretaria> secretariaList;
 
@@ -58,20 +58,20 @@ public class Agenda implements Serializable {
         this.id = id;
     }
 
-    public List<Evento> getEventoList() {
-        return eventoList;
-    }
-
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
-    }
-
     public List<Dentista> getDentistaList() {
         return dentistaList;
     }
 
     public void setDentistaList(List<Dentista> dentistaList) {
         this.dentistaList = dentistaList;
+    }
+
+    public List<Evento> getEventoList() {
+        return eventoList;
+    }
+
+    public void setEventoList(List<Evento> eventoList) {
+        this.eventoList = eventoList;
     }
 
     public List<Secretaria> getSecretariaList() {

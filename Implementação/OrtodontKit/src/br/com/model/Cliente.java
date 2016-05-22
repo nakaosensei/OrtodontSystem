@@ -23,7 +23,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author a1061712
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "cliente")
@@ -59,6 +59,14 @@ public class Cliente implements Serializable {
     private Integer telcelular1;
     @Column(name = "telcelular2")
     private Integer telcelular2;
+    @OneToMany(mappedBy = "idCliente")
+    private List<Recibo> reciboList;
+    @OneToMany(mappedBy = "idCliente")
+    private List<FichaClinica> fichaClinicaList;
+    @OneToMany(mappedBy = "idClienteResponsavel")
+    private List<FichaClinica> fichaClinicaList1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idClienteResponsavel")
+    private List<Clientedependente> clientedependenteList;
     @JoinColumn(name = "idEnderecoCasa", referencedColumnName = "id")
     @ManyToOne
     private Endereco idEnderecoCasa;
@@ -67,12 +75,6 @@ public class Cliente implements Serializable {
     private Endereco idEnderecoTrab;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private List<Evento> eventoList;
-    @OneToMany(mappedBy = "idCliente")
-    private List<FichaClinica> fichaClinicaList;
-    @OneToMany(mappedBy = "idClienteResponsavel")
-    private List<FichaClinica> fichaClinicaList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idClienteResponsavel")
-    private List<Clientedependente> clientedependenteList;
 
     public Cliente() {
     }
@@ -145,28 +147,12 @@ public class Cliente implements Serializable {
         this.telcelular2 = telcelular2;
     }
 
-    public Endereco getIdEnderecoCasa() {
-        return idEnderecoCasa;
+    public List<Recibo> getReciboList() {
+        return reciboList;
     }
 
-    public void setIdEnderecoCasa(Endereco idEnderecoCasa) {
-        this.idEnderecoCasa = idEnderecoCasa;
-    }
-
-    public Endereco getIdEnderecoTrab() {
-        return idEnderecoTrab;
-    }
-
-    public void setIdEnderecoTrab(Endereco idEnderecoTrab) {
-        this.idEnderecoTrab = idEnderecoTrab;
-    }
-
-    public List<Evento> getEventoList() {
-        return eventoList;
-    }
-
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
+    public void setReciboList(List<Recibo> reciboList) {
+        this.reciboList = reciboList;
     }
 
     public List<FichaClinica> getFichaClinicaList() {
@@ -191,6 +177,30 @@ public class Cliente implements Serializable {
 
     public void setClientedependenteList(List<Clientedependente> clientedependenteList) {
         this.clientedependenteList = clientedependenteList;
+    }
+
+    public Endereco getIdEnderecoCasa() {
+        return idEnderecoCasa;
+    }
+
+    public void setIdEnderecoCasa(Endereco idEnderecoCasa) {
+        this.idEnderecoCasa = idEnderecoCasa;
+    }
+
+    public Endereco getIdEnderecoTrab() {
+        return idEnderecoTrab;
+    }
+
+    public void setIdEnderecoTrab(Endereco idEnderecoTrab) {
+        this.idEnderecoTrab = idEnderecoTrab;
+    }
+
+    public List<Evento> getEventoList() {
+        return eventoList;
+    }
+
+    public void setEventoList(List<Evento> eventoList) {
+        this.eventoList = eventoList;
     }
 
     @Override

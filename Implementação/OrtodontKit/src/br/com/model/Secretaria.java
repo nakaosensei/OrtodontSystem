@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author a1061712
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "secretaria")
@@ -31,6 +31,8 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Secretaria.findAll", query = "SELECT s FROM Secretaria s"),
     @NamedQuery(name = "Secretaria.findById", query = "SELECT s FROM Secretaria s WHERE s.id = :id"),
     @NamedQuery(name = "Secretaria.findByNome", query = "SELECT s FROM Secretaria s WHERE s.nome = :nome"),
+    @NamedQuery(name = "Secretaria.findByLogin", query = "SELECT s FROM Secretaria s WHERE s.login = :login"),
+    @NamedQuery(name = "Secretaria.findByPasswd", query = "SELECT s FROM Secretaria s WHERE s.passwd = :passwd"),
     @NamedQuery(name = "Secretaria.findByCpf", query = "SELECT s FROM Secretaria s WHERE s.cpf = :cpf"),
     @NamedQuery(name = "Secretaria.findByRg", query = "SELECT s FROM Secretaria s WHERE s.rg = :rg"),
     @NamedQuery(name = "Secretaria.findByTelfixo1", query = "SELECT s FROM Secretaria s WHERE s.telfixo1 = :telfixo1"),
@@ -52,6 +54,10 @@ public class Secretaria implements Serializable {
     private Integer id;
     @Column(name = "nome")
     private String nome;
+    @Column(name = "login")
+    private String login;
+    @Column(name = "passwd")
+    private String passwd;
     @Column(name = "cpf")
     private Integer cpf;
     @Column(name = "rg")
@@ -103,6 +109,22 @@ public class Secretaria implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
     }
 
     public Integer getCpf() {

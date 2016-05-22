@@ -8,13 +8,16 @@ package br.com.view;
 
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author a1061712
  */
 public class JFLogin extends javax.swing.JFrame {
-
+    private static String mensagemFalhaLogin;
+    private static String mensagemFalhaSenha;
+    
     /**
      * Creates new form JFHome
      */
@@ -24,7 +27,8 @@ public class JFLogin extends javax.swing.JFrame {
     }
     
     private void carregarComponentes(){
-       
+       mensagemFalhaLogin="Login incorreto";
+       mensagemFalhaSenha="Senha incorreta";
     }
 
     /**
@@ -61,6 +65,11 @@ public class JFLogin extends javax.swing.JFrame {
         jBEsqueciSenha.setText("Esqueceu a senha?");
 
         jBLogin.setText("Entrar");
+        jBLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPrincipalLayout = new javax.swing.GroupLayout(jPrincipal);
         jPrincipal.setLayout(jPrincipalLayout);
@@ -122,6 +131,20 @@ public class JFLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLoginActionPerformed
+        String login=jTFLogin.getText().trim();
+        String senha=jTFSenha.getText().trim();
+        if(login.equals("")){
+            JOptionPane.showMessageDialog(rootPane, mensagemFalhaLogin);
+        }
+        if(senha.equals("")){
+            JOptionPane.showMessageDialog(rootPane, mensagemFalhaSenha);
+        }
+        
+        
+        
+    }//GEN-LAST:event_jBLoginActionPerformed
 
     /**
      * @param args the command line arguments

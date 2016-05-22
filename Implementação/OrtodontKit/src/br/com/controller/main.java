@@ -7,6 +7,7 @@ package br.com.controller;
 
 import br.com.DAO.DAOEndereco;
 import br.com.model.Endereco;
+import br.com.view.JFHomeDentista;
 import br.com.view.JFLogin;
 
 /**
@@ -18,10 +19,7 @@ public class main {
         JFLogin jf = new JFLogin();
         jf.setLocationRelativeTo(null);
         jf.setVisible(true);
-        DAOEndereco dao = new DAOEndereco();
-        Endereco teste = new Endereco(1);
-                
-        dao.inserir(teste);
-        
+        JFHomeDentista jfh = new JFHomeDentista();
+        jfh.setVisible(true);
     }
 }

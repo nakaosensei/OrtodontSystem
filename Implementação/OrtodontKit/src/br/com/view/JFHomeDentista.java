@@ -36,7 +36,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
         jBCliente = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jBReport = new javax.swing.JButton();
-        jBAgenda1 = new javax.swing.JButton();
+        jBRelatorios = new javax.swing.JButton();
         jBOdontograma = new javax.swing.JButton();
         jBPlanoAvaliacaoDentaria = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -81,7 +81,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
 
         jBReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logout48.png"))); // NOI18N
 
-        jBAgenda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/report48.png"))); // NOI18N
+        jBRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/report48.png"))); // NOI18N
 
         jBOdontograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/odontograma48.png"))); // NOI18N
 
@@ -157,7 +157,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jBAgenda1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -195,7 +195,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBAgenda1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jBReport, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,11 +249,11 @@ public class JFHomeDentista extends javax.swing.JFrame {
     private javax.swing.JMenu JMenuCadastros;
     private javax.swing.JMenu Relatórios;
     private javax.swing.JButton jBAgenda;
-    private javax.swing.JButton jBAgenda1;
     private javax.swing.JButton jBCliente;
     private javax.swing.JButton jBOdontograma;
     private javax.swing.JButton jBPlanoAvaliacaoDentaria;
     private javax.swing.JButton jBRecibo;
+    private javax.swing.JButton jBRelatorios;
     private javax.swing.JButton jBReport;
     private javax.swing.JButton jBSecretaria;
     private javax.swing.JButton jBTratamento;

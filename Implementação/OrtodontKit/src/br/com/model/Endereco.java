@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author a1061712
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "endereco")
@@ -56,21 +56,20 @@ public class Endereco implements Serializable {
     private String bairro;
     @Column(name = "complemento")
     private String complemento;
+    @OneToMany(mappedBy = "idEndereco")
+    private List<Dentista> dentistaList;
+    @OneToMany(mappedBy = "idEnderecoCasa")
+    private List<Clientedependente> clientedependenteList;
+    @OneToMany(mappedBy = "idEnderecoTrab")
+    private List<Clientedependente> clientedependenteList1;
     @OneToMany(mappedBy = "idEnderecoCasa")
     private List<Cliente> clienteList;
     @OneToMany(mappedBy = "idEnderecoTrab")
     private List<Cliente> clienteList1;
     @OneToMany(mappedBy = "idEndereco")
-    private List<Dentista> dentistaList;
-    @OneToMany(mappedBy = "idEndereco")
     private List<Secretaria> secretariaList;
-    @OneToMany(mappedBy = "idEnderecoCasa")
-    private List<Clientedependente> clientedependenteList;
-    @OneToMany(mappedBy = "idEnderecoTrab")
-    private List<Clientedependente> clientedependenteList1;
 
     public Endereco() {
-        
     }
 
     public Endereco(Integer id) {
@@ -141,36 +140,12 @@ public class Endereco implements Serializable {
         this.complemento = complemento;
     }
 
-    public List<Cliente> getClienteList() {
-        return clienteList;
-    }
-
-    public void setClienteList(List<Cliente> clienteList) {
-        this.clienteList = clienteList;
-    }
-
-    public List<Cliente> getClienteList1() {
-        return clienteList1;
-    }
-
-    public void setClienteList1(List<Cliente> clienteList1) {
-        this.clienteList1 = clienteList1;
-    }
-
     public List<Dentista> getDentistaList() {
         return dentistaList;
     }
 
     public void setDentistaList(List<Dentista> dentistaList) {
         this.dentistaList = dentistaList;
-    }
-
-    public List<Secretaria> getSecretariaList() {
-        return secretariaList;
-    }
-
-    public void setSecretariaList(List<Secretaria> secretariaList) {
-        this.secretariaList = secretariaList;
     }
 
     public List<Clientedependente> getClientedependenteList() {
@@ -187,6 +162,30 @@ public class Endereco implements Serializable {
 
     public void setClientedependenteList1(List<Clientedependente> clientedependenteList1) {
         this.clientedependenteList1 = clientedependenteList1;
+    }
+
+    public List<Cliente> getClienteList() {
+        return clienteList;
+    }
+
+    public void setClienteList(List<Cliente> clienteList) {
+        this.clienteList = clienteList;
+    }
+
+    public List<Cliente> getClienteList1() {
+        return clienteList1;
+    }
+
+    public void setClienteList1(List<Cliente> clienteList1) {
+        this.clienteList1 = clienteList1;
+    }
+
+    public List<Secretaria> getSecretariaList() {
+        return secretariaList;
+    }
+
+    public void setSecretariaList(List<Secretaria> secretariaList) {
+        this.secretariaList = secretariaList;
     }
 
     @Override
