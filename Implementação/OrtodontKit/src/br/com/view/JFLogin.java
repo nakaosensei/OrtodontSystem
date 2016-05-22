@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.view;
 
 
@@ -10,7 +6,6 @@ package br.com.view;
 import br.com.DAO.DAODentista;
 import br.com.DAO.DAOSecretaria;
 import java.awt.Color;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,8 +13,6 @@ import javax.swing.JOptionPane;
  * @author a1061712
  */
 public class JFLogin extends javax.swing.JFrame {
-    private static String mensagemFalhaLogin;
-    private static String mensagemFalhaSenha;
     private static String mensagemFalha;
     private static String emailSuporte;
     /**
@@ -79,6 +72,7 @@ public class JFLogin extends javax.swing.JFrame {
             }
         });
 
+        jTFPassword.setText("jPasswordField1");
         jTFPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Senha"));
 
         javax.swing.GroupLayout jPrincipalLayout = new javax.swing.GroupLayout(jPrincipal);

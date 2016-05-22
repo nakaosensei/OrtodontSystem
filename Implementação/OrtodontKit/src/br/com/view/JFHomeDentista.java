@@ -56,6 +56,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
         jMIDentista = new javax.swing.JMenuItem();
         Relatórios = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMISair = new javax.swing.JMenu();
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/agenda48.png"))); // NOI18N
@@ -90,29 +91,40 @@ public class JFHomeDentista extends javax.swing.JFrame {
 
         jMenuTramento.setText("Tratamento");
 
+        jMIStartTratamento.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         jMIStartTratamento.setText("Iniciar Tratamento");
         jMenuTramento.add(jMIStartTratamento);
 
-        jMICancelTratamento.setText("Cancelar Tratamento");
+        jMICancelTratamento.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMICancelTratamento.setText("Abrir Tratamento");
         jMenuTramento.add(jMICancelTratamento);
 
         jMenuBar1.add(jMenuTramento);
 
         jMenuAgenda.setText("Agenda");
 
+        jMIAgendar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
         jMIAgendar.setText("Marcar");
         jMenuAgenda.add(jMIAgendar);
 
+        jMIDesagendar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         jMIDesagendar.setText("Desmarcar");
+        jMIDesagendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIDesagendarActionPerformed(evt);
+            }
+        });
         jMenuAgenda.add(jMIDesagendar);
 
-        jMIVer.setText("Ver");
+        jMIVer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jMIVer.setText("Abrir");
         jMenuAgenda.add(jMIVer);
 
         jMenuBar1.add(jMenuAgenda);
 
         jMenuRecibos.setText("Recibo");
 
+        jMIEmitirRecibo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         jMIEmitirRecibo.setText("Emitir ");
         jMenuRecibos.add(jMIEmitirRecibo);
 
@@ -120,12 +132,15 @@ public class JFHomeDentista extends javax.swing.JFrame {
 
         JMenuCadastros.setText("Cadastros");
 
+        jMICliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
         jMICliente.setText("Cadastrar Cliente");
         JMenuCadastros.add(jMICliente);
 
+        jMISecretaria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.CTRL_MASK));
         jMISecretaria.setText("Cadastrar Secretária");
         JMenuCadastros.add(jMISecretaria);
 
+        jMIDentista.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.CTRL_MASK));
         jMIDentista.setText("Cadastrar Dentista");
         JMenuCadastros.add(jMIDentista);
 
@@ -135,6 +150,9 @@ public class JFHomeDentista extends javax.swing.JFrame {
 
         jMenuItem1.setText("Relatorio de Recibos");
         Relatórios.add(jMenuItem1);
+
+        jMenuItem2.setText("Relatorio de Clientes");
+        Relatórios.add(jMenuItem2);
 
         jMenuBar1.add(Relatórios);
 
@@ -210,41 +228,11 @@ public class JFHomeDentista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFHomeDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFHomeDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFHomeDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFHomeDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void jMIDesagendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIDesagendarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMIDesagendarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFHomeDentista().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu JMenuCadastros;
@@ -274,6 +262,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuAgenda;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jMenuRecibos;
     private javax.swing.JMenu jMenuTramento;
     // End of variables declaration//GEN-END:variables
