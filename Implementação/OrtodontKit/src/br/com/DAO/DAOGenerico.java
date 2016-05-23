@@ -38,7 +38,7 @@ public class DAOGenerico<T> {
         return (T) em.find(clazz, id);
         
     }
-    public List<T> list() {
+    public List<T> listAll() {
         return em.createQuery("SELECT e FROM "+clazz.getSimpleName() + " e").getResultList();
     }
 

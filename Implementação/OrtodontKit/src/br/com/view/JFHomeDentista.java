@@ -5,6 +5,9 @@
  */
 package br.com.view;
 
+import br.com.view.exibicao.JDListCliente;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,9 +22,47 @@ public class JFHomeDentista extends javax.swing.JFrame {
     public JFHomeDentista() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        addListeners();
     }
 
+    private void addListeners(){
+        this.addWindowListener( new WindowListener(){
+            public void windowClosing( WindowEvent e ){
+                close();
+            }
+            public void windowClosed( WindowEvent e ){
+                
+                JFLogin jf = new JFLogin();
+                jf.setVisible(true);
+            }
+
+            @Override
+            public void windowOpened(WindowEvent e) {
+            //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -147,6 +188,11 @@ public class JFHomeDentista extends javax.swing.JFrame {
 
         jMICliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
         jMICliente.setText("Cadastrar Cliente");
+        jMICliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIClienteActionPerformed(evt);
+            }
+        });
         JMenuCadastros.add(jMICliente);
 
         jMISecretaria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.CTRL_MASK));
@@ -250,6 +296,11 @@ public class JFHomeDentista extends javax.swing.JFrame {
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
         close();
     }//GEN-LAST:event_jBSairActionPerformed
+
+    private void jMIClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIClienteActionPerformed
+        JDListCliente jd = new JDListCliente(this, true);
+        jd.setVisible(true);
+    }//GEN-LAST:event_jMIClienteActionPerformed
 
     private void close(){
         int res = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?");
