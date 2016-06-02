@@ -5,10 +5,25 @@
  */
 package br.com.model.tables;
 
+import br.com.model.Secretaria;
+
 /**
  *
  * @author Convidado
  */
-public class ModelTabelaListSecretaria {
+public class ModelTabelaListSecretaria extends UsualTableModel<Secretaria>{
+
+    public ModelTabelaListSecretaria() {
+        super(
+            "nome=Nome",  
+            "login=Login",
+            "cpf=CPF",
+            "rg=RG",
+            "telfixo1=Telefone(Fixo)",
+            "telCelular1=Telefone(Celular)",
+            "rgorgaoexpedidor=RG(Orgão Expedidor)",
+            "email=Email"
+        );
+    }
     
 }
