@@ -5,7 +5,10 @@
  */
 package br.com.DAO;
 
+import static br.com.DAO.DAOGenerico.em;
+import br.com.model.Cliente;
 import br.com.model.Clientedependente;
+import javax.persistence.Query;
 
 /**
  *
@@ -14,6 +17,16 @@ import br.com.model.Clientedependente;
 public class DAOClientedependente extends DAOGenerico<Clientedependente>{
     public DAOClientedependente() {
         super(Clientedependente.class);
+    }
+    
+    public Cliente getResponsavel(int idClienteResponsavel){
+        Query q =em.createQuery("SELECT e FROM cliente e WHERE e.id= :id");
+        q.setParameter("id", idClienteResponsavel);
+        if(q.getResultList().isEmpty()){
+            return null;
+        }else{
+            return (Cliente)q.getResultList().get(0);
+        }
     }
 }
 

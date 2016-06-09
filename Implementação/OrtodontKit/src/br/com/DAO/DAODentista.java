@@ -3,6 +3,7 @@ package br.com.DAO;
 import br.com.model.Dentista;
 import javax.persistence.Query;
 
+
 /**
  *
  * @author nakao<nakaosensei@gmail.com>

@@ -4,8 +4,6 @@
  */
 package br.com.DAO;
 
-
-
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -21,6 +19,7 @@ public class DAOGenerico<T> {
         em.persist(e);
         em.getTransaction().commit();
     }
+    
     public void atualizar(T e) {
         em.getTransaction().begin();
         em.merge(e);

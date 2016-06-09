@@ -16,5 +16,7 @@ public class main {
         JFLogin jf = new JFLogin();
         jf.setLocationRelativeTo(null);
         jf.setVisible(true);
+        
+        
     }
 }

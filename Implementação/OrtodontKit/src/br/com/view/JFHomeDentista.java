@@ -298,7 +298,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
     }//GEN-LAST:event_jBSairActionPerformed
 
     private void jMIClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIClienteActionPerformed
-        JDListCliente jd = new JDListCliente(this, true);
+        JDCRUDCliente jd = new JDCRUDCliente(this, true);
         jd.setVisible(true);
     }//GEN-LAST:event_jMIClienteActionPerformed
 
