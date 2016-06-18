@@ -28,8 +28,7 @@ public abstract class UsualTableModel<T> extends AbstractTableModel implements T
     }
 
     public UsualTableModel(String... colunas) {
-        this.clazz = 
-                (Class) ((ParameterizedType) getClass().asSubclass(getClass()).getGenericSuperclass()).getActualTypeArguments()[0];
+        this.clazz = (Class) ((ParameterizedType) getClass().asSubclass(getClass()).getGenericSuperclass()).getActualTypeArguments()[0];
         this.colunas = new String[colunas.length];
         int i = 0;
         for (String c : colunas) {
@@ -62,8 +61,10 @@ public abstract class UsualTableModel<T> extends AbstractTableModel implements T
             Field f = getField(clazz, columnIndex);
             return f.get(t);
         } catch (Exception e) {
+            //e.printStackTrace();
             throw new IndexOutOfBoundsException("Erro ao recuperar valor do campo: " + e.getMessage());
         }
+        
     }
 
     @Override
@@ -96,7 +97,7 @@ public abstract class UsualTableModel<T> extends AbstractTableModel implements T
         if (f == null) {
             f = clazz.getDeclaredField(this.colunas[columnIndex].split("=")[0]);
             f.setAccessible(true);
-            _FIELDS.put(columnIndex, f);
+            _FIELDS.put(columnIndex, f);                     
         }
         return f;
     }

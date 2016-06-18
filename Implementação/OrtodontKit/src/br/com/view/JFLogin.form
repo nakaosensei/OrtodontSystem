@@ -119,6 +119,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFLoginKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="jBEsqueciSenha">
           <Properties>
@@ -148,6 +151,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFPasswordKeyPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

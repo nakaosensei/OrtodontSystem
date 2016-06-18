@@ -5,6 +5,7 @@ package br.com.view;
 
 import br.com.DAO.DAODentista;
 import br.com.DAO.DAOSecretaria;
+import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -58,6 +59,11 @@ public class JFLogin extends javax.swing.JFrame {
         jLabel2.setText("Bem vindo ao Ortodont System");
 
         jTFLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Login"));
+        jTFLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFLoginKeyPressed(evt);
+            }
+        });
 
         jBEsqueciSenha.setText("Esqueceu a senha?");
         jBEsqueciSenha.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +80,11 @@ public class JFLogin extends javax.swing.JFrame {
         });
 
         jTFPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Senha"));
+        jTFPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFPasswordKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPrincipalLayout = new javax.swing.GroupLayout(jPrincipal);
         jPrincipal.setLayout(jPrincipalLayout);
@@ -137,7 +148,7 @@ public class JFLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLoginActionPerformed
+    private void jBLoginAction(){
         String login=jTFLogin.getText().trim();
         char senha[]=jTFPassword.getPassword();
         String pw="";
@@ -168,12 +179,28 @@ public class JFLogin extends javax.swing.JFrame {
                 }
             }
         }
+    }
+    
+    private void jBLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLoginActionPerformed
+        jBLoginAction();
                 
     }//GEN-LAST:event_jBLoginActionPerformed
 
     private void jBEsqueciSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEsqueciSenhaActionPerformed
         JOptionPane.showMessageDialog(null, "Envie um email para "+emailSuporte+" explicando seu caso para recuperar seu login e senha");
     }//GEN-LAST:event_jBEsqueciSenhaActionPerformed
+
+    private void jTFLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFLoginKeyPressed
+        if(evt.getKeyCode()==(KeyEvent.VK_ENTER)){
+            this.jBLoginAction();
+        }
+    }//GEN-LAST:event_jTFLoginKeyPressed
+
+    private void jTFPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPasswordKeyPressed
+        if(evt.getKeyCode()==(KeyEvent.VK_ENTER)){
+            this.jBLoginAction();
+        }
+    }//GEN-LAST:event_jTFPasswordKeyPressed
 
     /**
      * @param args the command line arguments

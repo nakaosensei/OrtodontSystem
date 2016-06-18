@@ -77,6 +77,7 @@ public class Cliente implements Serializable {
     private List<Evento> eventoList;
 
     public Cliente() {
+       
     }
 
     public Cliente(Integer id) {
