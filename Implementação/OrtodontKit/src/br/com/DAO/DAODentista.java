@@ -1,6 +1,6 @@
 package br.com.DAO;
 
-import br.com.model.Dentista;
+import br.com.model.bd.Dentista;
 import javax.persistence.Query;
 
 

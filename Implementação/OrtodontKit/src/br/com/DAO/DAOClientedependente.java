@@ -6,8 +6,8 @@
 package br.com.DAO;
 
 import static br.com.DAO.DAOGenerico.em;
-import br.com.model.Cliente;
-import br.com.model.Clientedependente;
+import br.com.model.bd.Cliente;
+import br.com.model.bd.Clientedependente;
 import javax.persistence.Query;
 
 /**

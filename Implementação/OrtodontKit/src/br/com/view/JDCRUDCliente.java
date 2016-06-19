@@ -1,18 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.view;
 
 import br.com.DAO.DAOCliente;
 import br.com.DAO.DAOClientedependente;
 import br.com.DAO.DAOEndereco;
-import br.com.model.Cliente;
-import br.com.model.Clientedependente;
-import br.com.model.Endereco;
-import br.com.model.OperacaoCrud;
-import br.com.util.NKValidator;
+import br.com.model.bd.Cliente;
+import br.com.model.bd.Clientedependente;
+import br.com.model.bd.Endereco;
+import br.com.util.CPFValidator;
+import br.com.util.OperacaoCrud;
+import br.com.util.TextFieldFormatter;
 import br.com.view.exibicao.JDListCliente;
 import javax.swing.JOptionPane;
 
@@ -25,25 +22,26 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     private DAOEndereco daoEnd;
     private DAOClientedependente daoCliDp;
     private OperacaoCrud operacao;
-    private NKValidator validator;
+    private TextFieldFormatter validator;
+    private CPFValidator cpfvalitator;
     /**
      * Creates new form JDCRUDCliente
      */
     public JDCRUDCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        validator = new NKValidator();        
+        validator = new TextFieldFormatter();        
         initComponents();
         daoCli = new DAOCliente();
         daoCliDp=new DAOClientedependente();
         daoEnd = new DAOEndereco();
-        setAll(false, true);
+        setStandardState();
         this.setLocationRelativeTo(null);
     }
 
     private void setAll(boolean nonId,boolean id){
-        this.jTFoneFixo.setEditable(nonId);
-        this.jTFidEnderecoTrabalho.setEditable(id);
-        this.jTFCasaIdEndereco.setEditable(id);
+        jTFoneFixo.setEditable(nonId);
+        jTFidEnderecoTrabalho.setEditable(id);
+        jTFCasaIdEndereco.setEditable(id);
         jTFID.setEditable(id);
         jTFRuaEnderecoTrabalho.setEditable(nonId);
         jTFCasaEnderecoRua.setEditable(nonId);
@@ -913,16 +911,61 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFIDActionPerformed
 
-    private void jBAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddActionPerformed
+    private void setAddState(){
         setAll(true, false);
-        jTFNomeResponsavel.setEditable(false);
         jTFParentesco.setEditable(false);
+        jTFNomeResponsavel.setEditable(false);
+        jTFidEnderecoTrabalho.setEditable(false);
+        jTFCasaIdEndereco.setEditable(false);
+    }
+    
+    private void clearTextFields(){
+        jTFoneFixo.setText("");
+        jTFidEnderecoTrabalho.setText("");
+        jTFCasaIdEndereco.setText("");
+        jTFID.setText("0");
+        jTFRuaEnderecoTrabalho.setText("");
+        jTFCasaEnderecoRua.setText("");
+        jTFRG.setText("0");
+        jTFNumeroEnderecoTrabalho.setText("0");
+        jTFCasaEnderecoNumero.setText("0");
+        jTFNome.setText("");
+        jTFoneFixo2.setText("");
+        jTFParentesco.setText("");
+        jTFEstadoEnderecoTrabalho.setText("");
+        jTFEstadoEnderecoCasa.setText("");
+        jTFComplementoEnderecoTrabalho.setText("");
+        jTFComplementoEnderecoCasa.setText("");
+        jTFCidadeEnderecoTrabalho.setText("");
+        jTFCidadeEnderecoCasa.setText("");
+        jTFCelular2.setText("");
+        jTFCelular1.setText("");
+        jTFCPF.setText("");
+        jTFCEPEnderecoTrabalho.setText("");
+        jTFCasaEnderecoCEP.setText("");
+        jTFCasaEnderecoBairro.setText("");
+        jTFNomeResponsavel.setText("");
+        jTFBairroEnderecoTrabalho.setText("");
+        jTFIDResponsavel.setText("0");
+        jTFNomeResponsavel.setText("");
+    }
+    private void setStandardState(){
+        setAll(false, true);
+        this.clearTextFields();
+        jTFidEnderecoTrabalho.setEditable(false);
+        jTFCasaIdEndereco.setEditable(false);
+    }
+    
+    
+    private void jBAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddActionPerformed
+        this.clearTextFields();
+        this.setAddState();        
         this.operacao=OperacaoCrud.ADICIONAR;
     }//GEN-LAST:event_jBAddActionPerformed
 
     
     private boolean valiteClient(){
-        boolean validCpf = NKValidator.isValidCPF(jTFCPF.getText());
+        boolean validCpf = CPFValidator.isValidCPF(jTFCPF.getText());
         if(validCpf==false){
             JOptionPane.showMessageDialog(null, "CPF inválido");
             return false;
@@ -933,29 +976,26 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     private void cadastrarCliente(){
             Cliente novo = new Cliente();
             novo.setNome(jTFNome.getText());    
-            String cpfConvertido=validator.unmaskCPF(jTFCPF.getText()).trim();
-            System.out.println(cpfConvertido);
-            
-            novo.setCpf(cpfConvertido.equals("")?0:Integer.valueOf(cpfConvertido).intValue());
-            /*novo.setRg(jTFRG.getText().equals("")?0:Integer.parseInt(jTFRG.getText().trim()));
-            novo.setTelcelular1(jTFCelular1.getText().equals("")?0:Integer.valueOf(validator.unmaskTelefone(jTFCelular1.getText().trim())));
-            novo.setTelcelular2(jTFCelular2.getText().equals("")?0:Integer.valueOf(validator.unmaskTelefone(jTFCelular2.getText().trim())));
-            novo.setTelfixo1(jTFoneFixo.getText().equals("")?0:Integer.valueOf(validator.unmaskTelefone(jTFoneFixo.getText().trim())));
-            novo.setTelfixo2(jTFoneFixo2.getText().equals("")?0:Integer.valueOf(validator.unmaskTelefone(jTFoneFixo2.getText().trim())));
+            String cpfConvertido=validator.unmaskCPF(jTFCPF.getText()).trim();                       
+            novo.setCpf(cpfConvertido);
+            novo.setRg(jTFRG.getText().trim());
+            novo.setTelcelular1(validator.unmaskTelefone(jTFCelular1.getText().trim()));
+            novo.setTelcelular2(validator.unmaskTelefone(jTFCelular2.getText().trim()));
+            novo.setTelfixo1(validator.unmaskTelefone(jTFoneFixo.getText().trim()));
+            novo.setTelfixo2(validator.unmaskTelefone(jTFoneFixo2.getText().trim()));
             Endereco casa = new Endereco();
             casa.setBairro(jTFCasaEnderecoBairro.getText());
-            casa.setCep(jTFCasaEnderecoCEP.getText().equals("")?0:Integer.valueOf(validator.unmaskCEP(jTFCasaEnderecoCEP.getText()).trim()));
+            casa.setCep(validator.unmaskCEP(jTFCasaEnderecoCEP.getText()).trim());
             casa.setCidade(jTFCidadeEnderecoCasa.getText());
             casa.setComplemento(jTFComplementoEnderecoCasa.getText());
             casa.setEstado(jTFEstadoEnderecoCasa.getText());
             casa.setNumero(jTFCasaEnderecoNumero.getText().equals("")?0:Integer.valueOf(jTFCasaEnderecoNumero.getText().trim()));
             casa.setRua(jTFCasaEnderecoRua.getText());
             Endereco endCasa=daoEnd.getInsertingIfNecessary(casa);
-            novo.setIdEnderecoCasa(endCasa);
-            
+            novo.setIdEnderecoCasa(endCasa);            
             Endereco trab = new Endereco();
             trab.setBairro(jTFBairroEnderecoTrabalho.getText());
-            trab.setCep(jTFCEPEnderecoTrabalho.getText().equals("")?0:Integer.valueOf(validator.unmaskCEP(jTFCEPEnderecoTrabalho.getText())));
+            trab.setCep(validator.unmaskCEP(jTFCEPEnderecoTrabalho.getText().trim()));
             trab.setCidade(jTFCidadeEnderecoTrabalho.getText());
             trab.setComplemento(jTFComplementoEnderecoTrabalho.getText());
             trab.setEstado(jTFEstadoEnderecoTrabalho.getText());
@@ -963,21 +1003,24 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             trab.setRua(jTFRuaEnderecoTrabalho.getText());
             Endereco endTrab = daoEnd.getInsertingIfNecessary(trab);
             novo.setIdEnderecoTrab(endTrab);
+            
             daoCli.inserir(novo);
-            */
+            
     }
     private void cadastrarClienteDependente(){
             Clientedependente novo = new Clientedependente();
             novo.setNome(jTFNome.getText());
-            novo.setCpf(Integer.parseInt(jTFCPF.getText()));
-            novo.setRg(Integer.parseInt(jTFRG.getText()));
-            novo.setTelcelular1(Integer.parseInt(jTFCelular1.getText()));
-            novo.setTelcelular2(Integer.parseInt(jTFCelular2.getText()));
-            novo.setTelfixo1(Integer.parseInt(jTFoneFixo.getText()));
-            novo.setTelfixo2(Integer.parseInt(jTFoneFixo2.getText()));
+            String cpfConvertido=validator.unmaskCPF(jTFCPF.getText()).trim();                       
+            novo.setCpf(cpfConvertido);
+            novo.setRg(jTFRG.getText().trim());
+            novo.setTelcelular1(validator.unmaskTelefone(jTFCelular1.getText().trim()));
+            novo.setTelcelular2(validator.unmaskTelefone(jTFCelular2.getText().trim()));
+            novo.setTelfixo1(validator.unmaskTelefone(jTFoneFixo.getText().trim()));
+            novo.setTelfixo2(validator.unmaskTelefone(jTFoneFixo2.getText().trim()));
+            
             Endereco casa = new Endereco();
             casa.setBairro(jTFCasaEnderecoBairro.getText());
-            casa.setCep(Integer.parseInt(jTFCasaEnderecoCEP.getText()));
+            casa.setCep(validator.unmaskCEP(jTFCasaEnderecoCEP.getText()).trim());
             casa.setCidade(jTFCidadeEnderecoCasa.getText());
             casa.setComplemento(jTFComplementoEnderecoCasa.getText());
             casa.setEstado(jTFEstadoEnderecoCasa.getText());
@@ -988,7 +1031,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             
             Endereco trab = new Endereco();
             trab.setBairro(jTFBairroEnderecoTrabalho.getText());
-            trab.setCep(Integer.parseInt(jTFBairroEnderecoTrabalho.getText()));
+            trab.setCep(validator.unmaskCEP(jTFCEPEnderecoTrabalho.getText().trim()));
             trab.setCidade(jTFCidadeEnderecoTrabalho.getText());
             trab.setComplemento(jTFComplementoEnderecoTrabalho.getText());
             trab.setEstado(jTFEstadoEnderecoTrabalho.getText());
@@ -1010,14 +1053,15 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
         if(this.operacao==OperacaoCrud.ADICIONAR){
-            if(jTFIDResponsavel.getText().trim().equals("")){
-                
+            if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){                
                 cadastrarCliente();                
             }else{                
                 cadastrarClienteDependente();                
-            }   
+            }
+            this.setStandardState();
+            jLMsg.setText("Cliente cadastrado com sucesso");
         }
-        jLMsg.setText("Cliente cadastrado com sucesso");
+        
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jTFNomeResponsavelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeResponsavelActionPerformed
@@ -1029,7 +1073,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jTFIDResponsavelActionPerformed
 
     private void jTFIDResponsavelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIDResponsavelFocusLost
-        if(jTFIDResponsavel.getText().trim().equals("")){
+        if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){
             jTFParentesco.setEditable(false);
         }
     }//GEN-LAST:event_jTFIDResponsavelFocusLost

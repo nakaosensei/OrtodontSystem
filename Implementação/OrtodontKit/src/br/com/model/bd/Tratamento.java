@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.model;
+package br.com.model.bd;
 
 import java.io.Serializable;
 import java.util.List;
@@ -157,7 +157,7 @@ public class Tratamento implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.Tratamento[ id=" + id + " ]";
+        return "br.com.model.tables.bd.Tratamento[ id=" + id + " ]";
     }
     
 }

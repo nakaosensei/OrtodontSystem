@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.model;
+package br.com.model.bd;
 
 import java.io.Serializable;
 import java.util.List;
@@ -49,7 +49,7 @@ public class Endereco implements Serializable {
     @Column(name = "cidade")
     private String cidade;
     @Column(name = "cep")
-    private Integer cep;
+    private String cep;
     @Column(name = "estado")
     private String estado;
     @Column(name = "bairro")
@@ -108,11 +108,11 @@ public class Endereco implements Serializable {
         this.cidade = cidade;
     }
 
-    public Integer getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(Integer cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
@@ -210,7 +210,7 @@ public class Endereco implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.Endereco[ id=" + id + " ]";
+        return "br.com.model.tables.bd.Endereco[ id=" + id + " ]";
     }
     
 }

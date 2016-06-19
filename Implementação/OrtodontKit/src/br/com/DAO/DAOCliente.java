@@ -5,7 +5,7 @@
  */
 package br.com.DAO;
 
-import br.com.model.Cliente;
+import br.com.model.bd.Cliente;
 
 /**
  *

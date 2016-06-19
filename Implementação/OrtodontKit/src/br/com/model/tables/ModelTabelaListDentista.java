@@ -5,7 +5,7 @@
  */
 package br.com.model.tables;
 
-import br.com.model.Dentista;
+import br.com.model.bd.Dentista;
 
 /**
  *

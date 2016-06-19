@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.model;
+package br.com.model.bd;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -128,7 +128,7 @@ public class FichaClinica implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.FichaClinica[ id=" + id + " ]";
+        return "br.com.model.tables.bd.FichaClinica[ id=" + id + " ]";
     }
     
 }

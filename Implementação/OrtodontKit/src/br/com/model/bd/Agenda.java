@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.model;
+package br.com.model.bd;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,11 +24,11 @@ import javax.persistence.Table;
  * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
-@Table(name = "evento")
+@Table(name = "agenda")
 @NamedQueries({
-    @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"),
-    @NamedQuery(name = "Evento.findById", query = "SELECT e FROM Evento e WHERE e.id = :id")})
-public class Evento implements Serializable {
+    @NamedQuery(name = "Agenda.findAll", query = "SELECT a FROM Agenda a"),
+    @NamedQuery(name = "Agenda.findById", query = "SELECT a FROM Agenda a WHERE a.id = :id")})
+public class Agenda implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,17 +36,17 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "idCliente", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Cliente idCliente;
-    @JoinColumn(name = "idAgenda", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Agenda idAgenda;
+    @OneToMany(mappedBy = "idAgenda")
+    private List<Dentista> dentistaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAgenda")
+    private List<Evento> eventoList;
+    @OneToMany(mappedBy = "idAgenda")
+    private List<Secretaria> secretariaList;
 
-    public Evento() {
+    public Agenda() {
     }
 
-    public Evento(Integer id) {
+    public Agenda(Integer id) {
         this.id = id;
     }
 
@@ -57,20 +58,28 @@ public class Evento implements Serializable {
         this.id = id;
     }
 
-    public Cliente getIdCliente() {
-        return idCliente;
+    public List<Dentista> getDentistaList() {
+        return dentistaList;
     }
 
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
+    public void setDentistaList(List<Dentista> dentistaList) {
+        this.dentistaList = dentistaList;
     }
 
-    public Agenda getIdAgenda() {
-        return idAgenda;
+    public List<Evento> getEventoList() {
+        return eventoList;
     }
 
-    public void setIdAgenda(Agenda idAgenda) {
-        this.idAgenda = idAgenda;
+    public void setEventoList(List<Evento> eventoList) {
+        this.eventoList = eventoList;
+    }
+
+    public List<Secretaria> getSecretariaList() {
+        return secretariaList;
+    }
+
+    public void setSecretariaList(List<Secretaria> secretariaList) {
+        this.secretariaList = secretariaList;
     }
 
     @Override
@@ -83,10 +92,10 @@ public class Evento implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Evento)) {
+        if (!(object instanceof Agenda)) {
             return false;
         }
-        Evento other = (Evento) object;
+        Agenda other = (Agenda) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -95,7 +104,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.Evento[ id=" + id + " ]";
+        return "br.com.model.tables.bd.Agenda[ id=" + id + " ]";
     }
     
 }

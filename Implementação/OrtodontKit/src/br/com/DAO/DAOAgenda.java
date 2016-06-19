@@ -5,7 +5,7 @@
  */
 package br.com.DAO;
 
-import br.com.model.Agenda;
+import br.com.model.bd.Agenda;
 
 /**
  *

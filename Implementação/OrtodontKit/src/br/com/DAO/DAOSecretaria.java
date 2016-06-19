@@ -6,7 +6,7 @@
 package br.com.DAO;
 
 import static br.com.DAO.DAOGenerico.em;
-import br.com.model.Secretaria;
+import br.com.model.bd.Secretaria;
 import javax.persistence.Query;
 
 /**

@@ -6,7 +6,7 @@
 package br.com.DAO;
 
 import static br.com.DAO.DAOGenerico.em;
-import br.com.model.Endereco;
+import br.com.model.bd.Endereco;
 import javax.persistence.Query;
 
 /**

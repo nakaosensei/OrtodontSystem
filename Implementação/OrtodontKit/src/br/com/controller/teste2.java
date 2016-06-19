@@ -10,5 +10,8 @@ package br.com.controller;
  * @author nakao<nakaosensei@gmail.com>
  */
 public class teste2 {
-    
+    public static void main(String[] args) {
+         
+        
+    }
 }

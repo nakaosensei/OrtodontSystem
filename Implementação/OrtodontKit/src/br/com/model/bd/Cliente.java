@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.model;
+package br.com.model.bd;
 
 import java.io.Serializable;
 import java.util.List;
@@ -48,17 +48,17 @@ public class Cliente implements Serializable {
     @Column(name = "nome")
     private String nome;
     @Column(name = "cpf")
-    private Integer cpf;
+    private String cpf;
     @Column(name = "rg")
-    private Integer rg;
+    private String rg;
     @Column(name = "telfixo1")
-    private Integer telfixo1;
+    private String telfixo1;
     @Column(name = "telfixo2")
-    private Integer telfixo2;
+    private String telfixo2;
     @Column(name = "telcelular1")
-    private Integer telcelular1;
+    private String telcelular1;
     @Column(name = "telcelular2")
-    private Integer telcelular2;
+    private String telcelular2;
     @OneToMany(mappedBy = "idCliente")
     private List<Recibo> reciboList;
     @OneToMany(mappedBy = "idCliente")
@@ -77,7 +77,6 @@ public class Cliente implements Serializable {
     private List<Evento> eventoList;
 
     public Cliente() {
-       
     }
 
     public Cliente(Integer id) {
@@ -100,51 +99,51 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public Integer getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public Integer getRg() {
+    public String getRg() {
         return rg;
     }
 
-    public void setRg(Integer rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
-    public Integer getTelfixo1() {
+    public String getTelfixo1() {
         return telfixo1;
     }
 
-    public void setTelfixo1(Integer telfixo1) {
+    public void setTelfixo1(String telfixo1) {
         this.telfixo1 = telfixo1;
     }
 
-    public Integer getTelfixo2() {
+    public String getTelfixo2() {
         return telfixo2;
     }
 
-    public void setTelfixo2(Integer telfixo2) {
+    public void setTelfixo2(String telfixo2) {
         this.telfixo2 = telfixo2;
     }
 
-    public Integer getTelcelular1() {
+    public String getTelcelular1() {
         return telcelular1;
     }
 
-    public void setTelcelular1(Integer telcelular1) {
+    public void setTelcelular1(String telcelular1) {
         this.telcelular1 = telcelular1;
     }
 
-    public Integer getTelcelular2() {
+    public String getTelcelular2() {
         return telcelular2;
     }
 
-    public void setTelcelular2(Integer telcelular2) {
+    public void setTelcelular2(String telcelular2) {
         this.telcelular2 = telcelular2;
     }
 
@@ -226,7 +225,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.Cliente[ id=" + id + " ]";
+        return "br.com.model.tables.bd.Cliente[ id=" + id + " ]";
     }
     
 }
