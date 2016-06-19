@@ -59,10 +59,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTBPane" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBGravar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLMsg" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jBGravar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
           </Group>
@@ -255,6 +257,9 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFIDActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getIntegerTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -331,6 +336,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getCPFTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -369,6 +377,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getIntegerTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -410,6 +421,9 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFoneFixoActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getTelefoneTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -487,6 +501,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getTelefoneTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -525,6 +542,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getTelefoneTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -610,6 +630,9 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFIDResponsavelActionPerformed"/>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFIDResponsavelKeyPressed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getIntegerTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -651,6 +674,9 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFoneFixo2ActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getTelefoneTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -761,6 +787,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getIntegerTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -837,6 +866,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getIntegerTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -951,6 +983,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getCEPTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -1137,6 +1172,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getIntegerTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -1216,6 +1254,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getIntegerTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -1330,6 +1371,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="validator.getCEPTextField()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

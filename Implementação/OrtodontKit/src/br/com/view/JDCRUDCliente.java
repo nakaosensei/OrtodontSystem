@@ -12,6 +12,7 @@ import br.com.model.Cliente;
 import br.com.model.Clientedependente;
 import br.com.model.Endereco;
 import br.com.model.OperacaoCrud;
+import br.com.util.NKValidator;
 import br.com.view.exibicao.JDListCliente;
 import javax.swing.JOptionPane;
 
@@ -20,15 +21,17 @@ import javax.swing.JOptionPane;
  * @author nakao<nakaosensei@gmail.com>
  */
 public class JDCRUDCliente extends javax.swing.JDialog {
-    DAOCliente daoCli;
-    DAOEndereco daoEnd;
-    DAOClientedependente daoCliDp;
+    private DAOCliente daoCli;
+    private DAOEndereco daoEnd;
+    private DAOClientedependente daoCliDp;
     private OperacaoCrud operacao;
+    private NKValidator validator;
     /**
      * Creates new form JDCRUDCliente
      */
     public JDCRUDCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        validator = new NKValidator();        
         initComponents();
         daoCli = new DAOCliente();
         daoCliDp=new DAOClientedependente();
@@ -87,57 +90,57 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         jTBPane = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTFID = new javax.swing.JTextField();
+        jTFID = validator.getIntegerTextField();
         jPanel3 = new javax.swing.JPanel();
         jTFNome = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jTFCPF = new javax.swing.JTextField();
+        jTFCPF = validator.getCPFTextField();
         jPanel5 = new javax.swing.JPanel();
-        jTFRG = new javax.swing.JTextField();
+        jTFRG = validator.getIntegerTextField();
         jPanel6 = new javax.swing.JPanel();
-        jTFoneFixo = new javax.swing.JTextField();
+        jTFoneFixo = validator.getTelefoneTextField();
         jPanel7 = new javax.swing.JPanel();
         jTFParentesco = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
-        jTFCelular2 = new javax.swing.JTextField();
+        jTFCelular2 = validator.getTelefoneTextField();
         jPanel9 = new javax.swing.JPanel();
-        jTFCelular1 = new javax.swing.JTextField();
+        jTFCelular1 = validator.getTelefoneTextField();
         jPanel11 = new javax.swing.JPanel();
         jTFNomeResponsavel = new javax.swing.JTextField();
         jPanel29 = new javax.swing.JPanel();
-        jTFIDResponsavel = new javax.swing.JTextField();
+        jTFIDResponsavel = validator.getIntegerTextField();
         jPanel31 = new javax.swing.JPanel();
-        jTFoneFixo2 = new javax.swing.JTextField();
+        jTFoneFixo2 = validator.getTelefoneTextField();
         jPanel10 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
-        jTFCasaIdEndereco = new javax.swing.JTextField();
+        jTFCasaIdEndereco = validator.getIntegerTextField();
         jPanel13 = new javax.swing.JPanel();
         jTFCasaEnderecoRua = new javax.swing.JTextField();
         jPanel14 = new javax.swing.JPanel();
-        jTFCasaEnderecoNumero = new javax.swing.JTextField();
+        jTFCasaEnderecoNumero = validator.getIntegerTextField();
         jPanel15 = new javax.swing.JPanel();
         jTFCidadeEnderecoCasa = new javax.swing.JTextField();
         jPanel16 = new javax.swing.JPanel();
         jTFEstadoEnderecoCasa = new javax.swing.JTextField();
         jPanel17 = new javax.swing.JPanel();
-        jTFCasaEnderecoCEP = new javax.swing.JTextField();
+        jTFCasaEnderecoCEP = validator.getCEPTextField();
         jPanel18 = new javax.swing.JPanel();
         jTFCasaEnderecoBairro = new javax.swing.JTextField();
         jPanel19 = new javax.swing.JPanel();
         jTFComplementoEnderecoCasa = new javax.swing.JTextField();
         jPanel20 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
-        jTFidEnderecoTrabalho = new javax.swing.JTextField();
+        jTFidEnderecoTrabalho = validator.getIntegerTextField();
         jPanel22 = new javax.swing.JPanel();
         jTFRuaEnderecoTrabalho = new javax.swing.JTextField();
         jPanel23 = new javax.swing.JPanel();
-        jTFNumeroEnderecoTrabalho = new javax.swing.JTextField();
+        jTFNumeroEnderecoTrabalho = validator.getIntegerTextField();
         jPanel24 = new javax.swing.JPanel();
         jTFCidadeEnderecoTrabalho = new javax.swing.JTextField();
         jPanel25 = new javax.swing.JPanel();
         jTFEstadoEnderecoTrabalho = new javax.swing.JTextField();
         jPanel26 = new javax.swing.JPanel();
-        jTFCEPEnderecoTrabalho = new javax.swing.JTextField();
+        jTFCEPEnderecoTrabalho = validator.getCEPTextField();
         jPanel27 = new javax.swing.JPanel();
         jTFBairroEnderecoTrabalho = new javax.swing.JTextField();
         jPanel28 = new javax.swing.JPanel();
@@ -878,10 +881,11 @@ public class JDCRUDCliente extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTBPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBGravar)
-                    .addComponent(jBCancelar)
-                    .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBGravar)
+                        .addComponent(jBCancelar)))
                 .addGap(5, 5, 5))
         );
 
@@ -917,38 +921,50 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jBAddActionPerformed
 
     
+    private boolean valiteClient(){
+        boolean validCpf = NKValidator.isValidCPF(jTFCPF.getText());
+        if(validCpf==false){
+            JOptionPane.showMessageDialog(null, "CPF inválido");
+            return false;
+        }    
+        return true;
+    }
+    
     private void cadastrarCliente(){
             Cliente novo = new Cliente();
-            novo.setNome(jTFNome.getText());            
-            novo.setCpf(Integer.valueOf(jTFCPF.getText().trim()));
-            novo.setRg(Integer.valueOf(jTFRG.getText().trim()));
-            novo.setTelcelular1(Integer.valueOf(jTFCelular1.getText().trim()));
-            novo.setTelcelular2(Integer.valueOf(jTFCelular2.getText().trim()));
-            novo.setTelfixo1(Integer.valueOf(jTFoneFixo.getText().trim()));
-            novo.setTelfixo2(Integer.valueOf(jTFoneFixo2.getText().trim()));
+            novo.setNome(jTFNome.getText());    
+            String cpfConvertido=validator.unmaskCPF(jTFCPF.getText()).trim();
+            System.out.println(cpfConvertido);
+            
+            novo.setCpf(cpfConvertido.equals("")?0:Integer.valueOf(cpfConvertido).intValue());
+            /*novo.setRg(jTFRG.getText().equals("")?0:Integer.parseInt(jTFRG.getText().trim()));
+            novo.setTelcelular1(jTFCelular1.getText().equals("")?0:Integer.valueOf(validator.unmaskTelefone(jTFCelular1.getText().trim())));
+            novo.setTelcelular2(jTFCelular2.getText().equals("")?0:Integer.valueOf(validator.unmaskTelefone(jTFCelular2.getText().trim())));
+            novo.setTelfixo1(jTFoneFixo.getText().equals("")?0:Integer.valueOf(validator.unmaskTelefone(jTFoneFixo.getText().trim())));
+            novo.setTelfixo2(jTFoneFixo2.getText().equals("")?0:Integer.valueOf(validator.unmaskTelefone(jTFoneFixo2.getText().trim())));
             Endereco casa = new Endereco();
             casa.setBairro(jTFCasaEnderecoBairro.getText());
-            casa.setCep(Integer.valueOf(jTFCasaEnderecoCEP.getText().trim()));
+            casa.setCep(jTFCasaEnderecoCEP.getText().equals("")?0:Integer.valueOf(validator.unmaskCEP(jTFCasaEnderecoCEP.getText()).trim()));
             casa.setCidade(jTFCidadeEnderecoCasa.getText());
             casa.setComplemento(jTFComplementoEnderecoCasa.getText());
             casa.setEstado(jTFEstadoEnderecoCasa.getText());
-            casa.setNumero(Integer.valueOf(jTFCasaEnderecoNumero.getText().trim()));
+            casa.setNumero(jTFCasaEnderecoNumero.getText().equals("")?0:Integer.valueOf(jTFCasaEnderecoNumero.getText().trim()));
             casa.setRua(jTFCasaEnderecoRua.getText());
             Endereco endCasa=daoEnd.getInsertingIfNecessary(casa);
             novo.setIdEnderecoCasa(endCasa);
             
             Endereco trab = new Endereco();
             trab.setBairro(jTFBairroEnderecoTrabalho.getText());
-            trab.setCep(Integer.valueOf(jTFBairroEnderecoTrabalho.getText()));
+            trab.setCep(jTFCEPEnderecoTrabalho.getText().equals("")?0:Integer.valueOf(validator.unmaskCEP(jTFCEPEnderecoTrabalho.getText())));
             trab.setCidade(jTFCidadeEnderecoTrabalho.getText());
             trab.setComplemento(jTFComplementoEnderecoTrabalho.getText());
             trab.setEstado(jTFEstadoEnderecoTrabalho.getText());
-            trab.setNumero(Integer.valueOf(jTFNumeroEnderecoTrabalho.getText()));
+            trab.setNumero(jTFNumeroEnderecoTrabalho.getText().equals("")?0:Integer.valueOf(jTFNumeroEnderecoTrabalho.getText()));
             trab.setRua(jTFRuaEnderecoTrabalho.getText());
             Endereco endTrab = daoEnd.getInsertingIfNecessary(trab);
             novo.setIdEnderecoTrab(endTrab);
             daoCli.inserir(novo);
-            
+            */
     }
     private void cadastrarClienteDependente(){
             Clientedependente novo = new Clientedependente();
@@ -995,6 +1011,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
         if(this.operacao==OperacaoCrud.ADICIONAR){
             if(jTFIDResponsavel.getText().trim().equals("")){
+                
                 cadastrarCliente();                
             }else{                
                 cadastrarClienteDependente();                
