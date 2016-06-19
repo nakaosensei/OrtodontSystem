@@ -253,7 +253,7 @@ public class Secretaria implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.tables.bd.Secretaria[ id=" + id + " ]";
+        return "br.com.model.bd.Secretaria[ id=" + id + " ]";
     }
     
 }

@@ -2,10 +2,9 @@
 package br.com.view;
 
 import br.com.DAO.DAOCliente;
-import br.com.DAO.DAOClientedependente;
 import br.com.DAO.DAOEndereco;
 import br.com.model.bd.Cliente;
-import br.com.model.bd.Clientedependente;
+
 import br.com.model.bd.Endereco;
 import br.com.util.CPFValidator;
 import br.com.util.OperacaoCrud;
@@ -20,7 +19,7 @@ import javax.swing.JOptionPane;
 public class JDCRUDCliente extends javax.swing.JDialog {
     private DAOCliente daoCli;
     private DAOEndereco daoEnd;
-    private DAOClientedependente daoCliDp;
+    
     private OperacaoCrud operacao;
     private TextFieldFormatter validator;
     private CPFValidator cpfvalitator;
@@ -32,7 +31,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         validator = new TextFieldFormatter();        
         initComponents();
         daoCli = new DAOCliente();
-        daoCliDp=new DAOClientedependente();
+        
         daoEnd = new DAOEndereco();
         setStandardState();
         this.setLocationRelativeTo(null);
@@ -897,10 +896,12 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     private void jBReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReadActionPerformed
         JDListCliente jd = new JDListCliente(null, true);
         jd.setVisible(true);
+        jLMsg.setText("");
         while(jd.isClosed==false&&jd.isAborted==false){};
         if(jd.isClosed=true){
             Cliente selecionado = jd.clienteSelecionado;
         }
+        
     }//GEN-LAST:event_jBReadActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
@@ -958,9 +959,11 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     
     
     private void jBAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddActionPerformed
+        jLMsg.setText("");
         this.clearTextFields();
         this.setAddState();        
         this.operacao=OperacaoCrud.ADICIONAR;
+        
     }//GEN-LAST:event_jBAddActionPerformed
 
     
@@ -1008,7 +1011,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             
     }
     private void cadastrarClienteDependente(){
-            Clientedependente novo = new Clientedependente();
+            Cliente novo = new Cliente();
             novo.setNome(jTFNome.getText());
             String cpfConvertido=validator.unmaskCPF(jTFCPF.getText()).trim();                       
             novo.setCpf(cpfConvertido);
@@ -1041,14 +1044,11 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             novo.setIdEnderecoTrab(endTrab);            
             try {
                 int idCli=Integer.parseInt(jTFIDResponsavel.getText());
-                novo.setIdClienteResponsavel(daoCliDp.getResponsavel(idCli));
-                daoCliDp.inserir(novo);
+                novo.setIdClienteResponsavel(daoCli.getResponsavel(idCli));
+                daoCli.inserir(novo);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Somente numeros no campo ID, por favor");
-            }
-            
-            
-            
+            }          
     }
     
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
@@ -1060,8 +1060,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             }
             this.setStandardState();
             jLMsg.setText("Cliente cadastrado com sucesso");
-        }
-        
+        }        
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jTFNomeResponsavelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeResponsavelActionPerformed

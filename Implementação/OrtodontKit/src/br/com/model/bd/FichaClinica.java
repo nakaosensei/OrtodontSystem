@@ -128,7 +128,7 @@ public class FichaClinica implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.tables.bd.FichaClinica[ id=" + id + " ]";
+        return "br.com.model.bd.FichaClinica[ id=" + id + " ]";
     }
     
 }

@@ -63,8 +63,7 @@ public abstract class UsualTableModel<T> extends AbstractTableModel implements T
         } catch (Exception e) {
             //e.printStackTrace();
             throw new IndexOutOfBoundsException("Erro ao recuperar valor do campo: " + e.getMessage());
-        }
-        
+        }       
     }
 
     @Override

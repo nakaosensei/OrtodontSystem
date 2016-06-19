@@ -157,7 +157,7 @@ public class Tratamento implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.tables.bd.Tratamento[ id=" + id + " ]";
+        return "br.com.model.bd.Tratamento[ id=" + id + " ]";
     }
     
 }

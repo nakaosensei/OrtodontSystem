@@ -56,16 +56,12 @@ public class Endereco implements Serializable {
     private String bairro;
     @Column(name = "complemento")
     private String complemento;
-    @OneToMany(mappedBy = "idEndereco")
-    private List<Dentista> dentistaList;
-    @OneToMany(mappedBy = "idEnderecoCasa")
-    private List<Clientedependente> clientedependenteList;
-    @OneToMany(mappedBy = "idEnderecoTrab")
-    private List<Clientedependente> clientedependenteList1;
     @OneToMany(mappedBy = "idEnderecoCasa")
     private List<Cliente> clienteList;
     @OneToMany(mappedBy = "idEnderecoTrab")
     private List<Cliente> clienteList1;
+    @OneToMany(mappedBy = "idEndereco")
+    private List<Dentista> dentistaList;
     @OneToMany(mappedBy = "idEndereco")
     private List<Secretaria> secretariaList;
 
@@ -140,30 +136,6 @@ public class Endereco implements Serializable {
         this.complemento = complemento;
     }
 
-    public List<Dentista> getDentistaList() {
-        return dentistaList;
-    }
-
-    public void setDentistaList(List<Dentista> dentistaList) {
-        this.dentistaList = dentistaList;
-    }
-
-    public List<Clientedependente> getClientedependenteList() {
-        return clientedependenteList;
-    }
-
-    public void setClientedependenteList(List<Clientedependente> clientedependenteList) {
-        this.clientedependenteList = clientedependenteList;
-    }
-
-    public List<Clientedependente> getClientedependenteList1() {
-        return clientedependenteList1;
-    }
-
-    public void setClientedependenteList1(List<Clientedependente> clientedependenteList1) {
-        this.clientedependenteList1 = clientedependenteList1;
-    }
-
     public List<Cliente> getClienteList() {
         return clienteList;
     }
@@ -178,6 +150,14 @@ public class Endereco implements Serializable {
 
     public void setClienteList1(List<Cliente> clienteList1) {
         this.clienteList1 = clienteList1;
+    }
+
+    public List<Dentista> getDentistaList() {
+        return dentistaList;
+    }
+
+    public void setDentistaList(List<Dentista> dentistaList) {
+        this.dentistaList = dentistaList;
     }
 
     public List<Secretaria> getSecretariaList() {
@@ -210,7 +190,7 @@ public class Endereco implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.tables.bd.Endereco[ id=" + id + " ]";
+        return "br.com.model.bd.Endereco[ id=" + id + " ]";
     }
     
 }

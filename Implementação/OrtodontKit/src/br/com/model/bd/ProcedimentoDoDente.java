@@ -128,7 +128,7 @@ public class ProcedimentoDoDente implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.tables.bd.ProcedimentoDoDente[ id=" + id + " ]";
+        return "br.com.model.bd.ProcedimentoDoDente[ id=" + id + " ]";
     }
     
 }

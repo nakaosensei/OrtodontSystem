@@ -423,7 +423,7 @@ public class FichaAnamnese implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.tables.bd.FichaAnamnese[ id=" + id + " ]";
+        return "br.com.model.bd.FichaAnamnese[ id=" + id + " ]";
     }
     
 }

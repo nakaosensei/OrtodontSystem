@@ -6,6 +6,7 @@
 package br.com.model.tables;
 
 import br.com.model.bd.Cliente;
+import java.lang.reflect.Field;
 
 /**
  *
@@ -17,9 +18,11 @@ public class ModelTabelaListCliente extends UsualTableModel<Cliente>{
         super(
             "nome=Nome",
             "cpf=CPF",
-            "telFixo=Telefone(Fixo)",
-            "telCelular=Telefone(Celular)"
+            "telfixo1=Telefone(Fixo)",
+            "telcelular1=Telefone(Celular)"                        
         );
     }
+    
+    
     
 }

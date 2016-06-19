@@ -95,7 +95,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.tables.bd.Evento[ id=" + id + " ]";
+        return "br.com.model.bd.Evento[ id=" + id + " ]";
     }
     
 }

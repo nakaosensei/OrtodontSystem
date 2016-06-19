@@ -753,7 +753,7 @@ public class Odontograma implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.tables.bd.Odontograma[ id=" + id + " ]";
+        return "br.com.model.bd.Odontograma[ id=" + id + " ]";
     }
     
 }

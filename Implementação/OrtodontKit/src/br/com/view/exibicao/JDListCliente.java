@@ -24,6 +24,7 @@ public class JDListCliente extends javax.swing.JDialog {
     public JDListCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         daocli=new DAOCliente();
         clientes=daocli.listAll();       
         model=new ModelTabelaListCliente();

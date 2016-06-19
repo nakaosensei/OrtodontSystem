@@ -36,7 +36,8 @@ import javax.persistence.Table;
     @NamedQuery(name = "Cliente.findByTelfixo1", query = "SELECT c FROM Cliente c WHERE c.telfixo1 = :telfixo1"),
     @NamedQuery(name = "Cliente.findByTelfixo2", query = "SELECT c FROM Cliente c WHERE c.telfixo2 = :telfixo2"),
     @NamedQuery(name = "Cliente.findByTelcelular1", query = "SELECT c FROM Cliente c WHERE c.telcelular1 = :telcelular1"),
-    @NamedQuery(name = "Cliente.findByTelcelular2", query = "SELECT c FROM Cliente c WHERE c.telcelular2 = :telcelular2")})
+    @NamedQuery(name = "Cliente.findByTelcelular2", query = "SELECT c FROM Cliente c WHERE c.telcelular2 = :telcelular2"),
+    @NamedQuery(name = "Cliente.findByParentesco", query = "SELECT c FROM Cliente c WHERE c.parentesco = :parentesco")})
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,14 +60,15 @@ public class Cliente implements Serializable {
     private String telcelular1;
     @Column(name = "telcelular2")
     private String telcelular2;
+    @Column(name = "parentesco")
+    private String parentesco;
     @OneToMany(mappedBy = "idCliente")
     private List<Recibo> reciboList;
-    @OneToMany(mappedBy = "idCliente")
-    private List<FichaClinica> fichaClinicaList;
     @OneToMany(mappedBy = "idClienteResponsavel")
-    private List<FichaClinica> fichaClinicaList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idClienteResponsavel")
-    private List<Clientedependente> clientedependenteList;
+    private List<Cliente> clienteList;
+    @JoinColumn(name = "idClienteResponsavel", referencedColumnName = "id")
+    @ManyToOne
+    private Cliente idClienteResponsavel;
     @JoinColumn(name = "idEnderecoCasa", referencedColumnName = "id")
     @ManyToOne
     private Endereco idEnderecoCasa;
@@ -75,6 +77,10 @@ public class Cliente implements Serializable {
     private Endereco idEnderecoTrab;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private List<Evento> eventoList;
+    @OneToMany(mappedBy = "idCliente")
+    private List<FichaClinica> fichaClinicaList;
+    @OneToMany(mappedBy = "idClienteResponsavel")
+    private List<FichaClinica> fichaClinicaList1;
 
     public Cliente() {
     }
@@ -147,6 +153,14 @@ public class Cliente implements Serializable {
         this.telcelular2 = telcelular2;
     }
 
+    public String getParentesco() {
+        return parentesco;
+    }
+
+    public void setParentesco(String parentesco) {
+        this.parentesco = parentesco;
+    }
+
     public List<Recibo> getReciboList() {
         return reciboList;
     }
@@ -155,28 +169,20 @@ public class Cliente implements Serializable {
         this.reciboList = reciboList;
     }
 
-    public List<FichaClinica> getFichaClinicaList() {
-        return fichaClinicaList;
+    public List<Cliente> getClienteList() {
+        return clienteList;
     }
 
-    public void setFichaClinicaList(List<FichaClinica> fichaClinicaList) {
-        this.fichaClinicaList = fichaClinicaList;
+    public void setClienteList(List<Cliente> clienteList) {
+        this.clienteList = clienteList;
     }
 
-    public List<FichaClinica> getFichaClinicaList1() {
-        return fichaClinicaList1;
+    public Cliente getIdClienteResponsavel() {
+        return idClienteResponsavel;
     }
 
-    public void setFichaClinicaList1(List<FichaClinica> fichaClinicaList1) {
-        this.fichaClinicaList1 = fichaClinicaList1;
-    }
-
-    public List<Clientedependente> getClientedependenteList() {
-        return clientedependenteList;
-    }
-
-    public void setClientedependenteList(List<Clientedependente> clientedependenteList) {
-        this.clientedependenteList = clientedependenteList;
+    public void setIdClienteResponsavel(Cliente idClienteResponsavel) {
+        this.idClienteResponsavel = idClienteResponsavel;
     }
 
     public Endereco getIdEnderecoCasa() {
@@ -203,6 +209,22 @@ public class Cliente implements Serializable {
         this.eventoList = eventoList;
     }
 
+    public List<FichaClinica> getFichaClinicaList() {
+        return fichaClinicaList;
+    }
+
+    public void setFichaClinicaList(List<FichaClinica> fichaClinicaList) {
+        this.fichaClinicaList = fichaClinicaList;
+    }
+
+    public List<FichaClinica> getFichaClinicaList1() {
+        return fichaClinicaList1;
+    }
+
+    public void setFichaClinicaList1(List<FichaClinica> fichaClinicaList1) {
+        this.fichaClinicaList1 = fichaClinicaList1;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -225,7 +247,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.tables.bd.Cliente[ id=" + id + " ]";
+        return "br.com.model.bd.Cliente[ id=" + id + " ]";
     }
     
 }

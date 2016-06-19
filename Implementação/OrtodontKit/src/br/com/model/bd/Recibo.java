@@ -130,7 +130,7 @@ public class Recibo implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.tables.bd.Recibo[ nrRecibo=" + nrRecibo + " ]";
+        return "br.com.model.bd.Recibo[ nrRecibo=" + nrRecibo + " ]";
     }
     
 }

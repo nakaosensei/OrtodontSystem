@@ -6,6 +6,7 @@
 package br.com.DAO;
 
 import br.com.model.bd.Cliente;
+import javax.persistence.Query;
 
 /**
  *
@@ -14,6 +15,16 @@ import br.com.model.bd.Cliente;
 public class DAOCliente extends DAOGenerico<Cliente>{
     public DAOCliente() {
         super(Cliente.class);
+    }
+    
+    public Cliente getResponsavel(int idClienteResponsavel){
+        Query q =em.createQuery("SELECT e FROM cliente e WHERE e.id= :id");
+        q.setParameter("id", idClienteResponsavel);
+        if(q.getResultList().isEmpty()){
+            return null;
+        }else{
+            return (Cliente)q.getResultList().get(0);
+        }
     }
 }
 

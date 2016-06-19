@@ -265,7 +265,7 @@ public class Dentista implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.tables.bd.Dentista[ id=" + id + " ]";
+        return "br.com.model.bd.Dentista[ id=" + id + " ]";
     }
     
 }
