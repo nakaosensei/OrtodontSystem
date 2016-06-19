@@ -10,6 +10,7 @@ import br.com.util.CPFValidator;
 import br.com.util.OperacaoCrud;
 import br.com.util.TextFieldFormatter;
 import br.com.view.exibicao.JDListCliente;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +20,7 @@ import javax.swing.JOptionPane;
 public class JDCRUDCliente extends javax.swing.JDialog {
     private DAOCliente daoCli;
     private DAOEndereco daoEnd;
-    
+    private Cliente selecionado;
     private OperacaoCrud operacao;
     private TextFieldFormatter validator;
     private CPFValidator cpfvalitator;
@@ -156,9 +157,19 @@ public class JDCRUDCliente extends javax.swing.JDialog {
 
         jBEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/edit16.png"))); // NOI18N
         jBEdit.setText("Editar");
+        jBEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEditActionPerformed(evt);
+            }
+        });
 
         jBRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/close16.png"))); // NOI18N
         jBRemove.setText("Deletar");
+        jBRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRemoveActionPerformed(evt);
+            }
+        });
 
         jBRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/search2_16.png"))); // NOI18N
         jBRead.setText("Ver");
@@ -189,6 +200,11 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         jTFID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFIDActionPerformed(evt);
+            }
+        });
+        jTFID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFIDKeyPressed(evt);
             }
         });
 
@@ -893,6 +909,9 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFRuaEnderecoTrabalhoActionPerformed
 
+    
+    
+    
     private void jBReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReadActionPerformed
         JDListCliente jd = new JDListCliente(null, true);
         jd.setVisible(true);
@@ -918,6 +937,14 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         jTFNomeResponsavel.setEditable(false);
         jTFidEnderecoTrabalho.setEditable(false);
         jTFCasaIdEndereco.setEditable(false);
+    }
+    private void setEditState(){
+        setAll(false, true);
+        jTFidEnderecoTrabalho.setEditable(false);
+        jTFCasaIdEndereco.setEditable(false);
+    }
+    private void setEditState2(){
+        setAll(true, false);        
     }
     
     private void clearTextFields(){
@@ -950,6 +977,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         jTFIDResponsavel.setText("0");
         jTFNomeResponsavel.setText("");
     }
+    
     private void setStandardState(){
         setAll(false, true);
         this.clearTextFields();
@@ -957,6 +985,10 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         jTFCasaIdEndereco.setEditable(false);
     }
     
+    private void setRemovalState(){
+        setAll(false, false);
+        this.jTFID.setEditable(true);        
+    }
     
     private void jBAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddActionPerformed
         jLMsg.setText("");
@@ -976,8 +1008,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         return true;
     }
     
-    private void cadastrarCliente(){
-            Cliente novo = new Cliente();
+    private Cliente preencherCliente(Cliente novo){            
             novo.setNome(jTFNome.getText());    
             String cpfConvertido=validator.unmaskCPF(jTFCPF.getText()).trim();                       
             novo.setCpf(cpfConvertido);
@@ -1007,11 +1038,10 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             Endereco endTrab = daoEnd.getInsertingIfNecessary(trab);
             novo.setIdEnderecoTrab(endTrab);
             
-            daoCli.inserir(novo);
+            return novo;
             
     }
-    private void cadastrarClienteDependente(){
-            Cliente novo = new Cliente();
+    private Cliente preencherClienteDependente(Cliente novo){
             novo.setNome(jTFNome.getText());
             String cpfConvertido=validator.unmaskCPF(jTFCPF.getText()).trim();                       
             novo.setCpf(cpfConvertido);
@@ -1043,24 +1073,45 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             Endereco endTrab = daoEnd.getInsertingIfNecessary(trab);
             novo.setIdEnderecoTrab(endTrab);            
             try {
-                int idCli=Integer.parseInt(jTFIDResponsavel.getText());
+                int idCli=Integer.parseInt(jTFIDResponsavel.getText().trim());
                 novo.setIdClienteResponsavel(daoCli.getResponsavel(idCli));
-                daoCli.inserir(novo);
+                return novo;
             } catch (Exception e) {
+                e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Somente numeros no campo ID, por favor");
             }          
+            return null;
     }
     
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
+        Cliente novo;
         if(this.operacao==OperacaoCrud.ADICIONAR){
             if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){                
-                cadastrarCliente();                
+                novo = new Cliente();
+                novo=preencherCliente(novo);                
             }else{                
-                cadastrarClienteDependente();                
+                novo = new Cliente();
+                novo=preencherClienteDependente(novo);                
             }
+            daoCli.inserir(novo);
             this.setStandardState();
             jLMsg.setText("Cliente cadastrado com sucesso");
-        }        
+        }
+        if(this.operacao==OperacaoCrud.EDITAR){
+            if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){                
+                novo =preencherCliente(selecionado);                
+            }else{                
+                novo=preencherClienteDependente(selecionado);                
+            }
+            daoCli.atualizar(novo);
+            this.setStandardState();
+            jLMsg.setText("Cliente editado com sucesso");
+        }
+        if(this.operacao==OperacaoCrud.REMOVER){
+            daoCli.remover(selecionado.getId());
+            this.setStandardState();
+            jLMsg.setText("Cliente removido com sucesso");
+        }
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jTFNomeResponsavelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeResponsavelActionPerformed
@@ -1089,7 +1140,84 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFoneFixo2ActionPerformed
 
-    
+    private void jBEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditActionPerformed
+        setEditState();        
+        this.operacao=OperacaoCrud.EDITAR;
+        clearTextFields();
+        jLMsg.setText("Selecione o campo id e pressione F2 ou F7");        
+        jTFID.grabFocus();
+    }//GEN-LAST:event_jBEditActionPerformed
+
+    private void jTFIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIDKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_F2||evt.getKeyCode() == KeyEvent.VK_F7){
+            JDListCliente jd = new JDListCliente(null, true);
+            jd.setVisible(true);
+            jLMsg.setText("");
+            while(jd.isClosed==false&&jd.isAborted==false){};
+            if(jd.isClosed=true){
+                selecionado = jd.clienteSelecionado;
+                if(selecionado!=null){
+                    carregarTextFields(selecionado);
+                    if(operacao==OperacaoCrud.EDITAR){
+                        setAddState();
+                    }else if(operacao==OperacaoCrud.REMOVER){
+                        setRemovalState();
+                    }                    
+                }else{
+                    this.clearTextFields();
+                    setStandardState();
+                }                
+            }else{
+                this.clearTextFields();
+                setStandardState();
+            }
+        }
+    }//GEN-LAST:event_jTFIDKeyPressed
+
+    private void jBRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRemoveActionPerformed
+        setEditState();        
+        this.operacao=OperacaoCrud.REMOVER;
+        clearTextFields();
+        jLMsg.setText("Selecione o campo id e pressione F2 ou F7");        
+        jTFID.grabFocus();
+    }//GEN-LAST:event_jBRemoveActionPerformed
+
+    private void carregarTextFields(Cliente selecionado){
+        jTFoneFixo.setText(selecionado.getTelfixo1());
+        jTFidEnderecoTrabalho.setText(selecionado.getIdEnderecoTrab().getId()+"");
+        jTFCasaIdEndereco.setText(selecionado.getIdEnderecoCasa().getId()+"");
+        jTFID.setText(selecionado.getId()+"");
+        jTFRuaEnderecoTrabalho.setText(selecionado.getIdEnderecoTrab().getRua());
+        jTFCasaEnderecoRua.setText(selecionado.getIdEnderecoCasa().getRua());
+        jTFRG.setText(selecionado.getRg());
+        jTFNumeroEnderecoTrabalho.setText(selecionado.getIdEnderecoTrab().getNumero()+"");
+        jTFCasaEnderecoNumero.setText(selecionado.getIdEnderecoCasa().getNumero()+"");
+        jTFNome.setText(selecionado.getNome());
+        jTFoneFixo2.setText(selecionado.getTelfixo2());        
+        jTFEstadoEnderecoTrabalho.setText(selecionado.getIdEnderecoTrab().getEstado());
+        jTFEstadoEnderecoCasa.setText(selecionado.getIdEnderecoCasa().getEstado());
+        jTFComplementoEnderecoTrabalho.setText(selecionado.getIdEnderecoTrab().getComplemento());
+        jTFComplementoEnderecoCasa.setText(selecionado.getIdEnderecoCasa().getComplemento());
+        jTFCidadeEnderecoTrabalho.setText(selecionado.getIdEnderecoTrab().getCidade());
+        jTFCidadeEnderecoCasa.setText(selecionado.getIdEnderecoCasa().getCidade());
+        jTFCelular2.setText(selecionado.getTelcelular2());
+        jTFCelular1.setText(selecionado.getTelcelular1());
+        jTFCPF.setText(selecionado.getCpf());
+        jTFCEPEnderecoTrabalho.setText(selecionado.getIdEnderecoTrab().getCep());
+        jTFCasaEnderecoCEP.setText(selecionado.getIdEnderecoCasa().getCep());
+        jTFCasaEnderecoBairro.setText(selecionado.getIdEnderecoCasa().getBairro());        
+        jTFBairroEnderecoTrabalho.setText(selecionado.getIdEnderecoTrab().getBairro());
+        if(selecionado.getIdClienteResponsavel()!=null){
+            
+            jTFIDResponsavel.setText(selecionado.getIdClienteResponsavel().getId()+"");
+            jTFNomeResponsavel.setText(selecionado.getIdClienteResponsavel().getNome());
+            jTFParentesco.setText(selecionado.getParentesco());
+        }else{
+            jTFIDResponsavel.setText("0");
+            jTFNomeResponsavel.setText("");
+            jTFParentesco.setText("");
+        }        
+    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

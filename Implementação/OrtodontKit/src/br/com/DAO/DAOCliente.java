@@ -18,7 +18,7 @@ public class DAOCliente extends DAOGenerico<Cliente>{
     }
     
     public Cliente getResponsavel(int idClienteResponsavel){
-        Query q =em.createQuery("SELECT e FROM cliente e WHERE e.id= :id");
+        Query q =em.createQuery("SELECT e FROM Cliente e WHERE e.id like :id");
         q.setParameter("id", idClienteResponsavel);
         if(q.getResultList().isEmpty()){
             return null;
