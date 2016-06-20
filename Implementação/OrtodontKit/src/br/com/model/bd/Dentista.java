@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -85,12 +86,13 @@ public class Dentista implements Serializable {
     private Date datanascimento;
     @OneToMany(mappedBy = "idEmitente")
     private List<Recibo> reciboList;
-    @JoinColumn(name = "idAgenda", referencedColumnName = "id")
-    @ManyToOne
-    private Agenda idAgenda;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDentista")
+    private List<Evento> eventoList;
     @JoinColumn(name = "idEndereco", referencedColumnName = "id")
     @ManyToOne
     private Endereco idEndereco;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDentistaPatrao")
+    private List<Secretaria> secretariaList;
 
     public Dentista() {
     }
@@ -227,12 +229,12 @@ public class Dentista implements Serializable {
         this.reciboList = reciboList;
     }
 
-    public Agenda getIdAgenda() {
-        return idAgenda;
+    public List<Evento> getEventoList() {
+        return eventoList;
     }
 
-    public void setIdAgenda(Agenda idAgenda) {
-        this.idAgenda = idAgenda;
+    public void setEventoList(List<Evento> eventoList) {
+        this.eventoList = eventoList;
     }
 
     public Endereco getIdEndereco() {
@@ -241,6 +243,14 @@ public class Dentista implements Serializable {
 
     public void setIdEndereco(Endereco idEndereco) {
         this.idEndereco = idEndereco;
+    }
+
+    public List<Secretaria> getSecretariaList() {
+        return secretariaList;
+    }
+
+    public void setSecretariaList(List<Secretaria> secretariaList) {
+        this.secretariaList = secretariaList;
     }
 
     @Override

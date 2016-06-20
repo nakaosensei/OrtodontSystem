@@ -26,7 +26,12 @@ import javax.persistence.Table;
 @Table(name = "evento")
 @NamedQueries({
     @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"),
-    @NamedQuery(name = "Evento.findById", query = "SELECT e FROM Evento e WHERE e.id = :id")})
+    @NamedQuery(name = "Evento.findById", query = "SELECT e FROM Evento e WHERE e.id = :id"),
+    @NamedQuery(name = "Evento.findByDia", query = "SELECT e FROM Evento e WHERE e.dia = :dia"),
+    @NamedQuery(name = "Evento.findByMes", query = "SELECT e FROM Evento e WHERE e.mes = :mes"),
+    @NamedQuery(name = "Evento.findByAno", query = "SELECT e FROM Evento e WHERE e.ano = :ano"),
+    @NamedQuery(name = "Evento.findByHora", query = "SELECT e FROM Evento e WHERE e.hora = :hora"),
+    @NamedQuery(name = "Evento.findByMinutos", query = "SELECT e FROM Evento e WHERE e.minutos = :minutos")})
 public class Evento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,12 +40,22 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Column(name = "dia")
+    private String dia;
+    @Column(name = "mes")
+    private String mes;
+    @Column(name = "ano")
+    private String ano;
+    @Column(name = "hora")
+    private String hora;
+    @Column(name = "minutos")
+    private String minutos;
     @JoinColumn(name = "idCliente", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Cliente idCliente;
-    @JoinColumn(name = "idAgenda", referencedColumnName = "id")
+    @JoinColumn(name = "idDentista", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Agenda idAgenda;
+    private Dentista idDentista;
 
     public Evento() {
     }
@@ -57,6 +72,46 @@ public class Evento implements Serializable {
         this.id = id;
     }
 
+    public String getDia() {
+        return dia;
+    }
+
+    public void setDia(String dia) {
+        this.dia = dia;
+    }
+
+    public String getMes() {
+        return mes;
+    }
+
+    public void setMes(String mes) {
+        this.mes = mes;
+    }
+
+    public String getAno() {
+        return ano;
+    }
+
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getMinutos() {
+        return minutos;
+    }
+
+    public void setMinutos(String minutos) {
+        this.minutos = minutos;
+    }
+
     public Cliente getIdCliente() {
         return idCliente;
     }
@@ -65,12 +120,12 @@ public class Evento implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public Agenda getIdAgenda() {
-        return idAgenda;
+    public Dentista getIdDentista() {
+        return idDentista;
     }
 
-    public void setIdAgenda(Agenda idAgenda) {
-        this.idAgenda = idAgenda;
+    public void setIdDentista(Dentista idDentista) {
+        this.idDentista = idDentista;
     }
 
     @Override

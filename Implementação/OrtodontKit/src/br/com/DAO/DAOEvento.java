@@ -5,14 +5,18 @@
  */
 package br.com.DAO;
 
-import br.com.model.bd.Agenda;
+import br.com.model.bd.Evento;
 
 /**
  *
- * @author Lucas
+ * @author nakao<nakaosensei@gmail.com>
  */
-public class DAOAgenda extends DAOGenerico<Agenda>{
-    public DAOAgenda() {
-        super(Agenda.class);
+public class DAOEvento extends DAOGenerico<Evento>{
+    
+    public DAOEvento() {
+        super(Evento.class);
     }
+    
+    
+    
 }

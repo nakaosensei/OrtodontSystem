@@ -81,12 +81,12 @@ public class Secretaria implements Serializable {
     @Column(name = "datanascimento")
     @Temporal(TemporalType.DATE)
     private Date datanascimento;
-    @JoinColumn(name = "idAgenda", referencedColumnName = "id")
-    @ManyToOne
-    private Agenda idAgenda;
     @JoinColumn(name = "idEndereco", referencedColumnName = "id")
     @ManyToOne
     private Endereco idEndereco;
+    @JoinColumn(name = "idDentistaPatrao", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Dentista idDentistaPatrao;
 
     public Secretaria() {
     }
@@ -215,20 +215,20 @@ public class Secretaria implements Serializable {
         this.datanascimento = datanascimento;
     }
 
-    public Agenda getIdAgenda() {
-        return idAgenda;
-    }
-
-    public void setIdAgenda(Agenda idAgenda) {
-        this.idAgenda = idAgenda;
-    }
-
     public Endereco getIdEndereco() {
         return idEndereco;
     }
 
     public void setIdEndereco(Endereco idEndereco) {
         this.idEndereco = idEndereco;
+    }
+
+    public Dentista getIdDentistaPatrao() {
+        return idDentistaPatrao;
+    }
+
+    public void setIdDentistaPatrao(Dentista idDentistaPatrao) {
+        this.idDentistaPatrao = idDentistaPatrao;
     }
 
     @Override

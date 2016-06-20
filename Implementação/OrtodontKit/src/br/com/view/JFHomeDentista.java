@@ -83,7 +83,6 @@ public class JFHomeDentista extends javax.swing.JFrame {
         jBSair = new javax.swing.JButton();
         jBRelatorios = new javax.swing.JButton();
         jBOdontograma = new javax.swing.JButton();
-        jBPlanoAvaliacaoDentaria = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuTramento = new javax.swing.JMenu();
         jMIStartTratamento = new javax.swing.JMenuItem();
@@ -112,20 +111,41 @@ public class JFHomeDentista extends javax.swing.JFrame {
         jLabelBackGround.setText("Ortodont System");
 
         jBAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/agenda48.png"))); // NOI18N
+        jBAgenda.setText("Agenda");
 
         jBRecibo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/recibo48.png"))); // NOI18N
+        jBRecibo.setText("Recibos");
+        jBRecibo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBReciboActionPerformed(evt);
+            }
+        });
 
         jBTratamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/tratamento48.png"))); // NOI18N
+        jBTratamento.setText("Tratamento");
 
         jBSecretaria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/secretaria48.png"))); // NOI18N
+        jBSecretaria.setText("Secretaria");
+        jBSecretaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSecretariaActionPerformed(evt);
+            }
+        });
 
         jBCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/cliente48.png"))); // NOI18N
+        jBCliente.setText("Cliente");
+        jBCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBClienteActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Logo/nkStation16.png"))); // NOI18N
         jLabel3.setText("Powered by Nk Station");
 
         jBSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logout48.png"))); // NOI18N
+        jBSair.setText("Sair");
         jBSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSairActionPerformed(evt);
@@ -133,10 +153,15 @@ public class JFHomeDentista extends javax.swing.JFrame {
         });
 
         jBRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/report48.png"))); // NOI18N
+        jBRelatorios.setText("Relatorios");
 
         jBOdontograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/odontograma48.png"))); // NOI18N
-
-        jBPlanoAvaliacaoDentaria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/document48.png"))); // NOI18N
+        jBOdontograma.setText("Odontograma");
+        jBOdontograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBOdontogramaActionPerformed(evt);
+            }
+        });
 
         jMenuTramento.setText("Tratamento");
 
@@ -185,6 +210,11 @@ public class JFHomeDentista extends javax.swing.JFrame {
         jMenuBar1.add(jMenuRecibos);
 
         JMenuCadastros.setText("Cadastros");
+        JMenuCadastros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuCadastrosActionPerformed(evt);
+            }
+        });
 
         jMICliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
         jMICliente.setText("Cadastrar Cliente");
@@ -229,54 +259,43 @@ public class JFHomeDentista extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jBRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jBSecretaria, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jBAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jBTratamento, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jBRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(63, 63, 63)
-                                        .addComponent(jBOdontograma, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jBPlanoAvaliacaoDentaria, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 12, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(jBCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBTratamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBSecretaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBOdontograma, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBRelatorios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                            .addComponent(jBRecibo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBTratamento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBSecretaria, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addComponent(jBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBTratamento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addComponent(jBSecretaria, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(jBOdontograma, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBOdontograma, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBPlanoAvaliacaoDentaria, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addComponent(jLabel3))
             .addComponent(jLabelBackGround, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -297,10 +316,34 @@ public class JFHomeDentista extends javax.swing.JFrame {
         close();
     }//GEN-LAST:event_jBSairActionPerformed
 
-    private void jMIClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIClienteActionPerformed
+    private void crudClienteAction(){
         JDCRUDCliente jd = new JDCRUDCliente(this, true);
         jd.setVisible(true);
+    }
+    
+    private void jMIClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIClienteActionPerformed
+        crudClienteAction();
     }//GEN-LAST:event_jMIClienteActionPerformed
+
+    private void jBReciboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReciboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBReciboActionPerformed
+
+    private void jBOdontogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOdontogramaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBOdontogramaActionPerformed
+
+    private void jBSecretariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSecretariaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBSecretariaActionPerformed
+
+    private void jBClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBClienteActionPerformed
+        crudClienteAction();
+    }//GEN-LAST:event_jBClienteActionPerformed
+
+    private void JMenuCadastrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCadastrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JMenuCadastrosActionPerformed
 
     private void close(){
         int res = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?");
@@ -315,7 +358,6 @@ public class JFHomeDentista extends javax.swing.JFrame {
     private javax.swing.JButton jBAgenda;
     private javax.swing.JButton jBCliente;
     private javax.swing.JButton jBOdontograma;
-    private javax.swing.JButton jBPlanoAvaliacaoDentaria;
     private javax.swing.JButton jBRecibo;
     private javax.swing.JButton jBRelatorios;
     private javax.swing.JButton jBSair;
