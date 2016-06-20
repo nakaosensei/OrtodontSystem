@@ -21,7 +21,7 @@ import java.util.Calendar;
  */
 public class JFAgenda extends javax.swing.JFrame {
     Cliente selecionado;
-    DAOEvento daoEvento = new DAOEvento();
+    //DAOEvento daoEvento = new DAOEvento();
     TextFieldFormatter validator = new TextFieldFormatter();
     ModelTabelaAgenda model = new ModelTabelaAgenda();
     /**
