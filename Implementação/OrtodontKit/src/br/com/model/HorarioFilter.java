@@ -10,8 +10,7 @@ package br.com.model;
  * @author nakao<nakaosensei@gmail.com>
  */
 public class HorarioFilter {
-    private int idDentista;
-    
+    private int idDentista;    
     private String data;
     private String horario;   
     private String nomeCliente;

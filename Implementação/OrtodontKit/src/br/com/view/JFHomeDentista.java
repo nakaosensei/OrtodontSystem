@@ -5,7 +5,6 @@
  */
 package br.com.view;
 
-import br.com.view.exibicao.JDListCliente;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
@@ -112,6 +111,11 @@ public class JFHomeDentista extends javax.swing.JFrame {
 
         jBAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/agenda48.png"))); // NOI18N
         jBAgenda.setText("Agenda");
+        jBAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgendaActionPerformed(evt);
+            }
+        });
 
         jBRecibo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/recibo48.png"))); // NOI18N
         jBRecibo.setText("Recibos");
@@ -294,8 +298,8 @@ public class JFHomeDentista extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(jBSecretaria, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)
-                        .addComponent(jBOdontograma, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jBOdontograma, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3))
             .addComponent(jLabelBackGround, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -344,6 +348,11 @@ public class JFHomeDentista extends javax.swing.JFrame {
     private void JMenuCadastrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCadastrosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JMenuCadastrosActionPerformed
+
+    private void jBAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgendaActionPerformed
+        JFAgenda jda = new JFAgenda();
+        jda.setVisible(true);
+    }//GEN-LAST:event_jBAgendaActionPerformed
 
     private void close(){
         int res = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?");

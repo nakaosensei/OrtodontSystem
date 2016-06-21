@@ -31,8 +31,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         super(parent, modal);
         validator = new TextFieldFormatter();        
         initComponents();
-        daoCli = new DAOCliente();
-        
+        daoCli = new DAOCliente();        
         daoEnd = new DAOEndereco();
         setStandardState();
         this.setLocationRelativeTo(null);

@@ -14,6 +14,7 @@ import br.com.util.TextFieldFormatter;
 import br.com.view.exibicao.JDListCliente;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +22,7 @@ import java.util.Calendar;
  */
 public class JFAgenda extends javax.swing.JFrame {
     Cliente selecionado;
+    HorarioFilter hSelecionado;
     DAOEvento daoEvento = new DAOEvento();
     TextFieldFormatter validator = new TextFieldFormatter();
     ModelTabelaAgenda model = new ModelTabelaAgenda();
@@ -82,7 +84,7 @@ public class JFAgenda extends javax.swing.JFrame {
         jPanel17 = new javax.swing.JPanel();
         jTFMinuto = validator.getIntegerTextField();
         jPanel4 = new javax.swing.JPanel();
-        jTFNomeCliente = validator.getIntegerTextField();
+        jTFNomeCliente = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -114,8 +116,13 @@ public class JFAgenda extends javax.swing.JFrame {
 
         jBRmAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/close1_20.png"))); // NOI18N
         jBRmAgenda.setText("Desmarcar");
+        jBRmAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRmAgendaActionPerformed(evt);
+            }
+        });
 
-        jSplitPane1.setDividerLocation(1100);
+        jSplitPane1.setDividerLocation(2000);
 
         jTBAgenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,6 +135,11 @@ public class JFAgenda extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTBAgenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTBAgendaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTBAgenda);
 
         jSplitPane1.setLeftComponent(jScrollPane2);
@@ -190,6 +202,11 @@ public class JFAgenda extends javax.swing.JFrame {
 
         jBGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/save16.png"))); // NOI18N
         jBGravar.setText("Gravar");
+        jBGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGravarActionPerformed(evt);
+            }
+        });
 
         jBSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logout16.png"))); // NOI18N
         jBSair.setText("Sair");
@@ -266,7 +283,7 @@ public class JFAgenda extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -276,8 +293,8 @@ public class JFAgenda extends javax.swing.JFrame {
                         .addComponent(jBGravar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBAbrir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBAddAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -321,14 +338,34 @@ public class JFAgenda extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
     private void jBAddAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddAgendaActionPerformed
-        HorarioFilter hf = new HorarioFilter();
-        hf.setData(jXDate.getEditor().getText());
-        hf.setHorario(jTFHora+":"+jTFMinuto);
-      
-        hf.setIdDentista(1);
-        hf.setNomeCliente(selecionado.getNome());
-        hf.setIdCliente(selecionado.getId());
+        if(selecionado==null){
+            JOptionPane.showMessageDialog(null, "Selecione um cliente!");
+        }else if(jTFHora.getText().equals("")||jTFMinuto.equals("")){
+            JOptionPane.showMessageDialog(null, "Preencha a hora e o minuto");
+        }else{
+            HorarioFilter hf = new HorarioFilter();
+            hf.setData(jXDate.getEditor().getText());        
+            String split[]=jXDate.getEditor().getText().split("/");
+            String dia=split[0].trim();
+            String mes=split[1].trim();
+            String ano=split[2].trim();
+            hf.setMes(mes);
+            hf.setDia(dia);
+            hf.setAno(ano);
+            hf.setHorario(jTFHora.getText()+":"+jTFMinuto.getText());
+            hf.setHora(jTFHora.getText());
+            hf.setMinuto(jTFMinuto.getText());        
+            hf.setIdDentista(1);
+            hf.setNomeCliente(selecionado.getNome());
+            hf.setIdCliente(selecionado.getId());
+            hf.setFoneCelularCliente(selecionado.getTelcelular1());
+            hf.setFoneFixoCliente(selecionado.getTelfixo1());
+            this.model.add(hf);
+        }
         
     }//GEN-LAST:event_jBAddAgendaActionPerformed
 
@@ -353,11 +390,35 @@ public class JFAgenda extends javax.swing.JFrame {
             if(jd.isClosed=true){
                 selecionado = jd.clienteSelecionado;
                 if(selecionado!=null){
+                    System.out.println("AAA");
                     jTFNomeCliente.setText(selecionado.getNome());
                 }
+            }else{
+                selecionado=null;
             }
         }
     }//GEN-LAST:event_jTFNomeClienteKeyPressed
+
+    private void jTBAgendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBAgendaMouseClicked
+        try {
+            int linhaSelecionada = jTBAgenda.convertRowIndexToModel(jTBAgenda.getSelectedRow());
+            hSelecionado=model.getValue(linhaSelecionada);            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTBAgendaMouseClicked
+
+    private void jBRmAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRmAgendaActionPerformed
+        if(hSelecionado!=null){
+            model.remove(hSelecionado);
+        }
+    }//GEN-LAST:event_jBRmAgendaActionPerformed
+
+    private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
+        for(HorarioFilter h:model.lista){
+            
+        }
+    }//GEN-LAST:event_jBGravarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,16 +437,12 @@ public class JFAgenda extends javax.swing.JFrame {
     private javax.swing.JPanel jPData;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTable jTBAgenda;
     private javax.swing.JTextField jTFHora;
-    private javax.swing.JTextField jTFID;
-    private javax.swing.JTextField jTFID1;
     private javax.swing.JTextField jTFMinuto;
     private javax.swing.JTextField jTFNomeCliente;
     private javax.swing.JTable jTable1;

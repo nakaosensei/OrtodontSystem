@@ -13,9 +13,9 @@ public class main {
     public static void main(String[] args) {
         MetalLookAndFeel.setCurrentTheme(new OceanTheme());
         JFLogin jf = new JFLogin();
-        JFAgenda jfa = new JFAgenda();
-        jfa.setVisible(true);
-        //jf.setVisible(true);   
+        //JFAgenda jfa = new JFAgenda();
+        //jfa.setVisible(true);
+        jf.setVisible(true);   
         
         
     }
