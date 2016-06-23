@@ -19,14 +19,14 @@ public class DAOSecretaria extends DAOGenerico<Secretaria>{
         super(Secretaria.class);
     }
 
-    public boolean isRegistered(String login,String password) {
+    public Secretaria getIfIsRegistered(String login,String password) {
         Query q =em.createQuery("SELECT e FROM Secretaria e WHERE e.login= :log AND e.passwd = :senha");
         q.setParameter("log", login);
         q.setParameter("senha", password);
         if(q.getResultList().isEmpty()){
-            return false;
+            return null;
         }else{
-            return true;
+            return (Secretaria)q.getResultList().get(0);
         }       
     }
 

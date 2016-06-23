@@ -1,19 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.view;
 
 
 import br.com.DAO.DAOEvento;
 import br.com.model.HorarioFilter;
 import br.com.model.bd.Cliente;
+import br.com.model.bd.Dentista;
+import br.com.model.bd.Evento;
 import br.com.model.tables.ModelTabelaAgenda;
 import br.com.util.TextFieldFormatter;
 import br.com.view.exibicao.JDListCliente;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,16 +21,19 @@ import javax.swing.JOptionPane;
  * @author nakao<nakaosensei@gmail.com>
  */
 public class JFAgenda extends javax.swing.JFrame {
-    Cliente selecionado;
-    HorarioFilter hSelecionado;
-    DAOEvento daoEvento = new DAOEvento();
-    TextFieldFormatter validator = new TextFieldFormatter();
-    ModelTabelaAgenda model = new ModelTabelaAgenda();
+    private Cliente selecionado;
+    private Dentista dentistaOwner;
+    private HorarioFilter hSelecionado;
+    private DAOEvento daoEvento = new DAOEvento();
+    private TextFieldFormatter validator = new TextFieldFormatter();
+    private ModelTabelaAgenda model = new ModelTabelaAgenda();
     /**
      * Creates new form JFAgenda
+     * @param dentistaOwner
      */
-    public JFAgenda() {
+    public JFAgenda(Dentista owner) {
         initComponents();
+        this.dentistaOwner=owner;
         this.setLocationRelativeTo(null);
         formatarDatas();
         this.jTBAgenda.setModel(model);
@@ -359,11 +362,11 @@ public class JFAgenda extends javax.swing.JFrame {
             hf.setHorario(jTFHora.getText()+":"+jTFMinuto.getText());
             hf.setHora(jTFHora.getText());
             hf.setMinuto(jTFMinuto.getText());        
-            hf.setIdDentista(1);
+            hf.setDentista(dentistaOwner);
             hf.setNomeCliente(selecionado.getNome());
-            hf.setIdCliente(selecionado.getId());
+            hf.setCliente(selecionado);
             hf.setFoneCelularCliente(selecionado.getTelcelular1());
-            hf.setFoneFixoCliente(selecionado.getTelfixo1());
+            hf.setFoneFixoCliente(selecionado.getTelfixo1());            
             this.model.add(hf);
         }
         
@@ -390,7 +393,7 @@ public class JFAgenda extends javax.swing.JFrame {
             if(jd.isClosed=true){
                 selecionado = jd.clienteSelecionado;
                 if(selecionado!=null){
-                    System.out.println("AAA");
+                   
                     jTFNomeCliente.setText(selecionado.getNome());
                 }
             }else{
@@ -415,7 +418,11 @@ public class JFAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jBRmAgendaActionPerformed
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
+        List<Evento> eventos = new ArrayList<Evento>();
         for(HorarioFilter h:model.lista){
+            eventos.add(h.convertToEvento());
+        }
+        for(Evento e:eventos){
             
         }
     }//GEN-LAST:event_jBGravarActionPerformed

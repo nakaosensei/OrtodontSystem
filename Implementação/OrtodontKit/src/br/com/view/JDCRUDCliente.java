@@ -21,6 +21,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     private DAOCliente daoCli;
     private DAOEndereco daoEnd;
     private Cliente selecionado;
+    private Cliente responsavel;
     private OperacaoCrud operacao;
     private TextFieldFormatter validator;
     private CPFValidator cpfvalitator;
@@ -372,6 +373,9 @@ public class JDCRUDCliente extends javax.swing.JDialog {
 
         jTFIDResponsavel.setBorder(null);
         jTFIDResponsavel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFIDResponsavelFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTFIDResponsavelFocusLost(evt);
             }
@@ -948,8 +952,8 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     
     private void clearTextFields(){
         jTFoneFixo.setText("");
-        jTFidEnderecoTrabalho.setText("");
-        jTFCasaIdEndereco.setText("");
+        jTFidEnderecoTrabalho.setText("0");
+        jTFCasaIdEndereco.setText("0");
         jTFID.setText("0");
         jTFRuaEnderecoTrabalho.setText("");
         jTFCasaEnderecoRua.setText("");
@@ -1074,6 +1078,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             try {
                 int idCli=Integer.parseInt(jTFIDResponsavel.getText().trim());
                 novo.setIdClienteResponsavel(daoCli.getResponsavel(idCli));
+                novo.setParentesco(jTFParentesco.getText());
                 return novo;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1098,7 +1103,10 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         }
         if(this.operacao==OperacaoCrud.EDITAR){
             if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){                
-                novo =preencherCliente(selecionado);                
+                novo =preencherCliente(selecionado);
+                novo.setIdClienteResponsavel(null);
+                novo.setParentesco("");
+                System.out.println("oioioi");
             }else{                
                 novo=preencherClienteDependente(selecionado);                
             }
@@ -1107,8 +1115,10 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             jLMsg.setText("Cliente editado com sucesso");
         }
         if(this.operacao==OperacaoCrud.REMOVER){
+            selecionado.setIdClienteResponsavel(null);
+            daoCli.removeAllDependenciesOfThatClientFromClient(selecionado.getId());
             daoCli.remover(selecionado.getId());
-            this.setStandardState();
+            this.setStandardState();            
             jLMsg.setText("Cliente removido com sucesso");
         }
     }//GEN-LAST:event_jBGravarActionPerformed
@@ -1123,12 +1133,72 @@ public class JDCRUDCliente extends javax.swing.JDialog {
 
     private void jTFIDResponsavelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIDResponsavelFocusLost
         if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){
+            jTFParentesco.setText("");
+            jTFNomeResponsavel.setText("");
             jTFParentesco.setEditable(false);
+        }else{               
+            jTFParentesco.setEditable(true);
         }
     }//GEN-LAST:event_jTFIDResponsavelFocusLost
 
+    private void doIdClienteKeyPressedAction(java.awt.event.KeyEvent evt){
+        if(evt.getKeyCode() == KeyEvent.VK_F2||evt.getKeyCode() == KeyEvent.VK_F7){
+            JDListCliente jd = new JDListCliente(null, true);
+            jd.setVisible(true);
+            jLMsg.setText("");
+            while(jd.isClosed==false&&jd.isAborted==false){};
+            if(jd.isClosed=true){
+                selecionado = jd.clienteSelecionado;
+                if(selecionado!=null){
+                    carregarTextFields(selecionado);
+                    if(operacao==OperacaoCrud.EDITAR){
+                        setAddState();
+                        if(!jTFIDResponsavel.getText().equals("0")&&!jTFIDResponsavel.getText().equals("")){
+                            jTFParentesco.setEditable(true);
+                        }
+                    }else if(operacao==OperacaoCrud.REMOVER){
+                        setRemovalState();
+                    }                    
+                }else{
+                    this.clearTextFields();
+                    setStandardState();
+                }                
+            }else{
+                this.clearTextFields();
+                setStandardState();
+            }
+        }
+    }
+    
+    private void doIdResponsavelKeyPressedAction(java.awt.event.KeyEvent evt){
+        if(evt.getKeyCode() == KeyEvent.VK_F2||evt.getKeyCode() == KeyEvent.VK_F7){
+            JDListCliente jd = new JDListCliente(null, true);
+            jd.setVisible(true);
+            jLMsg.setText("");
+            while(jd.isClosed==false&&jd.isAborted==false){};
+            if(jd.isClosed=true){
+                this.responsavel = jd.clienteSelecionado;
+                if(responsavel!=null){
+                    this.jTFIDResponsavel.setText(responsavel.getId()+"");
+                    this.jTFNomeResponsavel.setText(responsavel.getNome());
+                    this.jTFParentesco.setText(responsavel.getParentesco());
+                }else{
+                    this.clearTextFields();
+                    setStandardState();
+                }                
+            }else{
+                this.clearTextFields();
+                setStandardState();
+            }
+        }
+    }
+    
+    
     private void jTFIDResponsavelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIDResponsavelKeyPressed
-       jTFParentesco.setEditable(true);
+        jTFParentesco.setEditable(true);
+        doIdResponsavelKeyPressedAction(evt);
+        
+        
     }//GEN-LAST:event_jTFIDResponsavelKeyPressed
 
     private void jTFoneFixoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFoneFixoActionPerformed
@@ -1148,29 +1218,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jBEditActionPerformed
 
     private void jTFIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIDKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_F2||evt.getKeyCode() == KeyEvent.VK_F7){
-            JDListCliente jd = new JDListCliente(null, true);
-            jd.setVisible(true);
-            jLMsg.setText("");
-            while(jd.isClosed==false&&jd.isAborted==false){};
-            if(jd.isClosed=true){
-                selecionado = jd.clienteSelecionado;
-                if(selecionado!=null){
-                    carregarTextFields(selecionado);
-                    if(operacao==OperacaoCrud.EDITAR){
-                        setAddState();
-                    }else if(operacao==OperacaoCrud.REMOVER){
-                        setRemovalState();
-                    }                    
-                }else{
-                    this.clearTextFields();
-                    setStandardState();
-                }                
-            }else{
-                this.clearTextFields();
-                setStandardState();
-            }
-        }
+        doIdClienteKeyPressedAction(evt);
     }//GEN-LAST:event_jTFIDKeyPressed
 
     private void jBRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRemoveActionPerformed
@@ -1180,6 +1228,12 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         jLMsg.setText("Selecione o campo id e pressione F2 ou F7");        
         jTFID.grabFocus();
     }//GEN-LAST:event_jBRemoveActionPerformed
+
+    private void jTFIDResponsavelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIDResponsavelFocusGained
+        if(!jTFIDResponsavel.getText().equals("0")&&!jTFIDResponsavel.equals("")){
+            jTFParentesco.setEditable(true);
+        }
+    }//GEN-LAST:event_jTFIDResponsavelFocusGained
 
     private void carregarTextFields(Cliente selecionado){
         jTFoneFixo.setText(selecionado.getTelfixo1());

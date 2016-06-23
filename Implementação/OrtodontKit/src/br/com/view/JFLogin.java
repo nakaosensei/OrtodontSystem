@@ -5,6 +5,8 @@ package br.com.view;
 
 import br.com.DAO.DAODentista;
 import br.com.DAO.DAOSecretaria;
+import br.com.model.bd.Dentista;
+import br.com.model.bd.Secretaria;
 import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -156,20 +158,22 @@ public class JFLogin extends javax.swing.JFrame {
             pw+=c;
         }
         if(login.trim().equals("admin")&&pw.trim().equals("admin123")){
-            JFHomeDentista jfhd = new JFHomeDentista();
+            Dentista t = new Dentista();
+            t.setId(1);
+            JFHomeDentista jfhd = new JFHomeDentista(t);
             jfhd.setVisible(true);
             this.dispose();
         }else{
             DAODentista dao = new DAODentista();
-            boolean hasDentista=dao.isRegistered(login, pw);
-            if(hasDentista==true){
-                JFHomeDentista jfhd = new JFHomeDentista();
+            Dentista cadastrado=dao.getIfIsRegistered(login, pw);
+            if(cadastrado!=null){
+                JFHomeDentista jfhd = new JFHomeDentista(cadastrado);
                 jfhd.setVisible(true);
                 this.dispose();
             }else{
                 DAOSecretaria daos = new DAOSecretaria();
-                boolean hasSecretaria = dao.isRegistered(login, pw);
-                if(hasSecretaria==true){
+                Secretaria cadastrada = daos.getIfIsRegistered(login, pw);
+                if(cadastrada!=null){
                     JFHomeSecretaria jfs = new JFHomeSecretaria();
                     jfs.setVisible(true);
                     this.dispose();

@@ -5,12 +5,16 @@
  */
 package br.com.model;
 
+import br.com.model.bd.Cliente;
+import br.com.model.bd.Dentista;
+import br.com.model.bd.Evento;
+
 /**
  *
  * @author nakao<nakaosensei@gmail.com>
  */
 public class HorarioFilter {
-    private int idDentista;    
+    private Dentista dentista;    
     private String data;
     private String horario;   
     private String nomeCliente;
@@ -21,11 +25,8 @@ public class HorarioFilter {
     private String ano;
     private String hora;
     private String minuto;
-    private int idCliente;
-    public int getIdDentista() {
-        return idDentista;
-    }
-
+    private Cliente cliente;
+    
     public String getDia() {
         return dia;
     }
@@ -66,17 +67,23 @@ public class HorarioFilter {
         this.minuto = minuto;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Dentista getDentista() {
+        return dentista;
+    }
+
+    public void setDentista(Dentista dentista) {
+        this.dentista = dentista;
     }
     
-    public void setIdDentista(int idDentista) {
-        this.idDentista = idDentista;
-    }
+    
 
     public String getData() {
         return data;
@@ -116,6 +123,18 @@ public class HorarioFilter {
 
     public void setFoneCelularCliente(String foneCelularCliente) {
         this.foneCelularCliente = foneCelularCliente;
+    }
+
+    public Evento convertToEvento(){
+        Evento e = new Evento();
+        e.setAno(this.ano);
+        e.setDia(this.dia);
+        e.setHora(this.hora);
+        e.setIdCliente(this.cliente);
+        e.setIdDentista(this.dentista);
+        e.setMes(this.mes);
+        e.setMinutos(this.minuto);
+        return e;
     }
     
 }

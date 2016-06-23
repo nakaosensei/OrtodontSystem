@@ -5,6 +5,7 @@
  */
 package br.com.view;
 
+import br.com.model.bd.Dentista;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
@@ -14,11 +15,12 @@ import javax.swing.JOptionPane;
  * @author a1061712
  */
 public class JFHomeDentista extends javax.swing.JFrame {
-
+    private Dentista owner;
     /**
      * Creates new form JFHome
      */
-    public JFHomeDentista() {
+    public JFHomeDentista(Dentista owner) {
+        this.owner=owner;
         initComponents();
         this.setLocationRelativeTo(null);
         addListeners();
@@ -312,7 +314,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIDesagendarActionPerformed
 
     private void jMIVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIVerActionPerformed
-        JFAgenda jfa = new JFAgenda();
+        JFAgenda jfa = new JFAgenda(owner);
         jfa.setVisible(true);
     }//GEN-LAST:event_jMIVerActionPerformed
 
@@ -350,7 +352,7 @@ public class JFHomeDentista extends javax.swing.JFrame {
     }//GEN-LAST:event_JMenuCadastrosActionPerformed
 
     private void jBAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgendaActionPerformed
-        JFAgenda jda = new JFAgenda();
+        JFAgenda jda = new JFAgenda(owner);
         jda.setVisible(true);
     }//GEN-LAST:event_jBAgendaActionPerformed
 

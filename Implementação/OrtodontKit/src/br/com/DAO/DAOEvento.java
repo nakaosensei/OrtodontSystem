@@ -5,10 +5,10 @@
  */
 package br.com.DAO;
 
+import br.com.model.bd.Dentista;
 import br.com.model.bd.Evento;
 
 /**
- *
  * @author nakao<nakaosensei@gmail.com>
  */
 public class DAOEvento extends DAOGenerico<Evento>{
@@ -17,6 +17,9 @@ public class DAOEvento extends DAOGenerico<Evento>{
         super(Evento.class);
     }
     
-    
+    public void deletaAllWithThatDateFromThatDentist(String ano,String mes,String dia,Dentista dentista){
+        
+        
+    }
     
 }

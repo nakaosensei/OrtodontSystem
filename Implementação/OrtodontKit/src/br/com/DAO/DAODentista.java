@@ -14,14 +14,14 @@ public class DAODentista extends DAOGenerico<Dentista> {
         super(Dentista.class);
     }
     
-    public boolean isRegistered(String login,String password) {
+    public Dentista getIfIsRegistered(String login,String password) {
         Query q =em.createQuery("SELECT e FROM Dentista e WHERE e.login= :log AND e.passwd = :senha");
         q.setParameter("log", login);
         q.setParameter("senha", password);
         if(q.getResultList().isEmpty()){
-            return false;
+            return null;
         }else{
-            return true;
+            return (Dentista)q.getResultList().get(0);
         }       
     }
     

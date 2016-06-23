@@ -1,9 +1,6 @@
 package br.com.controller;
 
-import br.com.view.JFAgenda;
 import br.com.view.JFLogin;
-import javax.swing.plaf.metal.MetalLookAndFeel;
-import javax.swing.plaf.metal.OceanTheme;
 
 /**
  *
@@ -11,12 +8,8 @@ import javax.swing.plaf.metal.OceanTheme;
  */
 public class main {
     public static void main(String[] args) {
-        MetalLookAndFeel.setCurrentTheme(new OceanTheme());
-        JFLogin jf = new JFLogin();
-        JFAgenda jfa = new JFAgenda();
-        jfa.setVisible(true);
-        //jf.setVisible(true);   
-        
-        
+        //MetalLookAndFeel.setCurrentTheme(new OceanTheme());
+        JFLogin jf = new JFLogin();        
+        jf.setVisible(true);         
     }
 }
