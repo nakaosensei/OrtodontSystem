@@ -65,6 +65,12 @@ public class TextFieldFormatter {
        return cpf;
    }
    
+   public JFormattedTextField getDataNascimentoTextField(){       
+       JFormattedTextField jtf= new JFormattedTextField(setMascara("##/##/####"));       
+       return jtf;
+   }
+   
+   
    public String unmaskCEP(String cpf){
        cpf=cpf.replace(".", "");
        cpf=cpf.replace("-", "");       
