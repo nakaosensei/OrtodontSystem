@@ -1,16 +1,22 @@
 
 package br.com.view;
 
-import br.com.DAO.DAOCliente;
+import br.com.DAO.DAODentista;
 import br.com.DAO.DAOEndereco;
-import br.com.model.bd.Cliente;
+import br.com.model.bd.Dentista;
 
 import br.com.model.bd.Endereco;
 import br.com.util.CPFValidator;
 import br.com.util.OperacaoCrud;
 import br.com.util.TextFieldFormatter;
 import br.com.view.exibicao.JDListCliente;
+import br.com.view.exibicao.JDListDentista;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,21 +24,20 @@ import javax.swing.JOptionPane;
  * @author nakao<nakaosensei@gmail.com>
  */
 public class JDCRUDDentista1 extends javax.swing.JDialog {
-    private DAOCliente daoCli;
+    private DAODentista daoDentista;
     private DAOEndereco daoEnd;
-    private Cliente selecionado;
-    private Cliente responsavel;
+    private Dentista selecionado;
     private OperacaoCrud operacao;
     private TextFieldFormatter validator;
     private CPFValidator cpfvalitator;
     /**
-     * Creates new form JDCRUDCliente
+     * Creates new form JDCRUDDentista
      */
     public JDCRUDDentista1(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         validator = new TextFieldFormatter();        
         initComponents();
-        daoCli = new DAOCliente();        
+        daoDentista = new DAODentista();        
         daoEnd = new DAOEndereco();
         setStandardState();
         this.setLocationRelativeTo(null);
@@ -40,29 +45,21 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
 
     private void setAll(boolean nonId,boolean id){
         jTFoneFixo.setEditable(nonId);
-        jTFidEnderecoTrabalho.setEditable(id);
         jTFCasaIdEndereco.setEditable(id);
         jTFID.setEditable(id);
-        jTFRuaEnderecoTrabalho.setEditable(nonId);
         jTFCasaEnderecoRua.setEditable(nonId);
         jTFEmail.setEditable(nonId);
-        jTFNumeroEnderecoTrabalho.setEditable(nonId);
         jTFCasaEnderecoNumero.setEditable(nonId);
         jTFNome.setEditable(nonId);
         jTFoneFixo2.setEditable(nonId);
-        jTFEstadoEnderecoTrabalho.setEditable(nonId);
         jTFEstadoEnderecoCasa.setEditable(nonId);
-        jTFComplementoEnderecoTrabalho.setEditable(nonId);
         jTFComplementoEnderecoCasa.setEditable(nonId);
-        jTFCidadeEnderecoTrabalho.setEditable(nonId);
         jTFCidadeEnderecoCasa.setEditable(nonId);
         jTFCelular2.setEditable(nonId);
         jTFCelular.setEditable(nonId);
         jTFCPF.setEditable(nonId);
-        jTFCEPEnderecoTrabalho.setEditable(nonId);
         jTFCasaEnderecoCEP.setEditable(nonId);
         jTFCasaEnderecoBairro.setEditable(nonId);
-        jTFBairroEnderecoTrabalho.setEditable(nonId);
         jTFEmail.setEditable(nonId);
         jTFLogin.setEditable(nonId);
         jTFDataNascimento.setEditable(nonId);
@@ -111,7 +108,7 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
         jComboBEstadoCivil = new javax.swing.JComboBox();
         jComboBSexo = new javax.swing.JComboBox();
         jPanel41 = new javax.swing.JPanel();
-        jTFEmail = validator.getIntegerTextField();
+        jTFEmail = new javax.swing.JTextField();
         jPanel42 = new javax.swing.JPanel();
         jTFDataNascimento = validator.getDataNascimentoTextField();
         jPanel43 = new javax.swing.JPanel();
@@ -135,23 +132,6 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
         jTFCasaEnderecoBairro = new javax.swing.JTextField();
         jPanel19 = new javax.swing.JPanel();
         jTFComplementoEnderecoCasa = new javax.swing.JTextField();
-        jPanel20 = new javax.swing.JPanel();
-        jPanel21 = new javax.swing.JPanel();
-        jTFidEnderecoTrabalho = validator.getIntegerTextField();
-        jPanel22 = new javax.swing.JPanel();
-        jTFRuaEnderecoTrabalho = new javax.swing.JTextField();
-        jPanel23 = new javax.swing.JPanel();
-        jTFNumeroEnderecoTrabalho = validator.getIntegerTextField();
-        jPanel24 = new javax.swing.JPanel();
-        jTFCidadeEnderecoTrabalho = new javax.swing.JTextField();
-        jPanel25 = new javax.swing.JPanel();
-        jTFEstadoEnderecoTrabalho = new javax.swing.JTextField();
-        jPanel26 = new javax.swing.JPanel();
-        jTFCEPEnderecoTrabalho = validator.getCEPTextField();
-        jPanel27 = new javax.swing.JPanel();
-        jTFBairroEnderecoTrabalho = new javax.swing.JTextField();
-        jPanel28 = new javax.swing.JPanel();
-        jTFComplementoEnderecoTrabalho = new javax.swing.JTextField();
         jLMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -392,19 +372,21 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
 
         jPanel41.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "E-mail"));
 
-        jTFEmail.setBorder(null);
+        jTFEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFEmailActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel41Layout = new javax.swing.GroupLayout(jPanel41);
         jPanel41.setLayout(jPanel41Layout);
         jPanel41Layout.setHorizontalGroup(
             jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTFEmail)
         );
         jPanel41Layout.setVerticalGroup(
             jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel41Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTFEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jTFEmail)
         );
 
         jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Data de Nascimento"));
@@ -484,7 +466,7 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
             .addGroup(jPanel30Layout.createSequentialGroup()
                 .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBSexo, 0, 120, Short.MAX_VALUE)
+                .addComponent(jComboBSexo, 0, 104, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(228, 228, 228))
@@ -504,10 +486,10 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
                             .addComponent(jComboBSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -568,7 +550,7 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFCasaEnderecoNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+            .addComponent(jTFCasaEnderecoNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -711,218 +693,32 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
 
         jTBPane.addTab("Endereço casa", jPanel10);
 
-        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Id"));
-
-        jTFidEnderecoTrabalho.setBorder(null);
-
-        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFidEnderecoTrabalho, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTFidEnderecoTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Rua"));
-
-        jTFRuaEnderecoTrabalho.setBorder(null);
-        jTFRuaEnderecoTrabalho.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFRuaEnderecoTrabalhoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFRuaEnderecoTrabalho, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTFRuaEnderecoTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Numero"));
-
-        jTFNumeroEnderecoTrabalho.setBorder(null);
-
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFNumeroEnderecoTrabalho, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTFNumeroEnderecoTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Cidade"));
-
-        jTFCidadeEnderecoTrabalho.setBorder(null);
-
-        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
-        jPanel24.setLayout(jPanel24Layout);
-        jPanel24Layout.setHorizontalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFCidadeEnderecoTrabalho)
-        );
-        jPanel24Layout.setVerticalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTFCidadeEnderecoTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Estado"));
-
-        jTFEstadoEnderecoTrabalho.setBorder(null);
-
-        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
-        jPanel25.setLayout(jPanel25Layout);
-        jPanel25Layout.setHorizontalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFEstadoEnderecoTrabalho, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-        );
-        jPanel25Layout.setVerticalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTFEstadoEnderecoTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "CEP"));
-
-        jTFCEPEnderecoTrabalho.setBorder(null);
-
-        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
-        jPanel26.setLayout(jPanel26Layout);
-        jPanel26Layout.setHorizontalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFCEPEnderecoTrabalho, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-        );
-        jPanel26Layout.setVerticalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTFCEPEnderecoTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Bairro"));
-
-        jTFBairroEnderecoTrabalho.setBorder(null);
-
-        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
-        jPanel27.setLayout(jPanel27Layout);
-        jPanel27Layout.setHorizontalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFBairroEnderecoTrabalho)
-        );
-        jPanel27Layout.setVerticalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTFBairroEnderecoTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel28.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Complemento"));
-
-        jTFComplementoEnderecoTrabalho.setBorder(null);
-
-        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
-        jPanel28.setLayout(jPanel28Layout);
-        jPanel28Layout.setHorizontalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFComplementoEnderecoTrabalho)
-        );
-        jPanel28Layout.setVerticalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTFComplementoEnderecoTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel20Layout.createSequentialGroup()
-                                .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel20Layout.createSequentialGroup()
-                                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 0, 0))
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(176, Short.MAX_VALUE))
-        );
-
-        jTBPane.addTab("Endereço Trabalho", jPanel20);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jBAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBRead, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jTBPane)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBGravar)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBGravar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTBPane)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBRead, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -948,20 +744,16 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTFRuaEnderecoTrabalhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRuaEnderecoTrabalhoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFRuaEnderecoTrabalhoActionPerformed
-
     
     
     
     private void jBReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReadActionPerformed
-        JDListCliente jd = new JDListCliente(null, true);
+        JDListDentista jd = new JDListDentista(null, true);
         jd.setVisible(true);
         jLMsg.setText("");
         while(jd.isClosed==false&&jd.isAborted==false){};
         if(jd.isClosed==true){
-            Cliente selecionado = jd.clienteSelecionado;
+            Dentista selecionado = jd.dentistaSelecionado;
         }
         
     }//GEN-LAST:event_jBReadActionPerformed
@@ -972,55 +764,39 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
 
     private void setAddState(){
         setAll(true, false);
-        jTFParentesco.setEditable(false);
-        jTFNomeResponsavel.setEditable(false);
-        jTFidEnderecoTrabalho.setEditable(false);
         jTFCasaIdEndereco.setEditable(false);
     }
     private void setEditState(){
         setAll(false, true);
-        jTFidEnderecoTrabalho.setEditable(false);
         jTFCasaIdEndereco.setEditable(false);
-    }
-    private void setEditState2(){
-        setAll(true, false);        
     }
     
     private void clearTextFields(){
         jTFoneFixo.setText("");
-        jTFidEnderecoTrabalho.setText("0");
         jTFCasaIdEndereco.setText("0");
         jTFID.setText("0");
-        jTFRuaEnderecoTrabalho.setText("");
         jTFCasaEnderecoRua.setText("");
         jTFEmail.setText("0");
-        jTFNumeroEnderecoTrabalho.setText("0");
         jTFCasaEnderecoNumero.setText("0");
         jTFNome.setText("");
         jTFoneFixo2.setText("");
-        jTFParentesco.setText("");
-        jTFEstadoEnderecoTrabalho.setText("");
         jTFEstadoEnderecoCasa.setText("");
-        jTFComplementoEnderecoTrabalho.setText("");
         jTFComplementoEnderecoCasa.setText("");
-        jTFCidadeEnderecoTrabalho.setText("");
         jTFCidadeEnderecoCasa.setText("");
         jTFCelular2.setText("");
-        jTFCelular1.setText("");
         jTFCPF.setText("");
-        jTFCEPEnderecoTrabalho.setText("");
         jTFCasaEnderecoCEP.setText("");
         jTFCasaEnderecoBairro.setText("");
-        jTFNomeResponsavel.setText("");
-        jTFBairroEnderecoTrabalho.setText("");
-        jTFIDResponsavel.setText("0");
-        jTFNomeResponsavel.setText("");
+        jTFDataNascimento.setText("");
+        jTFEmail.setText("");
+        jTFLogin.setText("");
+        jTFRGOrgao.setText("");
+        jTFSenha.setText("");
     }
     
     private void setStandardState(){
         this.setAll(false, true);
         this.clearTextFields();
-        jTFidEnderecoTrabalho.setEditable(false);
         jTFCasaIdEndereco.setEditable(false);
     }
     
@@ -1038,7 +814,7 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
     }//GEN-LAST:event_jBAddActionPerformed
 
     
-    private boolean valiteClient(){
+    private boolean valiteCPF(){
         boolean validCpf = CPFValidator.isValidCPF(jTFCPF.getText());
         if(validCpf==false){
             JOptionPane.showMessageDialog(null, "CPF inválido");
@@ -1047,12 +823,12 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
         return true;
     }
     
-    private Cliente preencherCliente(Cliente novo){            
+    private Dentista preencherDentista(Dentista novo){            
             novo.setNome(jTFNome.getText());    
             String cpfConvertido=validator.unmaskCPF(jTFCPF.getText()).trim();                       
             novo.setCpf(cpfConvertido);
             novo.setRg(jTFEmail.getText().trim());
-            novo.setTelcelular1(validator.unmaskTelefone(jTFCelular1.getText().trim()));
+            novo.setTelcelular1(validator.unmaskTelefone(jTFCelular.getText().trim()));
             novo.setTelcelular2(validator.unmaskTelefone(jTFCelular2.getText().trim()));
             novo.setTelfixo1(validator.unmaskTelefone(jTFoneFixo.getText().trim()));
             novo.setTelfixo2(validator.unmaskTelefone(jTFoneFixo2.getText().trim()));
@@ -1065,141 +841,84 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
             casa.setNumero(jTFCasaEnderecoNumero.getText().equals("")?0:Integer.valueOf(jTFCasaEnderecoNumero.getText().trim()));
             casa.setRua(jTFCasaEnderecoRua.getText());
             Endereco endCasa=daoEnd.getInsertingIfNecessary(casa);
-            novo.setIdEnderecoCasa(endCasa);            
-            Endereco trab = new Endereco();
-            trab.setBairro(jTFBairroEnderecoTrabalho.getText());
-            trab.setCep(validator.unmaskCEP(jTFCEPEnderecoTrabalho.getText().trim()));
-            trab.setCidade(jTFCidadeEnderecoTrabalho.getText());
-            trab.setComplemento(jTFComplementoEnderecoTrabalho.getText());
-            trab.setEstado(jTFEstadoEnderecoTrabalho.getText());
-            trab.setNumero(jTFNumeroEnderecoTrabalho.getText().equals("")?0:Integer.valueOf(jTFNumeroEnderecoTrabalho.getText()));
-            trab.setRua(jTFRuaEnderecoTrabalho.getText());
-            Endereco endTrab = daoEnd.getInsertingIfNecessary(trab);
-            novo.setIdEnderecoTrab(endTrab);
+            novo.setIdEndereco(endCasa);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                Date date = new Date();
+                date = sdf.parse(jTFDataNascimento.getText());
+                novo.setDatanascimento(date);
+            } catch (ParseException ex) {
+                System.out.println("FODEU");
+                ex.printStackTrace();
+            }
+            novo.setEmail(jTFEmail.getText());
+            novo.setEstadocivil(String.valueOf(jComboBSexo.getSelectedItem()));
+            novo.setLogin(jTFLogin.getText());
+            novo.setPasswd(jTFSenha.getText());
+            novo.setRgorgaoexpedidor(jTFRGOrgao.getText());
+            if(String.valueOf(jComboBSexo.getSelectedItem()).equals("Masculino")){
+                novo.setSexo('M');
+            }else{
+                novo.setSexo('F');
+            }          
             
             return novo;
             
     }
-    private Cliente preencherClienteDependente(Cliente novo){
-            novo.setNome(jTFNome.getText());
-            String cpfConvertido=validator.unmaskCPF(jTFCPF.getText()).trim();                       
-            novo.setCpf(cpfConvertido);
-            novo.setRg(jTFEmail.getText().trim());
-            novo.setTelcelular1(validator.unmaskTelefone(jTFCelular1.getText().trim()));
-            novo.setTelcelular2(validator.unmaskTelefone(jTFCelular2.getText().trim()));
-            novo.setTelfixo1(validator.unmaskTelefone(jTFoneFixo.getText().trim()));
-            novo.setTelfixo2(validator.unmaskTelefone(jTFoneFixo2.getText().trim()));
-            
-            Endereco casa = new Endereco();
-            casa.setBairro(jTFCasaEnderecoBairro.getText());
-            casa.setCep(validator.unmaskCEP(jTFCasaEnderecoCEP.getText()).trim());
-            casa.setCidade(jTFCidadeEnderecoCasa.getText());
-            casa.setComplemento(jTFComplementoEnderecoCasa.getText());
-            casa.setEstado(jTFEstadoEnderecoCasa.getText());
-            casa.setNumero(Integer.parseInt(jTFCasaEnderecoNumero.getText()));
-            casa.setRua(jTFCasaEnderecoRua.getText());
-            Endereco endCasa=daoEnd.getInsertingIfNecessary(casa);
-            novo.setIdEnderecoCasa(endCasa);
-            
-            Endereco trab = new Endereco();
-            trab.setBairro(jTFBairroEnderecoTrabalho.getText());
-            trab.setCep(validator.unmaskCEP(jTFCEPEnderecoTrabalho.getText().trim()));
-            trab.setCidade(jTFCidadeEnderecoTrabalho.getText());
-            trab.setComplemento(jTFComplementoEnderecoTrabalho.getText());
-            trab.setEstado(jTFEstadoEnderecoTrabalho.getText());
-            trab.setNumero(Integer.parseInt(jTFNumeroEnderecoTrabalho.getText()));
-            trab.setRua(jTFRuaEnderecoTrabalho.getText());
-            Endereco endTrab = daoEnd.getInsertingIfNecessary(trab);
-            novo.setIdEnderecoTrab(endTrab);            
-            try {
-                int idCli=Integer.parseInt(jTFIDResponsavel.getText().trim());
-                novo.setIdClienteResponsavel(daoCli.getResponsavel(idCli));
-                novo.setParentesco(jTFParentesco.getText());
-                return novo;
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Somente numeros no campo ID, por favor");
-            }          
-            return null;
-    }
     
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        Cliente novo;
+        Dentista novo;
         if(this.operacao==OperacaoCrud.ADICIONAR){
-            if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){                
-                novo = new Cliente();
-                novo=preencherCliente(novo);                
-            }else{                
-                novo = new Cliente();
-                novo=preencherClienteDependente(novo);                
+            if(String.valueOf(jComboBEstadoCivil.getSelectedItem()).equals("Estado Civil")){
+                JOptionPane.showMessageDialog(null, "Selecione o estado civil antes de continuar");
+                return;
             }
-            daoCli.inserir(novo);
+            if(String.valueOf(jComboBSexo.getSelectedItem()).equals("Sexo")){
+                JOptionPane.showMessageDialog(null, "Selecione o sexo antes de continuar");
+                return;
+            }
+            novo = new Dentista();
+            preencherDentista(novo);
+            daoDentista.inserir(novo);
             this.setStandardState();
-            jLMsg.setText("Cliente cadastrado com sucesso");
+            jLMsg.setText("Dentista cadastrado(a) com sucesso");
         }
-        if(this.operacao==OperacaoCrud.EDITAR){
-            if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){                
-                novo =preencherCliente(selecionado);
-                novo.setIdClienteResponsavel(null);
-                novo.setParentesco("");
-                System.out.println("oioioi");
-            }else{                
-                novo=preencherClienteDependente(selecionado);                
+        if(this.operacao==OperacaoCrud.EDITAR){            
+            if(String.valueOf(jComboBEstadoCivil.getSelectedItem()).equals("Estado Civil")){
+                JOptionPane.showMessageDialog(null, "Selecione o estado civil antes de continuar");
+                return;
             }
-            daoCli.atualizar(novo);
+            if(String.valueOf(jComboBSexo.getSelectedItem()).equals("Sexo")){
+                JOptionPane.showMessageDialog(null, "Selecione o sexo antes de continuar");
+                return;
+            }
+            novo = preencherDentista(selecionado);
+            daoDentista.atualizar(novo);
             this.setStandardState();
-            jLMsg.setText("Cliente editado com sucesso");
+            jLMsg.setText("Dentista editado(a) com sucesso");
         }
         if(this.operacao==OperacaoCrud.REMOVER){
-            selecionado.setIdClienteResponsavel(null);
-            daoCli.removeAllDependenciesOfThatClientFromClient(selecionado.getId());
-            daoCli.remover(selecionado.getId());
+            daoDentista.remover(selecionado.getId());
             this.setStandardState();            
-            jLMsg.setText("Cliente removido com sucesso");
+            jLMsg.setText("Dentista removido(a) com sucesso");
         }
     }//GEN-LAST:event_jBGravarActionPerformed
-
-    private void doIdClienteKeyPressedAction(java.awt.event.KeyEvent evt){
+   
+     private void doIdDentistaKeyPressedAction(java.awt.event.KeyEvent evt){
         if(evt.getKeyCode() == KeyEvent.VK_F2||evt.getKeyCode() == KeyEvent.VK_F7){
-            JDListCliente jd = new JDListCliente(null, true);
+            JDListDentista jd = new JDListDentista(null, true);
             jd.setVisible(true);
             jLMsg.setText("");
             while(jd.isClosed==false&&jd.isAborted==false){};
-            if(jd.isClosed=true){
-                selecionado = jd.clienteSelecionado;
+            if(jd.isClosed==true){
+                selecionado = jd.dentistaSelecionado;
                 if(selecionado!=null){
                     carregarTextFields(selecionado);
                     if(operacao==OperacaoCrud.EDITAR){
                         setAddState();
-                        if(!jTFIDResponsavel.getText().equals("0")&&!jTFIDResponsavel.getText().equals("")){
-                            jTFParentesco.setEditable(true);
-                        }
                     }else if(operacao==OperacaoCrud.REMOVER){
                         setRemovalState();
                     }                    
-                }else{
-                    this.clearTextFields();
-                    setStandardState();
-                }                
-            }else{
-                this.clearTextFields();
-                setStandardState();
-            }
-        }
-    }
-    
-    private void doIdResponsavelKeyPressedAction(java.awt.event.KeyEvent evt){
-        if(evt.getKeyCode() == KeyEvent.VK_F2||evt.getKeyCode() == KeyEvent.VK_F7){
-            JDListCliente jd = new JDListCliente(null, true);
-            jd.setVisible(true);
-            jLMsg.setText("");
-            while(jd.isClosed==false&&jd.isAborted==false){};
-            if(jd.isClosed=true){
-                this.responsavel = jd.clienteSelecionado;
-                if(responsavel!=null){
-                    this.jTFIDResponsavel.setText(responsavel.getId()+"");
-                    this.jTFNomeResponsavel.setText(responsavel.getNome());
-                    this.jTFParentesco.setText(responsavel.getParentesco());
                 }else{
                     this.clearTextFields();
                     setStandardState();
@@ -1233,29 +952,7 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
     }//GEN-LAST:event_jTFIDActionPerformed
 
     private void jTFIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIDKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_F2||evt.getKeyCode() == KeyEvent.VK_F7){
-            JDListCliente jd = new JDListCliente(null, true);
-            jd.setVisible(true);
-            jLMsg.setText("");
-            while(jd.isClosed==false&&jd.isAborted==false){};
-            if(jd.isClosed=true){
-                selecionado = jd.clienteSelecionado;
-                if(selecionado!=null){
-                    carregarTextFields(selecionado);
-                    if(operacao==OperacaoCrud.EDITAR){
-                        setAddState();
-                    }else if(operacao==OperacaoCrud.REMOVER){
-                        setRemovalState();
-                    }
-                }else{
-                    this.clearTextFields();
-                    setStandardState();
-                }
-            }else{
-                this.clearTextFields();
-                setStandardState();
-            }
-        }
+        doIdDentistaKeyPressedAction(evt);
     }//GEN-LAST:event_jTFIDKeyPressed
 
     private void jTFoneFixoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFoneFixoActionPerformed
@@ -1273,6 +970,10 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
     private void jComboBSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBSexoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBSexoActionPerformed
+
+    private void jTFEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFEmailActionPerformed
 
     private void carregarTextFields(Cliente selecionado){
         jTFoneFixo.setText(selecionado.getTelfixo1());
@@ -1331,15 +1032,6 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel33;
@@ -1355,8 +1047,6 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel44;
     private javax.swing.JTabbedPane jTBPane;
-    private javax.swing.JTextField jTFBairroEnderecoTrabalho;
-    private javax.swing.JTextField jTFCEPEnderecoTrabalho;
     private javax.swing.JTextField jTFCPF;
     private javax.swing.JTextField jTFCasaEnderecoBairro;
     private javax.swing.JTextField jTFCasaEnderecoCEP;
@@ -1366,22 +1056,16 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
     private javax.swing.JTextField jTFCelular;
     private javax.swing.JTextField jTFCelular2;
     private javax.swing.JTextField jTFCidadeEnderecoCasa;
-    private javax.swing.JTextField jTFCidadeEnderecoTrabalho;
     private javax.swing.JTextField jTFComplementoEnderecoCasa;
-    private javax.swing.JTextField jTFComplementoEnderecoTrabalho;
     private javax.swing.JTextField jTFDataNascimento;
     private javax.swing.JTextField jTFEmail;
     private javax.swing.JTextField jTFEstadoEnderecoCasa;
-    private javax.swing.JTextField jTFEstadoEnderecoTrabalho;
     private javax.swing.JTextField jTFID;
     private javax.swing.JTextField jTFLogin;
     private javax.swing.JTextField jTFNome;
-    private javax.swing.JTextField jTFNumeroEnderecoTrabalho;
     private javax.swing.JTextField jTFRG;
     private javax.swing.JTextField jTFRGOrgao;
-    private javax.swing.JTextField jTFRuaEnderecoTrabalho;
     private javax.swing.JTextField jTFSenha;
-    private javax.swing.JTextField jTFidEnderecoTrabalho;
     private javax.swing.JTextField jTFoneFixo;
     private javax.swing.JTextField jTFoneFixo2;
     // End of variables declaration//GEN-END:variables
