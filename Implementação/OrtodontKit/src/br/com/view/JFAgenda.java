@@ -29,7 +29,7 @@ public class JFAgenda extends javax.swing.JFrame {
     private ModelTabelaAgenda model = new ModelTabelaAgenda();
     /**
      * Creates new form JFAgenda
-     * @param dentistaOwner
+     * @param owner
      */
     public JFAgenda(Dentista owner) {
         initComponents();
@@ -37,9 +37,28 @@ public class JFAgenda extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         formatarDatas();
         this.jTBAgenda.setModel(model);
+        disableComponents();
+        jLMsg.setText("Selecione um dia e abra a agenda");
     }
 
-    void formatarDatas() {
+    private void disableComponents(){
+        jBGravar.setEnabled(false);
+        jBAddAgenda.setEnabled(false);
+        jBRmAgenda.setEnabled(false);
+        jTFHora.setEditable(false);
+        jTFMinuto.setEditable(false);
+        jTFNomeCliente.setEditable(false);        
+    }
+    
+    private void enableComponents(){
+        jBGravar.setEnabled(true);
+        jBAddAgenda.setEnabled(true);
+        jBRmAgenda.setEnabled(true);
+        jTFHora.setEditable(true);
+        jTFMinuto.setEditable(true);
+        jTFNomeCliente.setEditable(true);        
+    }
+    private void formatarDatas() {
         jXDate.setFormats("dd/MM/yyyy");
         Calendar cal = Calendar.getInstance();
         int ano = cal.get(Calendar.YEAR);
@@ -48,7 +67,7 @@ public class JFAgenda extends javax.swing.JFrame {
         int dia = cal.get(Calendar.DAY_OF_MONTH);
         mes++;
         String data = dia+"/"+mes+"/"+ano;
-        jXDate.getEditor().setText(data);        
+        jXDate.getEditor().setText(data);           
     }
     
     void formatarData(String data){
@@ -83,16 +102,23 @@ public class JFAgenda extends javax.swing.JFrame {
         jBSair = new javax.swing.JButton();
         jBAbrir = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
-        jTFHora = validator.getIntegerTextField();
+        jTFHora = validator.getTimeTextField();
         jPanel17 = new javax.swing.JPanel();
-        jTFMinuto = validator.getIntegerTextField();
+        jTFMinuto = validator.getTimeTextField();
         jPanel4 = new javax.swing.JPanel();
         jTFNomeCliente = new javax.swing.JTextField();
+        jLMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPData.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Data"));
+
+        jXDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jXDateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPDataLayout = new javax.swing.GroupLayout(jPData);
         jPData.setLayout(jPDataLayout);
@@ -125,7 +151,7 @@ public class JFAgenda extends javax.swing.JFrame {
             }
         });
 
-        jSplitPane1.setDividerLocation(2000);
+        jSplitPane1.setDividerLocation(10000);
 
         jTBAgenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -260,6 +286,14 @@ public class JFAgenda extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Cliente"));
 
         jTFNomeCliente.setBorder(null);
+        jTFNomeCliente.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFNomeClienteFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFNomeClienteFocusLost(evt);
+            }
+        });
         jTFNomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFNomeClienteActionPerformed(evt);
@@ -286,11 +320,13 @@ public class JFAgenda extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(jLMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBSair)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBGravar))
@@ -332,7 +368,9 @@ public class JFAgenda extends javax.swing.JFrame {
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBSair)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBSair)
+                        .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jBGravar)
                         .addGap(5, 5, 5))))
@@ -345,23 +383,34 @@ public class JFAgenda extends javax.swing.JFrame {
     
     
     private void jBAddAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddAgendaActionPerformed
+        jLMsg.setText("");
+        String hora=jTFHora.getText();
+        String minuto=jTFMinuto.getText();
         if(selecionado==null){
             JOptionPane.showMessageDialog(null, "Selecione um cliente!");
-        }else if(jTFHora.getText().equals("")||jTFMinuto.equals("")){
+        }else if(hora.equals("")||minuto.equals("")){
             JOptionPane.showMessageDialog(null, "Preencha a hora e o minuto");
+        }else if(hora.length()>2||minuto.length()>2){
+            JOptionPane.showMessageDialog(null, "Formato errado na hora ou minuto, somente dois digitos");
         }else{
+            if(hora.length()==1){
+                hora="0"+hora;
+            }
+            if(minuto.length()==1){
+                minuto="0"+minuto;
+            }
             HorarioFilter hf = new HorarioFilter();
             hf.setData(jXDate.getEditor().getText());        
             String split[]=jXDate.getEditor().getText().split("/");
             String dia=split[0].trim();
             String mes=split[1].trim();
-            String ano=split[2].trim();
+            String ano=split[2].trim();           
             hf.setMes(mes);
             hf.setDia(dia);
-            hf.setAno(ano);
-            hf.setHorario(jTFHora.getText()+":"+jTFMinuto.getText());
-            hf.setHora(jTFHora.getText());
-            hf.setMinuto(jTFMinuto.getText());        
+            hf.setAno(ano);            
+            hf.setHorario(hora+":"+minuto);
+            hf.setHora(hora);
+            hf.setMinuto(minuto);        
             hf.setDentista(dentistaOwner);
             hf.setNomeCliente(selecionado.getNome());
             hf.setCliente(selecionado);
@@ -377,9 +426,41 @@ public class JFAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jBSairActionPerformed
 
     private void jBAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAbrirActionPerformed
-        // TODO add your handling code here:
+        String split[]=jXDate.getEditor().getText().split("/");
+        String dia=split[0].trim();
+        String mes=split[1].trim();
+        String ano=split[2].trim();
+        List<Evento> eventos=daoEvento.getAllWithThatDateFromThatDentist(ano, mes, dia, dentistaOwner);
+        List<HorarioFilter> hfList = new ArrayList<>();
+        for(Evento e:eventos){
+            HorarioFilter novo = new HorarioFilter();
+            novo.setAno(e.getAno());
+            novo.setCliente(e.getIdCliente());
+            novo.setDentista(dentistaOwner);
+            novo.setDia(e.getDia());
+            novo.setFoneCelularCliente(e.getIdCliente().getTelcelular1());
+            novo.setFoneFixoCliente(e.getIdCliente().getTelfixo1());
+            novo.setHora(e.getHora());
+            novo.setMes(e.getMes());
+            novo.setMinuto(e.getMinutos());
+            novo.setNomeCliente(e.getIdCliente().getNome());
+            novo.setHorario(e.getHora()+":"+e.getMinutos());
+            novo.setData(e.getDia()+"/"+e.getMes()+"/"+e.getAno());
+            hfList.add(novo);
+        }
+        model.setData(hfList);
+        jLMsg.setText("Agora marque/desmarque horários como desejar");
+        enableComponents();
     }//GEN-LAST:event_jBAbrirActionPerformed
 
+    private void clearFields(){
+        model.getData().clear();
+        jTFNomeCliente.setText("");
+        jTFHora.setText("");
+        jTFMinuto.setText("");
+        
+    }
+    
     private void jTFNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFNomeClienteActionPerformed
@@ -412,20 +493,50 @@ public class JFAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jTBAgendaMouseClicked
 
     private void jBRmAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRmAgendaActionPerformed
+        jLMsg.setText("");
         if(hSelecionado!=null){
             model.remove(hSelecionado);
         }
     }//GEN-LAST:event_jBRmAgendaActionPerformed
 
-    private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        List<Evento> eventos = new ArrayList<Evento>();
+    
+    public boolean doJBGravarAction(){
+        if(model.lista.isEmpty()){
+            return false;
+        }
+        List<Evento> eventos = new ArrayList<>();
         for(HorarioFilter h:model.lista){
             eventos.add(h.convertToEvento());
         }
+        daoEvento.deleteAllWithThatDateFromThatDentist(eventos.get(0).getAno(), eventos.get(0).getMes(), eventos.get(0).getDia(), dentistaOwner);
         for(Evento e:eventos){
-            
+            daoEvento.inserir(e);
+        }
+        return true;
+    }
+    
+    private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
+        boolean ok=doJBGravarAction();
+        if(ok==true){
+            jLMsg.setText("Agenda atualizada com sucesso");
+        }else{
+            jLMsg.setText("Erro, contato o suporte por nakaosensei@gmail.com");
         }
     }//GEN-LAST:event_jBGravarActionPerformed
+
+    private void jTFNomeClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNomeClienteFocusGained
+        jLMsg.setText("Pressione F2 ou F7 para pesquisar");
+    }//GEN-LAST:event_jTFNomeClienteFocusGained
+
+    private void jTFNomeClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNomeClienteFocusLost
+        jLMsg.setText("");
+    }//GEN-LAST:event_jTFNomeClienteFocusLost
+
+    private void jXDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXDateActionPerformed
+        this.clearFields();
+        this.disableComponents();
+        jLMsg.setText("Selecione um dia e abra a agenda");
+    }//GEN-LAST:event_jXDateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -440,6 +551,7 @@ public class JFAgenda extends javax.swing.JFrame {
     private javax.swing.JButton jBRmAgenda;
     private javax.swing.JButton jBRmCli;
     private javax.swing.JButton jBSair;
+    private javax.swing.JLabel jLMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPData;
     private javax.swing.JPanel jPanel16;

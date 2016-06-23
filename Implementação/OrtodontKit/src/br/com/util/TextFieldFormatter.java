@@ -26,7 +26,7 @@ public class TextFieldFormatter {
        JFormattedTextField jtf= new JFormattedTextField();
         ((AbstractDocument) jtf.getDocument()).setDocumentFilter(new DocumentFilter() {
             Pattern regEx = Pattern.compile("\\d+");
-
+            
             @Override
             public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
                 Matcher matcher = regEx.matcher(text);
@@ -51,6 +51,11 @@ public class TextFieldFormatter {
    
    public JFormattedTextField getCEPTextField(){       
        JFormattedTextField jtf= new JFormattedTextField(setMascara("##.###-###"));       
+       return jtf;
+   }
+   
+   public JFormattedTextField getTimeTextField(){       
+       JFormattedTextField jtf= new JFormattedTextField(setMascara("##"));       
        return jtf;
    }
    

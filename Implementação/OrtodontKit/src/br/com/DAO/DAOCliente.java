@@ -6,8 +6,6 @@
 package br.com.DAO;
 
 import br.com.model.bd.Cliente;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Query;
 
 /**
