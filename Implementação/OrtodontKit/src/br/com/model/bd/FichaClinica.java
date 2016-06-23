@@ -20,18 +20,17 @@ import javax.persistence.Table;
 
 /**
  *
- * @author nakao<nakaosensei@gmail.com>
+ * @author Convidado
  */
 @Entity
-@Table(name = "fichaClinica")
+@Table(name = "fichaclinica")
 @NamedQueries({
-    @NamedQuery(name = "FichaClinica.findAll", query = "SELECT f FROM FichaClinica f"),
-    @NamedQuery(name = "FichaClinica.findById", query = "SELECT f FROM FichaClinica f WHERE f.id = :id"),
-    @NamedQuery(name = "FichaClinica.findByIndica\u00e7ao", query = "SELECT f FROM FichaClinica f WHERE f.indica\u00e7ao = :indica\u00e7ao"),
-    @NamedQuery(name = "FichaClinica.findByAtendimentoinicial", query = "SELECT f FROM FichaClinica f WHERE f.atendimentoinicial = :atendimentoinicial"),
-    @NamedQuery(name = "FichaClinica.findByNumeroprotocolo", query = "SELECT f FROM FichaClinica f WHERE f.numeroprotocolo = :numeroprotocolo")})
-public class FichaClinica implements Serializable {
-
+    @NamedQuery(name = "Fichaclinica.findAll", query = "SELECT f FROM Fichaclinica f"),
+    @NamedQuery(name = "Fichaclinica.findById", query = "SELECT f FROM Fichaclinica f WHERE f.id = :id"),
+    @NamedQuery(name = "Fichaclinica.findByIndica\u00e7ao", query = "SELECT f FROM Fichaclinica f WHERE f.indica\u00e7ao = :indica\u00e7ao"),
+    @NamedQuery(name = "Fichaclinica.findByAtendimentoinicial", query = "SELECT f FROM Fichaclinica f WHERE f.atendimentoinicial = :atendimentoinicial"),
+    @NamedQuery(name = "Fichaclinica.findByNumeroprotocolo", query = "SELECT f FROM Fichaclinica f WHERE f.numeroprotocolo = :numeroprotocolo")})
+public class Fichaclinica implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,10 +50,10 @@ public class FichaClinica implements Serializable {
     @ManyToOne
     private Cliente idClienteResponsavel;
 
-    public FichaClinica() {
+    public Fichaclinica() {
     }
 
-    public FichaClinica(Integer id) {
+    public Fichaclinica(Integer id) {
         this.id = id;
     }
 
@@ -116,10 +115,10 @@ public class FichaClinica implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FichaClinica)) {
+        if (!(object instanceof Fichaclinica)) {
             return false;
         }
-        FichaClinica other = (FichaClinica) object;
+        Fichaclinica other = (Fichaclinica) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -128,7 +127,7 @@ public class FichaClinica implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.bd.FichaClinica[ id=" + id + " ]";
+        return "br.com.model.bd.Fichaclinica[ id=" + id + " ]";
     }
     
 }

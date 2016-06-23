@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author nakao<nakaosensei@gmail.com>
+ * @author Convidado
  */
 @Entity
 @Table(name = "evento")
@@ -33,7 +33,6 @@ import javax.persistence.Table;
     @NamedQuery(name = "Evento.findByHora", query = "SELECT e FROM Evento e WHERE e.hora = :hora"),
     @NamedQuery(name = "Evento.findByMinutos", query = "SELECT e FROM Evento e WHERE e.minutos = :minutos")})
 public class Evento implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author nakao<nakaosensei@gmail.com>
+ * @author Convidado
  */
 @Entity
 @Table(name = "tratamento")
@@ -35,7 +35,6 @@ import javax.persistence.Table;
     @NamedQuery(name = "Tratamento.findByIdOdontograma", query = "SELECT t FROM Tratamento t WHERE t.idOdontograma = :idOdontograma"),
     @NamedQuery(name = "Tratamento.findByIdCliente", query = "SELECT t FROM Tratamento t WHERE t.idCliente = :idCliente")})
 public class Tratamento implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,7 +56,7 @@ public class Tratamento implements Serializable {
     @Column(name = "idCliente")
     private Integer idCliente;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTratamento")
-    private List<ProcedimentoDoDente> procedimentoDoDenteList;
+    private List<Procedimentododente> procedimentododenteList;
 
     public Tratamento() {
     }
@@ -127,12 +126,12 @@ public class Tratamento implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public List<ProcedimentoDoDente> getProcedimentoDoDenteList() {
-        return procedimentoDoDenteList;
+    public List<Procedimentododente> getProcedimentododenteList() {
+        return procedimentododenteList;
     }
 
-    public void setProcedimentoDoDenteList(List<ProcedimentoDoDente> procedimentoDoDenteList) {
-        this.procedimentoDoDenteList = procedimentoDoDenteList;
+    public void setProcedimentododenteList(List<Procedimentododente> procedimentododenteList) {
+        this.procedimentododenteList = procedimentododenteList;
     }
 
     @Override

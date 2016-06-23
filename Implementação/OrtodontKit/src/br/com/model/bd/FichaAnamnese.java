@@ -18,47 +18,46 @@ import javax.persistence.Table;
 
 /**
  *
- * @author nakao<nakaosensei@gmail.com>
+ * @author Convidado
  */
 @Entity
-@Table(name = "fichaAnamnese")
+@Table(name = "fichaanamnese")
 @NamedQueries({
-    @NamedQuery(name = "FichaAnamnese.findAll", query = "SELECT f FROM FichaAnamnese f"),
-    @NamedQuery(name = "FichaAnamnese.findById", query = "SELECT f FROM FichaAnamnese f WHERE f.id = :id"),
-    @NamedQuery(name = "FichaAnamnese.findByQueixaPrincipal", query = "SELECT f FROM FichaAnamnese f WHERE f.queixaPrincipal = :queixaPrincipal"),
-    @NamedQuery(name = "FichaAnamnese.findByDoencaAtual", query = "SELECT f FROM FichaAnamnese f WHERE f.doencaAtual = :doencaAtual"),
-    @NamedQuery(name = "FichaAnamnese.findByEstatratamentoMedico", query = "SELECT f FROM FichaAnamnese f WHERE f.estatratamentoMedico = :estatratamentoMedico"),
-    @NamedQuery(name = "FichaAnamnese.findByNomeMedicoAssistente", query = "SELECT f FROM FichaAnamnese f WHERE f.nomeMedicoAssistente = :nomeMedicoAssistente"),
-    @NamedQuery(name = "FichaAnamnese.findByTelefoneMedicoAssistente", query = "SELECT f FROM FichaAnamnese f WHERE f.telefoneMedicoAssistente = :telefoneMedicoAssistente"),
-    @NamedQuery(name = "FichaAnamnese.findByUsaMedicacao", query = "SELECT f FROM FichaAnamnese f WHERE f.usaMedicacao = :usaMedicacao"),
-    @NamedQuery(name = "FichaAnamnese.findByHasAlergia", query = "SELECT f FROM FichaAnamnese f WHERE f.hasAlergia = :hasAlergia"),
-    @NamedQuery(name = "FichaAnamnese.findByHasAnemia", query = "SELECT f FROM FichaAnamnese f WHERE f.hasAnemia = :hasAnemia"),
-    @NamedQuery(name = "FichaAnamnese.findByHasHepatite", query = "SELECT f FROM FichaAnamnese f WHERE f.hasHepatite = :hasHepatite"),
-    @NamedQuery(name = "FichaAnamnese.findByHasSifilis", query = "SELECT f FROM FichaAnamnese f WHERE f.hasSifilis = :hasSifilis"),
-    @NamedQuery(name = "FichaAnamnese.findByHasHiv", query = "SELECT f FROM FichaAnamnese f WHERE f.hasHiv = :hasHiv"),
-    @NamedQuery(name = "FichaAnamnese.findByHasTuberculose", query = "SELECT f FROM FichaAnamnese f WHERE f.hasTuberculose = :hasTuberculose"),
-    @NamedQuery(name = "FichaAnamnese.findByHasAsma", query = "SELECT f FROM FichaAnamnese f WHERE f.hasAsma = :hasAsma"),
-    @NamedQuery(name = "FichaAnamnese.findByIsfUmante", query = "SELECT f FROM FichaAnamnese f WHERE f.isfUmante = :isfUmante"),
-    @NamedQuery(name = "FichaAnamnese.findByHasHormonios", query = "SELECT f FROM FichaAnamnese f WHERE f.hasHormonios = :hasHormonios"),
-    @NamedQuery(name = "FichaAnamnese.findByIsAlcoolista", query = "SELECT f FROM FichaAnamnese f WHERE f.isAlcoolista = :isAlcoolista"),
-    @NamedQuery(name = "FichaAnamnese.findByHasHerpes", query = "SELECT f FROM FichaAnamnese f WHERE f.hasHerpes = :hasHerpes"),
-    @NamedQuery(name = "FichaAnamnese.findByHasGravidez", query = "SELECT f FROM FichaAnamnese f WHERE f.hasGravidez = :hasGravidez"),
-    @NamedQuery(name = "FichaAnamnese.findByHasDesmaios", query = "SELECT f FROM FichaAnamnese f WHERE f.hasDesmaios = :hasDesmaios"),
-    @NamedQuery(name = "FichaAnamnese.findByHasFebrereumatica", query = "SELECT f FROM FichaAnamnese f WHERE f.hasFebrereumatica = :hasFebrereumatica"),
-    @NamedQuery(name = "FichaAnamnese.findByHasDiabetes", query = "SELECT f FROM FichaAnamnese f WHERE f.hasDiabetes = :hasDiabetes"),
-    @NamedQuery(name = "FichaAnamnese.findByHasEpilepsia", query = "SELECT f FROM FichaAnamnese f WHERE f.hasEpilepsia = :hasEpilepsia"),
-    @NamedQuery(name = "FichaAnamnese.findByHasCicatrizacaoruim", query = "SELECT f FROM FichaAnamnese f WHERE f.hasCicatrizacaoruim = :hasCicatrizacaoruim"),
-    @NamedQuery(name = "FichaAnamnese.findByHasDisturbiopsicologico", query = "SELECT f FROM FichaAnamnese f WHERE f.hasDisturbiopsicologico = :hasDisturbiopsicologico"),
-    @NamedQuery(name = "FichaAnamnese.findByHasEndocarditebacteriana", query = "SELECT f FROM FichaAnamnese f WHERE f.hasEndocarditebacteriana = :hasEndocarditebacteriana"),
-    @NamedQuery(name = "FichaAnamnese.findByHasProblemahepatico", query = "SELECT f FROM FichaAnamnese f WHERE f.hasProblemahepatico = :hasProblemahepatico"),
-    @NamedQuery(name = "FichaAnamnese.findByHasProblemarenal", query = "SELECT f FROM FichaAnamnese f WHERE f.hasProblemarenal = :hasProblemarenal"),
-    @NamedQuery(name = "FichaAnamnese.findByHasProblemacardiaco", query = "SELECT f FROM FichaAnamnese f WHERE f.hasProblemacardiaco = :hasProblemacardiaco"),
-    @NamedQuery(name = "FichaAnamnese.findByHasProblemasarticularesreumaticos", query = "SELECT f FROM FichaAnamnese f WHERE f.hasProblemasarticularesreumaticos = :hasProblemasarticularesreumaticos"),
-    @NamedQuery(name = "FichaAnamnese.findByHasTensaoarterial", query = "SELECT f FROM FichaAnamnese f WHERE f.hasTensaoarterial = :hasTensaoarterial"),
-    @NamedQuery(name = "FichaAnamnese.findByHasCirurgiacominternacaohospilar", query = "SELECT f FROM FichaAnamnese f WHERE f.hasCirurgiacominternacaohospilar = :hasCirurgiacominternacaohospilar"),
-    @NamedQuery(name = "FichaAnamnese.findByDoencaInfectocontagiosa", query = "SELECT f FROM FichaAnamnese f WHERE f.doencaInfectocontagiosa = :doencaInfectocontagiosa")})
-public class FichaAnamnese implements Serializable {
-
+    @NamedQuery(name = "Fichaanamnese.findAll", query = "SELECT f FROM Fichaanamnese f"),
+    @NamedQuery(name = "Fichaanamnese.findById", query = "SELECT f FROM Fichaanamnese f WHERE f.id = :id"),
+    @NamedQuery(name = "Fichaanamnese.findByQueixaPrincipal", query = "SELECT f FROM Fichaanamnese f WHERE f.queixaPrincipal = :queixaPrincipal"),
+    @NamedQuery(name = "Fichaanamnese.findByDoencaAtual", query = "SELECT f FROM Fichaanamnese f WHERE f.doencaAtual = :doencaAtual"),
+    @NamedQuery(name = "Fichaanamnese.findByEstatratamentoMedico", query = "SELECT f FROM Fichaanamnese f WHERE f.estatratamentoMedico = :estatratamentoMedico"),
+    @NamedQuery(name = "Fichaanamnese.findByNomeMedicoAssistente", query = "SELECT f FROM Fichaanamnese f WHERE f.nomeMedicoAssistente = :nomeMedicoAssistente"),
+    @NamedQuery(name = "Fichaanamnese.findByTelefoneMedicoAssistente", query = "SELECT f FROM Fichaanamnese f WHERE f.telefoneMedicoAssistente = :telefoneMedicoAssistente"),
+    @NamedQuery(name = "Fichaanamnese.findByUsaMedicacao", query = "SELECT f FROM Fichaanamnese f WHERE f.usaMedicacao = :usaMedicacao"),
+    @NamedQuery(name = "Fichaanamnese.findByHasAlergia", query = "SELECT f FROM Fichaanamnese f WHERE f.hasAlergia = :hasAlergia"),
+    @NamedQuery(name = "Fichaanamnese.findByHasAnemia", query = "SELECT f FROM Fichaanamnese f WHERE f.hasAnemia = :hasAnemia"),
+    @NamedQuery(name = "Fichaanamnese.findByHasHepatite", query = "SELECT f FROM Fichaanamnese f WHERE f.hasHepatite = :hasHepatite"),
+    @NamedQuery(name = "Fichaanamnese.findByHasSifilis", query = "SELECT f FROM Fichaanamnese f WHERE f.hasSifilis = :hasSifilis"),
+    @NamedQuery(name = "Fichaanamnese.findByHasHiv", query = "SELECT f FROM Fichaanamnese f WHERE f.hasHiv = :hasHiv"),
+    @NamedQuery(name = "Fichaanamnese.findByHasTuberculose", query = "SELECT f FROM Fichaanamnese f WHERE f.hasTuberculose = :hasTuberculose"),
+    @NamedQuery(name = "Fichaanamnese.findByHasAsma", query = "SELECT f FROM Fichaanamnese f WHERE f.hasAsma = :hasAsma"),
+    @NamedQuery(name = "Fichaanamnese.findByIsfUmante", query = "SELECT f FROM Fichaanamnese f WHERE f.isfUmante = :isfUmante"),
+    @NamedQuery(name = "Fichaanamnese.findByHasHormonios", query = "SELECT f FROM Fichaanamnese f WHERE f.hasHormonios = :hasHormonios"),
+    @NamedQuery(name = "Fichaanamnese.findByIsAlcoolista", query = "SELECT f FROM Fichaanamnese f WHERE f.isAlcoolista = :isAlcoolista"),
+    @NamedQuery(name = "Fichaanamnese.findByHasHerpes", query = "SELECT f FROM Fichaanamnese f WHERE f.hasHerpes = :hasHerpes"),
+    @NamedQuery(name = "Fichaanamnese.findByHasGravidez", query = "SELECT f FROM Fichaanamnese f WHERE f.hasGravidez = :hasGravidez"),
+    @NamedQuery(name = "Fichaanamnese.findByHasDesmaios", query = "SELECT f FROM Fichaanamnese f WHERE f.hasDesmaios = :hasDesmaios"),
+    @NamedQuery(name = "Fichaanamnese.findByHasFebrereumatica", query = "SELECT f FROM Fichaanamnese f WHERE f.hasFebrereumatica = :hasFebrereumatica"),
+    @NamedQuery(name = "Fichaanamnese.findByHasDiabetes", query = "SELECT f FROM Fichaanamnese f WHERE f.hasDiabetes = :hasDiabetes"),
+    @NamedQuery(name = "Fichaanamnese.findByHasEpilepsia", query = "SELECT f FROM Fichaanamnese f WHERE f.hasEpilepsia = :hasEpilepsia"),
+    @NamedQuery(name = "Fichaanamnese.findByHasCicatrizacaoruim", query = "SELECT f FROM Fichaanamnese f WHERE f.hasCicatrizacaoruim = :hasCicatrizacaoruim"),
+    @NamedQuery(name = "Fichaanamnese.findByHasDisturbiopsicologico", query = "SELECT f FROM Fichaanamnese f WHERE f.hasDisturbiopsicologico = :hasDisturbiopsicologico"),
+    @NamedQuery(name = "Fichaanamnese.findByHasEndocarditebacteriana", query = "SELECT f FROM Fichaanamnese f WHERE f.hasEndocarditebacteriana = :hasEndocarditebacteriana"),
+    @NamedQuery(name = "Fichaanamnese.findByHasProblemahepatico", query = "SELECT f FROM Fichaanamnese f WHERE f.hasProblemahepatico = :hasProblemahepatico"),
+    @NamedQuery(name = "Fichaanamnese.findByHasProblemarenal", query = "SELECT f FROM Fichaanamnese f WHERE f.hasProblemarenal = :hasProblemarenal"),
+    @NamedQuery(name = "Fichaanamnese.findByHasProblemacardiaco", query = "SELECT f FROM Fichaanamnese f WHERE f.hasProblemacardiaco = :hasProblemacardiaco"),
+    @NamedQuery(name = "Fichaanamnese.findByHasProblemasarticularesreumaticos", query = "SELECT f FROM Fichaanamnese f WHERE f.hasProblemasarticularesreumaticos = :hasProblemasarticularesreumaticos"),
+    @NamedQuery(name = "Fichaanamnese.findByHasTensaoarterial", query = "SELECT f FROM Fichaanamnese f WHERE f.hasTensaoarterial = :hasTensaoarterial"),
+    @NamedQuery(name = "Fichaanamnese.findByHasCirurgiacominternacaohospilar", query = "SELECT f FROM Fichaanamnese f WHERE f.hasCirurgiacominternacaohospilar = :hasCirurgiacominternacaohospilar"),
+    @NamedQuery(name = "Fichaanamnese.findByDoencaInfectocontagiosa", query = "SELECT f FROM Fichaanamnese f WHERE f.doencaInfectocontagiosa = :doencaInfectocontagiosa")})
+public class Fichaanamnese implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -130,10 +129,10 @@ public class FichaAnamnese implements Serializable {
     @Column(name = "doencaInfectocontagiosa")
     private String doencaInfectocontagiosa;
 
-    public FichaAnamnese() {
+    public Fichaanamnese() {
     }
 
-    public FichaAnamnese(Integer id) {
+    public Fichaanamnese(Integer id) {
         this.id = id;
     }
 
@@ -411,10 +410,10 @@ public class FichaAnamnese implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FichaAnamnese)) {
+        if (!(object instanceof Fichaanamnese)) {
             return false;
         }
-        FichaAnamnese other = (FichaAnamnese) object;
+        Fichaanamnese other = (Fichaanamnese) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -423,7 +422,7 @@ public class FichaAnamnese implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.bd.FichaAnamnese[ id=" + id + " ]";
+        return "br.com.model.bd.Fichaanamnese[ id=" + id + " ]";
     }
     
 }

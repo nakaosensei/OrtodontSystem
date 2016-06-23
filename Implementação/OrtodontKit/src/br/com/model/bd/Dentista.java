@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author nakao<nakaosensei@gmail.com>
+ * @author Convidado
  */
 @Entity
 @Table(name = "dentista")
@@ -48,7 +48,6 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Dentista.findByEmail", query = "SELECT d FROM Dentista d WHERE d.email = :email"),
     @NamedQuery(name = "Dentista.findByDatanascimento", query = "SELECT d FROM Dentista d WHERE d.datanascimento = :datanascimento")})
 public class Dentista implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,7 +77,7 @@ public class Dentista implements Serializable {
     @Column(name = "sexo")
     private Character sexo;
     @Column(name = "estadocivil")
-    private Character estadocivil;
+    private String estadocivil;
     @Column(name = "email")
     private String email;
     @Column(name = "datanascimento")
@@ -197,11 +196,11 @@ public class Dentista implements Serializable {
         this.sexo = sexo;
     }
 
-    public Character getEstadocivil() {
+    public String getEstadocivil() {
         return estadocivil;
     }
 
-    public void setEstadocivil(Character estadocivil) {
+    public void setEstadocivil(String estadocivil) {
         this.estadocivil = estadocivil;
     }
 

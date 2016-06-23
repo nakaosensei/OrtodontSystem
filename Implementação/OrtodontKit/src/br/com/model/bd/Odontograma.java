@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author nakao<nakaosensei@gmail.com>
+ * @author Convidado
  */
 @Entity
 @Table(name = "odontograma")
@@ -88,7 +88,6 @@ import javax.persistence.Table;
     @NamedQuery(name = "Odontograma.findByS29", query = "SELECT o FROM Odontograma o WHERE o.s29 = :s29"),
     @NamedQuery(name = "Odontograma.findByS30", query = "SELECT o FROM Odontograma o WHERE o.s30 = :s30")})
 public class Odontograma implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

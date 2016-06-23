@@ -23,7 +23,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author nakao<nakaosensei@gmail.com>
+ * @author Convidado
  */
 @Entity
 @Table(name = "cliente")
@@ -39,7 +39,6 @@ import javax.persistence.Table;
     @NamedQuery(name = "Cliente.findByTelcelular2", query = "SELECT c FROM Cliente c WHERE c.telcelular2 = :telcelular2"),
     @NamedQuery(name = "Cliente.findByParentesco", query = "SELECT c FROM Cliente c WHERE c.parentesco = :parentesco")})
 public class Cliente implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,9 +77,9 @@ public class Cliente implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private List<Evento> eventoList;
     @OneToMany(mappedBy = "idCliente")
-    private List<FichaClinica> fichaClinicaList;
+    private List<Fichaclinica> fichaclinicaList;
     @OneToMany(mappedBy = "idClienteResponsavel")
-    private List<FichaClinica> fichaClinicaList1;
+    private List<Fichaclinica> fichaclinicaList1;
 
     public Cliente() {
     }
@@ -209,20 +208,20 @@ public class Cliente implements Serializable {
         this.eventoList = eventoList;
     }
 
-    public List<FichaClinica> getFichaClinicaList() {
-        return fichaClinicaList;
+    public List<Fichaclinica> getFichaclinicaList() {
+        return fichaclinicaList;
     }
 
-    public void setFichaClinicaList(List<FichaClinica> fichaClinicaList) {
-        this.fichaClinicaList = fichaClinicaList;
+    public void setFichaclinicaList(List<Fichaclinica> fichaclinicaList) {
+        this.fichaclinicaList = fichaclinicaList;
     }
 
-    public List<FichaClinica> getFichaClinicaList1() {
-        return fichaClinicaList1;
+    public List<Fichaclinica> getFichaclinicaList1() {
+        return fichaclinicaList1;
     }
 
-    public void setFichaClinicaList1(List<FichaClinica> fichaClinicaList1) {
-        this.fichaClinicaList1 = fichaClinicaList1;
+    public void setFichaclinicaList1(List<Fichaclinica> fichaclinicaList1) {
+        this.fichaclinicaList1 = fichaclinicaList1;
     }
 
     @Override

@@ -20,19 +20,18 @@ import javax.persistence.Table;
 
 /**
  *
- * @author nakao<nakaosensei@gmail.com>
+ * @author Convidado
  */
 @Entity
-@Table(name = "procedimentoDoDente")
+@Table(name = "procedimentododente")
 @NamedQueries({
-    @NamedQuery(name = "ProcedimentoDoDente.findAll", query = "SELECT p FROM ProcedimentoDoDente p"),
-    @NamedQuery(name = "ProcedimentoDoDente.findById", query = "SELECT p FROM ProcedimentoDoDente p WHERE p.id = :id"),
-    @NamedQuery(name = "ProcedimentoDoDente.findByDente", query = "SELECT p FROM ProcedimentoDoDente p WHERE p.dente = :dente"),
-    @NamedQuery(name = "ProcedimentoDoDente.findByRegiao", query = "SELECT p FROM ProcedimentoDoDente p WHERE p.regiao = :regiao"),
-    @NamedQuery(name = "ProcedimentoDoDente.findByFace", query = "SELECT p FROM ProcedimentoDoDente p WHERE p.face = :face"),
-    @NamedQuery(name = "ProcedimentoDoDente.findByProcedimentoIndicado", query = "SELECT p FROM ProcedimentoDoDente p WHERE p.procedimentoIndicado = :procedimentoIndicado")})
-public class ProcedimentoDoDente implements Serializable {
-
+    @NamedQuery(name = "Procedimentododente.findAll", query = "SELECT p FROM Procedimentododente p"),
+    @NamedQuery(name = "Procedimentododente.findById", query = "SELECT p FROM Procedimentododente p WHERE p.id = :id"),
+    @NamedQuery(name = "Procedimentododente.findByDente", query = "SELECT p FROM Procedimentododente p WHERE p.dente = :dente"),
+    @NamedQuery(name = "Procedimentododente.findByRegiao", query = "SELECT p FROM Procedimentododente p WHERE p.regiao = :regiao"),
+    @NamedQuery(name = "Procedimentododente.findByFace", query = "SELECT p FROM Procedimentododente p WHERE p.face = :face"),
+    @NamedQuery(name = "Procedimentododente.findByProcedimentoIndicado", query = "SELECT p FROM Procedimentododente p WHERE p.procedimentoIndicado = :procedimentoIndicado")})
+public class Procedimentododente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,10 +50,10 @@ public class ProcedimentoDoDente implements Serializable {
     @ManyToOne(optional = false)
     private Tratamento idTratamento;
 
-    public ProcedimentoDoDente() {
+    public Procedimentododente() {
     }
 
-    public ProcedimentoDoDente(Integer id) {
+    public Procedimentododente(Integer id) {
         this.id = id;
     }
 
@@ -116,10 +115,10 @@ public class ProcedimentoDoDente implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProcedimentoDoDente)) {
+        if (!(object instanceof Procedimentododente)) {
             return false;
         }
-        ProcedimentoDoDente other = (ProcedimentoDoDente) object;
+        Procedimentododente other = (Procedimentododente) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -128,7 +127,7 @@ public class ProcedimentoDoDente implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.model.bd.ProcedimentoDoDente[ id=" + id + " ]";
+        return "br.com.model.bd.Procedimentododente[ id=" + id + " ]";
     }
     
 }
