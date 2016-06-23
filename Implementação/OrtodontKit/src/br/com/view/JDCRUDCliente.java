@@ -920,7 +920,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         jd.setVisible(true);
         jLMsg.setText("");
         while(jd.isClosed==false&&jd.isAborted==false){};
-        if(jd.isClosed=true){
+        if(jd.isClosed==true){
             Cliente selecionado = jd.clienteSelecionado;
         }
         
@@ -982,7 +982,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     }
     
     private void setStandardState(){
-        setAll(false, true);
+        this.setAll(false, true);
         this.clearTextFields();
         jTFidEnderecoTrabalho.setEditable(false);
         jTFCasaIdEndereco.setEditable(false);
