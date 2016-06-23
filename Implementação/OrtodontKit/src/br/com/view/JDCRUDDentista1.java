@@ -63,6 +63,13 @@ public class JDCRUDDentista1 extends javax.swing.JDialog {
         jTFCasaEnderecoCEP.setEditable(nonId);
         jTFCasaEnderecoBairro.setEditable(nonId);
         jTFBairroEnderecoTrabalho.setEditable(nonId);
+        jTFEmail.setEditable(nonId);
+        jTFLogin.setEditable(nonId);
+        jTFDataNascimento.setEditable(nonId);
+        jTFRGOrgao.setEditable(nonId);
+        jTFSenha.setEditable(nonId);
+        jComboBEstadoCivil.setEnabled(nonId);
+        jComboBSexo.setEnabled(nonId);        
     }
     
     
