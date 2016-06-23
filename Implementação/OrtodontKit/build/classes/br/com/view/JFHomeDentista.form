@@ -222,9 +222,9 @@
                       <Component id="jBSecretaria" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       <Component id="jBOdontograma" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
           </Group>
           <Component id="jLabelBackGround" alignment="1" max="32767" attributes="0"/>
@@ -250,6 +250,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Agenda"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAgendaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBRecibo">
       <Properties>
