@@ -99,6 +99,9 @@ public class JDListCliente extends javax.swing.JDialog {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
         });
 
         jTBClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -173,6 +176,23 @@ public class JDListCliente extends javax.swing.JDialog {
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         
     }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+                      
+           /*
+            try {  
+                TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTB.getModel());
+                this.jTBClientes.setRowSorter(sorter);
+                if (jT.equals("")) {
+                    sorter.setRowFilter(null);
+                } else {
+                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + jTpesquisa.getText(), 0));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }*/
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments
