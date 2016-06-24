@@ -6,7 +6,6 @@
 package br.com.model.bd;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -21,8 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -45,8 +42,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Dentista.findByRgorgaoexpedidor", query = "SELECT d FROM Dentista d WHERE d.rgorgaoexpedidor = :rgorgaoexpedidor"),
     @NamedQuery(name = "Dentista.findBySexo", query = "SELECT d FROM Dentista d WHERE d.sexo = :sexo"),
     @NamedQuery(name = "Dentista.findByEstadocivil", query = "SELECT d FROM Dentista d WHERE d.estadocivil = :estadocivil"),
-    @NamedQuery(name = "Dentista.findByEmail", query = "SELECT d FROM Dentista d WHERE d.email = :email"),
-    @NamedQuery(name = "Dentista.findByDatanascimento", query = "SELECT d FROM Dentista d WHERE d.datanascimento = :datanascimento")})
+    @NamedQuery(name = "Dentista.findByEmail", query = "SELECT d FROM Dentista d WHERE d.email = :email")})
 public class Dentista implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -81,9 +77,6 @@ public class Dentista implements Serializable {
     private String estadocivil;
     @Column(name = "email")
     private String email;
-    @Column(name = "datanascimento")
-    @Temporal(TemporalType.DATE)
-    private Date datanascimento;
     @OneToMany(mappedBy = "idEmitente")
     private List<Recibo> reciboList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDentista")
@@ -211,14 +204,6 @@ public class Dentista implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Date getDatanascimento() {
-        return datanascimento;
-    }
-
-    public void setDatanascimento(Date datanascimento) {
-        this.datanascimento = datanascimento;
     }
 
     public List<Recibo> getReciboList() {

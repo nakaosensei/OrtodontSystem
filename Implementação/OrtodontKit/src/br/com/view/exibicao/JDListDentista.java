@@ -189,10 +189,6 @@ public class JDListDentista extends javax.swing.JDialog {
     }//GEN-LAST:event_jTFPesquisaKeyPressed
 
     private void jTFPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPesquisaKeyReleased
-          
-    }//GEN-LAST:event_jTFPesquisaKeyReleased
-
-    private void jTBDentistaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBDentistaKeyReleased
         try {                
             TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTBDentista.getModel());
             jTBDentista.setRowSorter(sorter);
@@ -203,7 +199,11 @@ public class JDListDentista extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             e.printStackTrace();                
-        }
+        }  
+    }//GEN-LAST:event_jTFPesquisaKeyReleased
+
+    private void jTBDentistaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBDentistaKeyReleased
+        
     }//GEN-LAST:event_jTBDentistaKeyReleased
 
     /**

@@ -1,11 +1,8 @@
 
 package br.com.view.exibicao;
 
-import br.com.DAO.DAOCliente;
 import br.com.DAO.DAOSecretaria;
-import br.com.model.bd.Cliente;
 import br.com.model.bd.Secretaria;
-import br.com.model.tables.ModelTabelaListCliente;
 import br.com.model.tables.ModelTabelaListSecretaria;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -189,10 +186,6 @@ public class JDListSecretaria extends javax.swing.JDialog {
     }//GEN-LAST:event_jTFPesquisaKeyPressed
 
     private void jTFPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPesquisaKeyReleased
-          
-    }//GEN-LAST:event_jTFPesquisaKeyReleased
-
-    private void jTBSecretariasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBSecretariasKeyReleased
         try {                
             TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTBSecretarias.getModel());
             jTBSecretarias.setRowSorter(sorter);
@@ -204,6 +197,10 @@ public class JDListSecretaria extends javax.swing.JDialog {
         } catch (Exception e) {
             e.printStackTrace();                
         }
+    }//GEN-LAST:event_jTFPesquisaKeyReleased
+
+    private void jTBSecretariasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBSecretariasKeyReleased
+        
     }//GEN-LAST:event_jTBSecretariasKeyReleased
 
     /**

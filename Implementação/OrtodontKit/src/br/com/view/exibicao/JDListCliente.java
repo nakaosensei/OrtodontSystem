@@ -187,7 +187,7 @@ public class JDListCliente extends javax.swing.JDialog {
 
     private void jTFPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPesquisaKeyReleased
         try {                
-            TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTBClientes.getModel());
+            TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
             jTBClientes.setRowSorter(sorter);
             if (jTFPesquisa.getText().equals("")) {
                 sorter.setRowFilter(null);

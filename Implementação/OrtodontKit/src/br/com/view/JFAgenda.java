@@ -550,9 +550,6 @@ public class JFAgenda extends javax.swing.JFrame {
 
     
     public boolean doJBGravarAction(){
-        if(model.lista.isEmpty()){
-            return false;
-        }
         List<Evento> eventos = new ArrayList<>();
         for(HorarioFilter h:model.lista){
             eventos.add(h.convertToEvento());

@@ -3,6 +3,7 @@ package br.com.view;
 
 import br.com.DAO.DAOEndereco;
 import br.com.DAO.DAOSecretaria;
+import br.com.model.bd.Dentista;
 
 import br.com.model.bd.Endereco;
 import br.com.model.bd.Secretaria;
@@ -11,9 +12,7 @@ import br.com.util.OperacaoCrud;
 import br.com.util.TextFieldFormatter;
 import br.com.view.exibicao.JDListSecretaria;
 import java.awt.event.KeyEvent;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,11 +26,13 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
     private OperacaoCrud operacao;
     private TextFieldFormatter validator;
     private CPFValidator cpfvalitator;
+    private Dentista dentistaOwner;
     /**
      * Creates new form JDCRUDSecretaria
      */
-    public JDCRUDSecretaria(java.awt.Frame parent, boolean modal) {
+    public JDCRUDSecretaria(java.awt.Frame parent, boolean modal,Dentista patrao) {
         super(parent, modal);
+        this.dentistaOwner=patrao;
         validator = new TextFieldFormatter();        
         initComponents();
         daoSecretaria = new DAOSecretaria();        
@@ -59,11 +60,15 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
         jTFCasaEnderecoBairro.setEditable(nonId);
         jTFEmail.setEditable(nonId);
         jTFLogin.setEditable(nonId);
-        jTFDataNascimento.setEditable(nonId);
+        jTFRG.setEditable(nonId);
         jTFRGOrgao.setEditable(nonId);
         jTFSenha.setEditable(nonId);
+        
+        jComboBEstadoCivil.setEditable(false);
+        jComboBSexo.setEditable(false);
+        
         jComboBEstadoCivil.setEnabled(nonId);
-        jComboBSexo.setEnabled(nonId);        
+        jComboBSexo.setEnabled(nonId);     
     }
     
     
@@ -106,12 +111,10 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
         jComboBSexo = new javax.swing.JComboBox();
         jPanel41 = new javax.swing.JPanel();
         jTFEmail = new javax.swing.JTextField();
-        jPanel42 = new javax.swing.JPanel();
-        jTFDataNascimento = validator.getDataNascimentoTextField();
         jPanel43 = new javax.swing.JPanel();
         jTFLogin = new javax.swing.JTextField();
         jPanel44 = new javax.swing.JPanel();
-        jTFSenha = new javax.swing.JTextField();
+        jTFSenha = new javax.swing.JPasswordField();
         jPanel10 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jTFCasaIdEndereco = validator.getIntegerTextField();
@@ -386,23 +389,6 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
             .addComponent(jTFEmail)
         );
 
-        jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Data de Nascimento"));
-
-        jTFDataNascimento.setBorder(null);
-
-        javax.swing.GroupLayout jPanel42Layout = new javax.swing.GroupLayout(jPanel42);
-        jPanel42.setLayout(jPanel42Layout);
-        jPanel42Layout.setHorizontalGroup(
-            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFDataNascimento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-        );
-        jPanel42Layout.setVerticalGroup(
-            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel42Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTFDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         jPanel43.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Login"));
 
         jTFLogin.setBorder(null);
@@ -424,11 +410,11 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
         jPanel44.setLayout(jPanel44Layout);
         jPanel44Layout.setHorizontalGroup(
             jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFSenha)
+            .addComponent(jTFSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
         );
         jPanel44Layout.setVerticalGroup(
             jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFSenha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+            .addComponent(jTFSenha)
         );
 
         javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
@@ -459,14 +445,13 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
             .addGroup(jPanel30Layout.createSequentialGroup()
                 .addComponent(jPanel43, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel30Layout.createSequentialGroup()
-                .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBSexo, 0, 1, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBSexo, 0, 104, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(228, 228, 228))
+                .addComponent(jComboBEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(407, 407, 407))
         );
         jPanel30Layout.setVerticalGroup(
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -475,21 +460,18 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
-                        .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(19, 19, 19)
+                .addGap(0, 0, 0)
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -735,7 +717,7 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBGravar)
                         .addComponent(jBCancelar)))
-                .addGap(5, 5, 5))
+                .addGap(7, 7, 7))
         );
 
         pack();
@@ -780,11 +762,12 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
         jTFEstadoEnderecoCasa.setText("");
         jTFComplementoEnderecoCasa.setText("");
         jTFCidadeEnderecoCasa.setText("");
+        jTFRG.setText("0");
         jTFCelular2.setText("");
         jTFCPF.setText("");
         jTFCasaEnderecoCEP.setText("");
         jTFCasaEnderecoBairro.setText("");
-        jTFDataNascimento.setText("");
+       
         jTFEmail.setText("");
         jTFLogin.setText("");
         jTFRGOrgao.setText("");
@@ -840,17 +823,16 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
             Endereco endCasa=daoEnd.getInsertingIfNecessary(casa);
             novo.setIdEndereco(endCasa);
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                Date date = new Date();
-                date = sdf.parse(jTFDataNascimento.getText());
-                novo.setDatanascimento(date);
-            } catch (ParseException ex) {
-                ex.printStackTrace();
-            }
+            novo.setIdDentistaPatrao(dentistaOwner);
             novo.setEmail(jTFEmail.getText());
             novo.setEstadocivil(String.valueOf(jComboBSexo.getSelectedItem()));
             novo.setLogin(jTFLogin.getText());
-            novo.setPasswd(jTFSenha.getText());
+            char senha[]=jTFSenha.getPassword();
+            String pw="";
+            for(char c:senha){
+                pw+=c;
+            }
+            novo.setPasswd(pw);
             novo.setRgorgaoexpedidor(jTFRGOrgao.getText());
             if(String.valueOf(jComboBSexo.getSelectedItem()).equals("Masculino")){
                 novo.setSexo('M');
@@ -988,7 +970,7 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
         jTFCPF.setText(selecionado.getCpf());
         jTFCasaEnderecoCEP.setText(selecionado.getIdEndereco().getCep());
         jTFCasaEnderecoBairro.setText(selecionado.getIdEndereco().getBairro());  
-        jTFDataNascimento.setText(String.valueOf(selecionado.getDatanascimento()));
+ 
         jTFEmail.setText(selecionado.getEmail());
         jTFLogin.setText(selecionado.getLogin());
         jTFRGOrgao.setText(selecionado.getRgorgaoexpedidor());
@@ -1026,7 +1008,6 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel40;
     private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel42;
     private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel44;
     private javax.swing.JTabbedPane jTBPane;
@@ -1040,7 +1021,6 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
     private javax.swing.JTextField jTFCelular2;
     private javax.swing.JTextField jTFCidadeEnderecoCasa;
     private javax.swing.JTextField jTFComplementoEnderecoCasa;
-    private javax.swing.JTextField jTFDataNascimento;
     private javax.swing.JTextField jTFEmail;
     private javax.swing.JTextField jTFEstadoEnderecoCasa;
     private javax.swing.JTextField jTFID;
@@ -1048,7 +1028,7 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
     private javax.swing.JTextField jTFNome;
     private javax.swing.JTextField jTFRG;
     private javax.swing.JTextField jTFRGOrgao;
-    private javax.swing.JTextField jTFSenha;
+    private javax.swing.JPasswordField jTFSenha;
     private javax.swing.JTextField jTFoneFixo;
     private javax.swing.JTextField jTFoneFixo2;
     // End of variables declaration//GEN-END:variables

@@ -1,5 +1,6 @@
 package br.com.controller;
 
+import br.com.view.JDCRUDDentista;
 import br.com.view.JFLogin;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
@@ -21,7 +22,8 @@ public class main {
                 e.printStackTrace();
             }        
         }
-        
+        //JDCRUDDentista cd = new JDCRUDDentista(null, true);
+        //cd.setVisible(true);
         JFLogin jf = new JFLogin();        
         jf.setVisible(true);         
     }

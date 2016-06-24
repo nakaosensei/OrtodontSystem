@@ -6,7 +6,6 @@
 package br.com.model.bd;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -42,8 +39,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Secretaria.findByRgorgaoexpedidor", query = "SELECT s FROM Secretaria s WHERE s.rgorgaoexpedidor = :rgorgaoexpedidor"),
     @NamedQuery(name = "Secretaria.findBySexo", query = "SELECT s FROM Secretaria s WHERE s.sexo = :sexo"),
     @NamedQuery(name = "Secretaria.findByEstadocivil", query = "SELECT s FROM Secretaria s WHERE s.estadocivil = :estadocivil"),
-    @NamedQuery(name = "Secretaria.findByEmail", query = "SELECT s FROM Secretaria s WHERE s.email = :email"),
-    @NamedQuery(name = "Secretaria.findByDatanascimento", query = "SELECT s FROM Secretaria s WHERE s.datanascimento = :datanascimento")})
+    @NamedQuery(name = "Secretaria.findByEmail", query = "SELECT s FROM Secretaria s WHERE s.email = :email")})
 public class Secretaria implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -78,9 +74,6 @@ public class Secretaria implements Serializable {
     private String estadocivil;
     @Column(name = "email")
     private String email;
-    @Column(name = "datanascimento")
-    @Temporal(TemporalType.DATE)
-    private Date datanascimento;
     @JoinColumn(name = "idEndereco", referencedColumnName = "id")
     @ManyToOne
     private Endereco idEndereco;
@@ -205,14 +198,6 @@ public class Secretaria implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Date getDatanascimento() {
-        return datanascimento;
-    }
-
-    public void setDatanascimento(Date datanascimento) {
-        this.datanascimento = datanascimento;
     }
 
     public Endereco getIdEndereco() {
