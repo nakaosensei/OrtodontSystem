@@ -1099,27 +1099,27 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             }
             daoCli.inserir(novo);
             this.setStandardState();
-            jLMsg.setText("Cliente cadastrado com sucesso");
+            jLMsg.setText("Cliente cadastrado(a) com sucesso");
         }
         if(this.operacao==OperacaoCrud.EDITAR){
             if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){                
                 novo =preencherCliente(selecionado);
                 novo.setIdClienteResponsavel(null);
                 novo.setParentesco("");
-                System.out.println("oioioi");
+                //System.out.println("oioioi");
             }else{                
                 novo=preencherClienteDependente(selecionado);                
             }
             daoCli.atualizar(novo);
             this.setStandardState();
-            jLMsg.setText("Cliente editado com sucesso");
+            jLMsg.setText("Cliente editado(a) com sucesso");
         }
         if(this.operacao==OperacaoCrud.REMOVER){
             selecionado.setIdClienteResponsavel(null);
             daoCli.removeAllDependenciesOfThatClientFromClient(selecionado.getId());
             daoCli.remover(selecionado.getId());
             this.setStandardState();            
-            jLMsg.setText("Cliente removido com sucesso");
+            jLMsg.setText("Cliente removido(a) com sucesso");
         }
     }//GEN-LAST:event_jBGravarActionPerformed
 

@@ -20,7 +20,7 @@ public class ModelTabelaListDentista extends UsualTableModel<Dentista>{
             "cpf=CPF",
             "rg=RG",
             "telfixo1=Telefone(Fixo)",
-            "telCelular1=Telefone(Celular)",
+            "telcelular1=Telefone(Celular)",
             "rgorgaoexpedidor=RG(Orgão Expedidor)",
             "email=Email"
         );
