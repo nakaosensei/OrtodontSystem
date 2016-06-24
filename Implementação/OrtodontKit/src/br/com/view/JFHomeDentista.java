@@ -86,7 +86,6 @@ public class JFHomeDentista extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuTramento = new javax.swing.JMenu();
         jMIStartTratamento = new javax.swing.JMenuItem();
-        jMICancelTratamento = new javax.swing.JMenuItem();
         jMenuAgenda = new javax.swing.JMenu();
         jMIVer = new javax.swing.JMenuItem();
         jMenuRecibos = new javax.swing.JMenu();
@@ -126,6 +125,11 @@ public class JFHomeDentista extends javax.swing.JFrame {
 
         jBTratamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/tratamento48.png"))); // NOI18N
         jBTratamento.setText("Tratamento");
+        jBTratamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTratamentoActionPerformed(evt);
+            }
+        });
 
         jBSecretaria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/secretaria48.png"))); // NOI18N
         jBSecretaria.setText("Secretaria");
@@ -162,11 +166,12 @@ public class JFHomeDentista extends javax.swing.JFrame {
 
         jMIStartTratamento.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         jMIStartTratamento.setText("Iniciar Tratamento");
+        jMIStartTratamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIStartTratamentoActionPerformed(evt);
+            }
+        });
         jMenuTramento.add(jMIStartTratamento);
-
-        jMICancelTratamento.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMICancelTratamento.setText("Abrir Tratamento");
-        jMenuTramento.add(jMICancelTratamento);
 
         jMenuBar1.add(jMenuTramento);
 
@@ -262,9 +267,8 @@ public class JFHomeDentista extends javax.swing.JFrame {
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jBSair, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jBRecibo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)))
+                            .addComponent(jBRecibo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
                         .addGap(5, 5, 5))))
         );
         layout.setVerticalGroup(
@@ -349,6 +353,19 @@ public class JFHomeDentista extends javax.swing.JFrame {
         JDCRUDDentista jd = new JDCRUDDentista(this, true);
         jd.setVisible(true);
     }//GEN-LAST:event_jMIDentistaActionPerformed
+
+    private void jMIStartTratamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIStartTratamentoActionPerformed
+        doTratamentoAction();
+    }//GEN-LAST:event_jMIStartTratamentoActionPerformed
+
+    private void doTratamentoAction(){
+        JFTratamento jft = new JFTratamento();
+        jft.setVisible(true);
+    }
+    
+    private void jBTratamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTratamentoActionPerformed
+        doTratamentoAction();
+    }//GEN-LAST:event_jBTratamentoActionPerformed
     
     private void close(){
         int res = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?");
@@ -370,7 +387,6 @@ public class JFHomeDentista extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelBackGround;
-    private javax.swing.JMenuItem jMICancelTratamento;
     private javax.swing.JMenuItem jMICliente;
     private javax.swing.JMenuItem jMIDentista;
     private javax.swing.JMenuItem jMIEmitirRecibo;
