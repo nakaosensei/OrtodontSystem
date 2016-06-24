@@ -31,7 +31,7 @@ public class JDListDentista extends javax.swing.JDialog {
         daoDentista=new DAODentista();
         dentistas=daoDentista.listAll();       
         model=new ModelTabelaListDentista();
-        jTBClientes.setModel(model);
+        jTBDentista.setModel(model);
         model.addAll(dentistas);        
         addListeners();
     }
@@ -44,7 +44,7 @@ public class JDListDentista extends javax.swing.JDialog {
         }else if(this.isAborted==true){
             this.dispose();            
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Selecione um cliente");
+            JOptionPane.showMessageDialog(rootPane, "Selecione um(a) Dentista");
         }
     }
     
@@ -91,7 +91,7 @@ public class JDListDentista extends javax.swing.JDialog {
         jToggleButton1 = new javax.swing.JToggleButton();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTBClientes = new javax.swing.JTable();
+        jTBDentista = new javax.swing.JTable();
         jBSelecionar = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
@@ -107,7 +107,7 @@ public class JDListDentista extends javax.swing.JDialog {
             }
         });
 
-        jTBClientes.setModel(new javax.swing.table.DefaultTableModel(
+        jTBDentista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -118,12 +118,12 @@ public class JDListDentista extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTBClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTBDentista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTBClientesMouseClicked(evt);
+                jTBDentistaMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTBClientes);
+        jScrollPane1.setViewportView(jTBDentista);
 
         jBSelecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/ok16_12.png"))); // NOI18N
         jBSelecionar.setText("Selecionar");
@@ -167,14 +167,14 @@ public class JDListDentista extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jBSelecionarActionPerformed
 
-    private void jTBClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBClientesMouseClicked
+    private void jTBDentistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBDentistaMouseClicked
         try {
-            int linhaSelecionada = jTBClientes.convertRowIndexToModel(jTBClientes.getSelectedRow());
+            int linhaSelecionada = jTBDentista.convertRowIndexToModel(jTBDentista.getSelectedRow());
             dentistaSelecionado=model.getValue(linhaSelecionada);            
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_jTBClientesMouseClicked
+    }//GEN-LAST:event_jTBDentistaMouseClicked
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         
@@ -192,7 +192,7 @@ public class JDListDentista extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBSelecionar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTBClientes;
+    private javax.swing.JTable jTBDentista;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables

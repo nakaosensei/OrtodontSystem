@@ -2,11 +2,11 @@
 package br.com.view.exibicao;
 
 import br.com.DAO.DAOCliente;
-import br.com.DAO.DAODentista;
+import br.com.DAO.DAOSecretaria;
 import br.com.model.bd.Cliente;
-import br.com.model.bd.Dentista;
+import br.com.model.bd.Secretaria;
 import br.com.model.tables.ModelTabelaListCliente;
-import br.com.model.tables.ModelTabelaListDentista;
+import br.com.model.tables.ModelTabelaListSecretaria;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.List;
@@ -17,34 +17,34 @@ import javax.swing.JOptionPane;
  * @author nakao<nakaosensei@gmail.com>
  */
 public class JDListSecretaria extends javax.swing.JDialog {
-    private DAODentista daoDentista;
-    private List<Dentista> dentistas;
-    private ModelTabelaListDentista model;
+    private DAOSecretaria daoSecretaria;
+    private List<Secretaria> secretarias;
+    private ModelTabelaListSecretaria model;
     public volatile boolean isClosed;
     public volatile boolean isAborted;
-    public Dentista dentistaSelecionado;
+    public Secretaria secretariaSelecionado;
     
     public JDListSecretaria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        daoDentista=new DAODentista();
-        dentistas=daoDentista.listAll();       
-        model=new ModelTabelaListDentista();
-        jTBClientes.setModel(model);
-        model.addAll(dentistas);        
+        daoSecretaria=new DAOSecretaria();
+        secretarias=daoSecretaria.listAll();       
+        model=new ModelTabelaListSecretaria();
+        jTBSecretarias.setModel(model);
+        model.addAll(secretarias);        
         addListeners();
     }
     
     private void fechar(){
-        if(this.dentistaSelecionado!=null){
+        if(this.secretariaSelecionado!=null){
             this.isClosed=true;
             this.isAborted=false;
             this.dispose();
         }else if(this.isAborted==true){
             this.dispose();            
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Selecione um cliente");
+            JOptionPane.showMessageDialog(rootPane, "Selecione um(a) Secretaria(o)");
         }
     }
     
@@ -91,7 +91,7 @@ public class JDListSecretaria extends javax.swing.JDialog {
         jToggleButton1 = new javax.swing.JToggleButton();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTBClientes = new javax.swing.JTable();
+        jTBSecretarias = new javax.swing.JTable();
         jBSelecionar = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
@@ -107,7 +107,7 @@ public class JDListSecretaria extends javax.swing.JDialog {
             }
         });
 
-        jTBClientes.setModel(new javax.swing.table.DefaultTableModel(
+        jTBSecretarias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -118,12 +118,12 @@ public class JDListSecretaria extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTBClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTBSecretarias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTBClientesMouseClicked(evt);
+                jTBSecretariasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTBClientes);
+        jScrollPane1.setViewportView(jTBSecretarias);
 
         jBSelecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/ok16_12.png"))); // NOI18N
         jBSelecionar.setText("Selecionar");
@@ -167,14 +167,14 @@ public class JDListSecretaria extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jBSelecionarActionPerformed
 
-    private void jTBClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBClientesMouseClicked
+    private void jTBSecretariasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBSecretariasMouseClicked
         try {
-            int linhaSelecionada = jTBClientes.convertRowIndexToModel(jTBClientes.getSelectedRow());
-            dentistaSelecionado=model.getValue(linhaSelecionada);            
+            int linhaSelecionada = jTBSecretarias.convertRowIndexToModel(jTBSecretarias.getSelectedRow());
+            secretariaSelecionado=model.getValue(linhaSelecionada);            
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_jTBClientesMouseClicked
+    }//GEN-LAST:event_jTBSecretariasMouseClicked
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         
@@ -192,7 +192,7 @@ public class JDListSecretaria extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBSelecionar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTBClientes;
+    private javax.swing.JTable jTBSecretarias;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
