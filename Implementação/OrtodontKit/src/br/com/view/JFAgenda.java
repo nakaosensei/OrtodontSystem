@@ -551,10 +551,14 @@ public class JFAgenda extends javax.swing.JFrame {
     
     public boolean doJBGravarAction(){
         List<Evento> eventos = new ArrayList<>();
+        String split[]=jXDate.getEditor().getText().split("/");
+        String dia=split[0].trim();
+        String mes=split[1].trim();
+        String ano=split[2].trim();
         for(HorarioFilter h:model.lista){
             eventos.add(h.convertToEvento());
         }
-        daoEvento.deleteAllWithThatDateFromThatDentist(eventos.get(0).getAno(), eventos.get(0).getMes(), eventos.get(0).getDia(), dentistaOwner);
+        daoEvento.deleteAllWithThatDateFromThatDentist(ano, mes, dia, dentistaOwner);
         for(Evento e:eventos){
             daoEvento.inserir(e);
         }

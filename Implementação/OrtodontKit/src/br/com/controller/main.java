@@ -1,6 +1,5 @@
 package br.com.controller;
 
-import br.com.view.JDCRUDDentista;
 import br.com.view.JFLogin;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
