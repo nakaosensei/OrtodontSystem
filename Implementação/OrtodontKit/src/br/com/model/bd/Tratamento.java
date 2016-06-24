@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Convidado
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "tratamento")
@@ -31,10 +31,14 @@ import javax.persistence.Table;
     @NamedQuery(name = "Tratamento.findByNrProtocolo", query = "SELECT t FROM Tratamento t WHERE t.nrProtocolo = :nrProtocolo"),
     @NamedQuery(name = "Tratamento.findByValorCombinadoTratamento", query = "SELECT t FROM Tratamento t WHERE t.valorCombinadoTratamento = :valorCombinadoTratamento"),
     @NamedQuery(name = "Tratamento.findByValorCombinadoPecas", query = "SELECT t FROM Tratamento t WHERE t.valorCombinadoPecas = :valorCombinadoPecas"),
+    @NamedQuery(name = "Tratamento.findByDataInicioDia", query = "SELECT t FROM Tratamento t WHERE t.dataInicioDia = :dataInicioDia"),
+    @NamedQuery(name = "Tratamento.findByDataInicioMes", query = "SELECT t FROM Tratamento t WHERE t.dataInicioMes = :dataInicioMes"),
+    @NamedQuery(name = "Tratamento.findByDataInicioAno", query = "SELECT t FROM Tratamento t WHERE t.dataInicioAno = :dataInicioAno"),
     @NamedQuery(name = "Tratamento.findByIdFichaAnamnese", query = "SELECT t FROM Tratamento t WHERE t.idFichaAnamnese = :idFichaAnamnese"),
     @NamedQuery(name = "Tratamento.findByIdOdontograma", query = "SELECT t FROM Tratamento t WHERE t.idOdontograma = :idOdontograma"),
     @NamedQuery(name = "Tratamento.findByIdCliente", query = "SELECT t FROM Tratamento t WHERE t.idCliente = :idCliente")})
 public class Tratamento implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +53,12 @@ public class Tratamento implements Serializable {
     private Double valorCombinadoTratamento;
     @Column(name = "valorCombinadoPecas")
     private Double valorCombinadoPecas;
+    @Column(name = "dataInicioDia")
+    private String dataInicioDia;
+    @Column(name = "dataInicioMes")
+    private String dataInicioMes;
+    @Column(name = "dataInicioAno")
+    private String dataInicioAno;
     @Column(name = "idFichaAnamnese")
     private Integer idFichaAnamnese;
     @Column(name = "idOdontograma")
@@ -100,6 +110,30 @@ public class Tratamento implements Serializable {
 
     public void setValorCombinadoPecas(Double valorCombinadoPecas) {
         this.valorCombinadoPecas = valorCombinadoPecas;
+    }
+
+    public String getDataInicioDia() {
+        return dataInicioDia;
+    }
+
+    public void setDataInicioDia(String dataInicioDia) {
+        this.dataInicioDia = dataInicioDia;
+    }
+
+    public String getDataInicioMes() {
+        return dataInicioMes;
+    }
+
+    public void setDataInicioMes(String dataInicioMes) {
+        this.dataInicioMes = dataInicioMes;
+    }
+
+    public String getDataInicioAno() {
+        return dataInicioAno;
+    }
+
+    public void setDataInicioAno(String dataInicioAno) {
+        this.dataInicioAno = dataInicioAno;
     }
 
     public Integer getIdFichaAnamnese() {

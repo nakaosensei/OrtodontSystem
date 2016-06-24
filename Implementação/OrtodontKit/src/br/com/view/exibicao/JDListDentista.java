@@ -11,6 +11,9 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -89,7 +92,7 @@ public class JDListDentista extends javax.swing.JDialog {
     private void initComponents() {
 
         jToggleButton1 = new javax.swing.JToggleButton();
-        jTextField1 = new javax.swing.JTextField();
+        jTFPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTBDentista = new javax.swing.JTable();
         jBSelecionar = new javax.swing.JButton();
@@ -98,12 +101,12 @@ public class JDListDentista extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField1KeyPressed(evt);
+                jTFPesquisaKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
+                jTFPesquisaKeyReleased(evt);
             }
         });
 
@@ -123,6 +126,11 @@ public class JDListDentista extends javax.swing.JDialog {
                 jTBDentistaMouseClicked(evt);
             }
         });
+        jTBDentista.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTBDentistaKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTBDentista);
 
         jBSelecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/ok16_12.png"))); // NOI18N
@@ -139,7 +147,7 @@ public class JDListDentista extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1)
+                .addComponent(jTFPesquisa)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -151,7 +159,7 @@ public class JDListDentista extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTFPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -176,13 +184,27 @@ public class JDListDentista extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jTBDentistaMouseClicked
 
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+    private void jTFPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPesquisaKeyPressed
         
-    }//GEN-LAST:event_jTextField1KeyPressed
+    }//GEN-LAST:event_jTFPesquisaKeyPressed
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+    private void jTFPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPesquisaKeyReleased
           
-    }//GEN-LAST:event_jTextField1KeyReleased
+    }//GEN-LAST:event_jTFPesquisaKeyReleased
+
+    private void jTBDentistaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBDentistaKeyReleased
+        try {                
+            TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTBDentista.getModel());
+            jTBDentista.setRowSorter(sorter);
+            if (jTFPesquisa.getText().equals("")) {
+                sorter.setRowFilter(null);
+            } else {
+                sorter.setRowFilter(RowFilter.regexFilter("(?i)" + jTFPesquisa.getText(), 0));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();                
+        }
+    }//GEN-LAST:event_jTBDentistaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -193,7 +215,7 @@ public class JDListDentista extends javax.swing.JDialog {
     private javax.swing.JButton jBSelecionar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTBDentista;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTFPesquisa;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

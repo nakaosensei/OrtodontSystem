@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Convidado
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "fichaanamnese")
@@ -58,6 +58,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Fichaanamnese.findByHasCirurgiacominternacaohospilar", query = "SELECT f FROM Fichaanamnese f WHERE f.hasCirurgiacominternacaohospilar = :hasCirurgiacominternacaohospilar"),
     @NamedQuery(name = "Fichaanamnese.findByDoencaInfectocontagiosa", query = "SELECT f FROM Fichaanamnese f WHERE f.doencaInfectocontagiosa = :doencaInfectocontagiosa")})
 public class Fichaanamnese implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author Convidado
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "secretaria")
@@ -45,6 +45,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Secretaria.findByEmail", query = "SELECT s FROM Secretaria s WHERE s.email = :email"),
     @NamedQuery(name = "Secretaria.findByDatanascimento", query = "SELECT s FROM Secretaria s WHERE s.datanascimento = :datanascimento")})
 public class Secretaria implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -23,7 +23,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Convidado
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "cliente")
@@ -39,6 +39,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Cliente.findByTelcelular2", query = "SELECT c FROM Cliente c WHERE c.telcelular2 = :telcelular2"),
     @NamedQuery(name = "Cliente.findByParentesco", query = "SELECT c FROM Cliente c WHERE c.parentesco = :parentesco")})
 public class Cliente implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

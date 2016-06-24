@@ -76,7 +76,10 @@ public class TextFieldFormatter {
        cpf=cpf.replace("-", "");       
        return cpf;
    }
- 
+    public JFormattedTextField getFourDigitsIntegerField(){       
+       JFormattedTextField jtf= new JFormattedTextField(setMascara("####"));       
+       return jtf;
+   }
    public String unmaskTelefone(String telefone){
        telefone=telefone.replace("(", "");
        telefone=telefone.replace(")", "");

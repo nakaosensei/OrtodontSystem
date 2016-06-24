@@ -180,11 +180,9 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jPanel7" max="32767" attributes="0"/>
-                                      <Component id="jPanel8" max="32767" attributes="0"/>
-                                  </Group>
                                   <Component id="jPanel31" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -450,7 +448,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTFParentesco" alignment="0" pref="180" max="32767" attributes="0"/>
+                      <Component id="jTFParentesco" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -571,7 +569,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTFNomeResponsavel" alignment="0" pref="325" max="32767" attributes="0"/>
+                      <Component id="jTFNomeResponsavel" alignment="0" pref="344" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -660,7 +658,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTFoneFixo2" alignment="0" pref="180" max="32767" attributes="0"/>
+                      <Component id="jTFoneFixo2" alignment="0" pref="199" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -855,7 +853,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTFCasaEnderecoNumero" alignment="0" pref="164" max="32767" attributes="0"/>
+                      <Component id="jTFCasaEnderecoNumero" alignment="0" pref="202" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -1243,7 +1241,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTFNumeroEnderecoTrabalho" alignment="0" pref="164" max="32767" attributes="0"/>
+                      <Component id="jTFNumeroEnderecoTrabalho" alignment="0" pref="202" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">

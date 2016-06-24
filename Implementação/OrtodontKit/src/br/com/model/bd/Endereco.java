@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Convidado
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "endereco")
@@ -35,6 +35,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Endereco.findByBairro", query = "SELECT e FROM Endereco e WHERE e.bairro = :bairro"),
     @NamedQuery(name = "Endereco.findByComplemento", query = "SELECT e FROM Endereco e WHERE e.complemento = :complemento")})
 public class Endereco implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

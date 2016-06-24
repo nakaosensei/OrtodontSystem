@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author Convidado
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "recibo")
@@ -32,6 +32,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Recibo.findByDescricaoServico", query = "SELECT r FROM Recibo r WHERE r.descricaoServico = :descricaoServico"),
     @NamedQuery(name = "Recibo.findByData", query = "SELECT r FROM Recibo r WHERE r.data = :data")})
 public class Recibo implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

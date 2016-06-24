@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Convidado
+ * @author nakao<nakaosensei@gmail.com>
  */
 @Entity
 @Table(name = "procedimentododente")
@@ -32,6 +32,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Procedimentododente.findByFace", query = "SELECT p FROM Procedimentododente p WHERE p.face = :face"),
     @NamedQuery(name = "Procedimentododente.findByProcedimentoIndicado", query = "SELECT p FROM Procedimentododente p WHERE p.procedimentoIndicado = :procedimentoIndicado")})
 public class Procedimentododente implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

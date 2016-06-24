@@ -40,4 +40,17 @@ public class DAOEvento extends DAOGenerico<Evento>{
         return (List<Evento>)q.getResultList();
     }
     
+    public List<Evento> getAllWithThatDateFromThatDentist(String ano,String mes,Dentista dentista){
+        Query q =em.createQuery("SELECT e FROM Evento e WHERE e.ano like :ano AND e.mes like :mes AND e.idDentista.id=:id");
+        q.setParameter("id", dentista.getId());
+        q.setParameter("ano", ano);
+        q.setParameter("mes", mes);        
+        return (List<Evento>)q.getResultList();
+    }
+    public List<Evento> getAllWithThatDateFromThatDentist(String ano,Dentista dentista){
+        Query q =em.createQuery("SELECT e FROM Evento e WHERE e.ano like :ano AND e.idDentista.id=:id");
+        q.setParameter("id", dentista.getId());
+        q.setParameter("ano", ano);        
+        return (List<Evento>)q.getResultList();
+    }
 }

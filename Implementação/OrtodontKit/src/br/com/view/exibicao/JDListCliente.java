@@ -8,6 +8,9 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -86,7 +89,7 @@ public class JDListCliente extends javax.swing.JDialog {
     private void initComponents() {
 
         jToggleButton1 = new javax.swing.JToggleButton();
-        jTextField1 = new javax.swing.JTextField();
+        jTFPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTBClientes = new javax.swing.JTable();
         jBSelecionar = new javax.swing.JButton();
@@ -95,12 +98,17 @@ public class JDListCliente extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFPesquisaFocusLost(evt);
+            }
+        });
+        jTFPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField1KeyPressed(evt);
+                jTFPesquisaKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
+                jTFPesquisaKeyReleased(evt);
             }
         });
 
@@ -136,7 +144,7 @@ public class JDListCliente extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1)
+                .addComponent(jTFPesquisa)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -148,7 +156,7 @@ public class JDListCliente extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTFPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -173,26 +181,27 @@ public class JDListCliente extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jTBClientesMouseClicked
 
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+    private void jTFPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPesquisaKeyPressed
         
-    }//GEN-LAST:event_jTextField1KeyPressed
+    }//GEN-LAST:event_jTFPesquisaKeyPressed
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-                      
-           /*
-            try {  
-                TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTB.getModel());
-                this.jTBClientes.setRowSorter(sorter);
-                if (jT.equals("")) {
-                    sorter.setRowFilter(null);
-                } else {
-                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + jTpesquisa.getText(), 0));
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+    private void jTFPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPesquisaKeyReleased
+        try {                
+            TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTBClientes.getModel());
+            jTBClientes.setRowSorter(sorter);
+            if (jTFPesquisa.getText().equals("")) {
+                sorter.setRowFilter(null);
+            } else {
+                sorter.setRowFilter(RowFilter.regexFilter("(?i)" + jTFPesquisa.getText(), 0));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();                
+        }                
+    }//GEN-LAST:event_jTFPesquisaKeyReleased
 
-            }*/
-    }//GEN-LAST:event_jTextField1KeyReleased
+    private void jTFPesquisaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFPesquisaFocusLost
+        
+    }//GEN-LAST:event_jTFPesquisaFocusLost
 
     /**
      * @param args the command line arguments
@@ -203,7 +212,7 @@ public class JDListCliente extends javax.swing.JDialog {
     private javax.swing.JButton jBSelecionar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTBClientes;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTFPesquisa;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,16 +1,15 @@
 
 package br.com.view;
 
-import br.com.DAO.DAOSecretaria;
 import br.com.DAO.DAOEndereco;
 import br.com.DAO.DAOSecretaria;
-import br.com.model.bd.Secretaria;
 
 import br.com.model.bd.Endereco;
 import br.com.model.bd.Secretaria;
 import br.com.util.CPFValidator;
 import br.com.util.OperacaoCrud;
 import br.com.util.TextFieldFormatter;
+import br.com.view.exibicao.JDListSecretaria;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -751,7 +750,7 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
         jLMsg.setText("");
         while(jd.isClosed==false&&jd.isAborted==false){};
         if(jd.isClosed==true){
-            Secretaria selecionado = jd.dentistaSelecionado;
+            Secretaria selecionado = jd.secretariaSelecionado;
         }
         
     }//GEN-LAST:event_jBReadActionPerformed
@@ -846,7 +845,6 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
                 date = sdf.parse(jTFDataNascimento.getText());
                 novo.setDatanascimento(date);
             } catch (ParseException ex) {
-                System.out.println("FODEU");
                 ex.printStackTrace();
             }
             novo.setEmail(jTFEmail.getText());
@@ -909,7 +907,7 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
             jLMsg.setText("");
             while(jd.isClosed==false&&jd.isAborted==false){};
             if(jd.isClosed==true){
-                selecionado = jd.dentistaSelecionado;
+                selecionado = jd.secretariaSelecionado;
                 if(selecionado!=null){
                     carregarTextFields(selecionado);
                     if(operacao==OperacaoCrud.EDITAR){

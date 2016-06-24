@@ -1,6 +1,8 @@
 package br.com.controller;
 
 import br.com.view.JFLogin;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
 
 /**
  *
@@ -9,6 +11,17 @@ import br.com.view.JFLogin;
 public class main {
     public static void main(String[] args) {
         //MetalLookAndFeel.setCurrentTheme(new OceanTheme());
+        int useNimbus=0;
+        if(useNimbus==1){
+            try {
+                Class<? extends LookAndFeel> laf = (Class<? extends LookAndFeel>) Class.forName("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");           
+                UIManager.setLookAndFeel(laf.newInstance());
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }        
+        }
+        
         JFLogin jf = new JFLogin();        
         jf.setVisible(true);         
     }

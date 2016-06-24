@@ -23,21 +23,25 @@ import javax.swing.JOptionPane;
 public class JFAgenda extends javax.swing.JFrame {
     private Cliente selecionado;
     private Dentista dentistaOwner;
-    private HorarioFilter hSelecionado;
-    private DAOEvento daoEvento = new DAOEvento();
     private TextFieldFormatter validator = new TextFieldFormatter();
+    private HorarioFilter hSelecionado;
+    private DAOEvento daoEvento = new DAOEvento();    
     private ModelTabelaAgenda model = new ModelTabelaAgenda();
+    private ModelTabelaAgenda modelTabelaSearch = new ModelTabelaAgenda();
     /**
      * Creates new form JFAgenda
      * @param owner
      */
     public JFAgenda(Dentista owner) {
-        initComponents();
+        initComponents();        
         this.dentistaOwner=owner;
         this.setLocationRelativeTo(null);
         formatarDatas();
         this.jTBAgenda.setModel(model);
+        this.jTBConsulta.setModel(modelTabelaSearch);
+        
         disableComponents();
+        jTFNomeCliente.setEditable(false);
         jLMsg.setText("Selecione um dia e abra a agenda");
     }
 
@@ -47,7 +51,7 @@ public class JFAgenda extends javax.swing.JFrame {
         jBRmAgenda.setEnabled(false);
         jTFHora.setEditable(false);
         jTFMinuto.setEditable(false);
-        jTFNomeCliente.setEditable(false);        
+        jTFID.setEditable(false);        
     }
     
     private void enableComponents(){
@@ -56,7 +60,7 @@ public class JFAgenda extends javax.swing.JFrame {
         jBRmAgenda.setEnabled(true);
         jTFHora.setEditable(true);
         jTFMinuto.setEditable(true);
-        jTFNomeCliente.setEditable(true);        
+        jTFID.setEditable(true);        
     }
     private void formatarDatas() {
         jXDate.setFormats("dd/MM/yyyy");
@@ -67,13 +71,12 @@ public class JFAgenda extends javax.swing.JFrame {
         int dia = cal.get(Calendar.DAY_OF_MONTH);
         mes++;
         String data = dia+"/"+mes+"/"+ano;
-        jXDate.getEditor().setText(data);           
+        jXDate.getEditor().setText(data);
+        this.jTFAno.setText(ano+"");
+        this.jTFMes.setText(mes<=9?"0"+mes:mes+"");
     }
     
-    void formatarData(String data){
-        String v[]=data.split(" ");
-        
-    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,13 +94,15 @@ public class JFAgenda extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTBAgenda = new javax.swing.JTable();
-        JPanelCliente = new javax.swing.JPanel();
-        jbAddCli = new javax.swing.JButton();
-        jbClearCli = new javax.swing.JButton();
-        jBRmCli = new javax.swing.JButton();
+        JPanelSeach = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTBConsulta = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jPanel18 = new javax.swing.JPanel();
+        jTFAno = validator.getFourDigitsIntegerField();
+        jPanel20 = new javax.swing.JPanel();
+        jTFMes = validator.getTimeTextField();
+        jBSearch = new javax.swing.JButton();
         jBGravar = new javax.swing.JButton();
         jBSair = new javax.swing.JButton();
         jBAbrir = new javax.swing.JButton();
@@ -108,6 +113,8 @@ public class JFAgenda extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jTFNomeCliente = new javax.swing.JTextField();
         jLMsg = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jTFID = validator.getIntegerTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -176,13 +183,7 @@ public class JFAgenda extends javax.swing.JFrame {
 
         jSplitPane1.setOneTouchExpandable(true);
 
-        jbAddCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/add32.png"))); // NOI18N
-
-        jbClearCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/clear32.png"))); // NOI18N
-
-        jBRmCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/close32.png"))); // NOI18N
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTBConsulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -193,41 +194,79 @@ public class JFAgenda extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTBConsulta);
 
-        jLabel1.setText("Filtro por Clientes");
+        jLabel1.setText("Consultas");
 
-        javax.swing.GroupLayout JPanelClienteLayout = new javax.swing.GroupLayout(JPanelCliente);
-        JPanelCliente.setLayout(JPanelClienteLayout);
-        JPanelClienteLayout.setHorizontalGroup(
-            JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(JPanelClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPanelClienteLayout.createSequentialGroup()
-                        .addComponent(jbAddCli, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbClearCli, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBRmCli, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Ano"));
+
+        jTFAno.setBorder(null);
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTFAno, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
-        JPanelClienteLayout.setVerticalGroup(
-            JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanelClienteLayout.createSequentialGroup()
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTFAno, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Mes"));
+
+        jTFMes.setBorder(null);
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTFMes, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTFMes, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        jBSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/search32.png"))); // NOI18N
+        jBSearch.setText("Pesquisar");
+        jBSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSearchActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JPanelSeachLayout = new javax.swing.GroupLayout(JPanelSeach);
+        JPanelSeach.setLayout(JPanelSeachLayout);
+        JPanelSeachLayout.setHorizontalGroup(
+            JPanelSeachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelSeachLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(JPanelSeachLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        JPanelSeachLayout.setVerticalGroup(
+            JPanelSeachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelSeachLayout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jbAddCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbClearCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBRmCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(JPanelSeachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jSplitPane1.setRightComponent(JPanelCliente);
+        jSplitPane1.setRightComponent(JPanelSeach);
 
         jBGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/save16.png"))); // NOI18N
         jBGravar.setText("Gravar");
@@ -316,17 +355,50 @@ public class JFAgenda extends javax.swing.JFrame {
             .addComponent(jTFNomeCliente, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Id"));
+
+        jTFID.setBorder(null);
+        jTFID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFIDFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFIDFocusLost(evt);
+            }
+        });
+        jTFID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFIDActionPerformed(evt);
+            }
+        });
+        jTFID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFIDKeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTFID, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTFID)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                         .addComponent(jBSair)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBGravar))
@@ -343,6 +415,8 @@ public class JFAgenda extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -358,6 +432,7 @@ public class JFAgenda extends javax.swing.JFrame {
                         .addComponent(jBAbrir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -433,19 +508,7 @@ public class JFAgenda extends javax.swing.JFrame {
         List<Evento> eventos=daoEvento.getAllWithThatDateFromThatDentist(ano, mes, dia, dentistaOwner);
         List<HorarioFilter> hfList = new ArrayList<>();
         for(Evento e:eventos){
-            HorarioFilter novo = new HorarioFilter();
-            novo.setAno(e.getAno());
-            novo.setCliente(e.getIdCliente());
-            novo.setDentista(dentistaOwner);
-            novo.setDia(e.getDia());
-            novo.setFoneCelularCliente(e.getIdCliente().getTelcelular1());
-            novo.setFoneFixoCliente(e.getIdCliente().getTelfixo1());
-            novo.setHora(e.getHora());
-            novo.setMes(e.getMes());
-            novo.setMinuto(e.getMinutos());
-            novo.setNomeCliente(e.getIdCliente().getNome());
-            novo.setHorario(e.getHora()+":"+e.getMinutos());
-            novo.setData(e.getDia()+"/"+e.getMes()+"/"+e.getAno());
+            HorarioFilter novo = this.convertEventoToHorarioFilter(e);
             hfList.add(novo);
         }
         model.setData(hfList);
@@ -454,11 +517,11 @@ public class JFAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAbrirActionPerformed
 
     private void clearFields(){
-        model.getData().clear();
+        model.setData(new ArrayList<>());
         jTFNomeCliente.setText("");
-        jTFHora.setText("");
-        jTFMinuto.setText("");
-        
+        jTFHora.setText("00");
+        jTFMinuto.setText("00");
+        jTFID.setText("0");
     }
     
     private void jTFNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeClienteActionPerformed
@@ -466,21 +529,7 @@ public class JFAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFNomeClienteActionPerformed
 
     private void jTFNomeClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNomeClienteKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_F2||evt.getKeyCode() == KeyEvent.VK_F7){
-            JDListCliente jd = new JDListCliente(null, true);
-            jd.setVisible(true);
-            
-            while(jd.isClosed==false&&jd.isAborted==false){};
-            if(jd.isClosed=true){
-                selecionado = jd.clienteSelecionado;
-                if(selecionado!=null){
-                   
-                    jTFNomeCliente.setText(selecionado.getNome());
-                }
-            }else{
-                selecionado=null;
-            }
-        }
+        
     }//GEN-LAST:event_jTFNomeClienteKeyPressed
 
     private void jTBAgendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBAgendaMouseClicked
@@ -525,11 +574,11 @@ public class JFAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jTFNomeClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNomeClienteFocusGained
-        jLMsg.setText("Pressione F2 ou F7 para pesquisar");
+        
     }//GEN-LAST:event_jTFNomeClienteFocusGained
 
     private void jTFNomeClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNomeClienteFocusLost
-        jLMsg.setText("");
+        
     }//GEN-LAST:event_jTFNomeClienteFocusLost
 
     private void jXDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXDateActionPerformed
@@ -538,35 +587,121 @@ public class JFAgenda extends javax.swing.JFrame {
         jLMsg.setText("Selecione um dia e abra a agenda");
     }//GEN-LAST:event_jXDateActionPerformed
 
+    
+    private boolean doJbSearchAction(){
+        String ano=jTFAno.getText().trim();
+        String mes=jTFMes.getText().trim();
+        if(ano.equals("")&&mes.equals("")){
+            jLMsg.setText("Digite o ano e o mes para a consulta");
+            return false;
+        }
+        List<Evento> eventos=new ArrayList<>();
+        List<HorarioFilter> hfList = new ArrayList<>();
+        if(!ano.equals("")&&mes.equals("")){
+            eventos = daoEvento.getAllWithThatDateFromThatDentist(ano, dentistaOwner);            
+        }else if(ano.equals("")&&!mes.equals("")){
+            String anoCalendario=jXDate.getEditor().getText().split("/")[2].trim();
+            eventos = daoEvento.getAllWithThatDateFromThatDentist(anoCalendario,mes, dentistaOwner);            
+        }else if(!ano.equals("")&&!mes.equals("")){
+            eventos = daoEvento.getAllWithThatDateFromThatDentist(ano,mes, dentistaOwner);
+        }
+        for(Evento e:eventos){
+            HorarioFilter novo = this.convertEventoToHorarioFilter(e);
+            hfList.add(novo);
+        }
+        modelTabelaSearch.setData(hfList);
+        return true;
+    }
+    
+    private HorarioFilter convertEventoToHorarioFilter(Evento e){
+        HorarioFilter novo = new HorarioFilter();
+        novo.setAno(e.getAno());
+        novo.setCliente(e.getIdCliente());
+        novo.setDentista(dentistaOwner);
+        novo.setDia(e.getDia());
+        novo.setFoneCelularCliente(e.getIdCliente().getTelcelular1());
+        novo.setFoneFixoCliente(e.getIdCliente().getTelfixo1());
+        novo.setHora(e.getHora());
+        novo.setMes(e.getMes());
+        novo.setMinuto(e.getMinutos());
+        novo.setNomeCliente(e.getIdCliente().getNome());
+        novo.setHorario(e.getHora()+":"+e.getMinutos());
+        novo.setData(e.getDia()+"/"+e.getMes()+"/"+e.getAno());
+        return novo;   
+    }
+    
+    
+    private void jBSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSearchActionPerformed
+        doJbSearchAction();
+    }//GEN-LAST:event_jBSearchActionPerformed
+
+    private void jTFIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFIDActionPerformed
+
+    private void doIdClienteKeyPressedAction(java.awt.event.KeyEvent evt){
+        if(evt.getKeyCode() == KeyEvent.VK_F2||evt.getKeyCode() == KeyEvent.VK_F7){
+            JDListCliente jd = new JDListCliente(null, true);
+            jd.setVisible(true);           
+            while(jd.isClosed==false&&jd.isAborted==false){};
+            if(jd.isClosed=true){
+                selecionado = jd.clienteSelecionado;
+                if(selecionado!=null){
+                   jTFID.setText(selecionado.getId()+"");
+                   jTFNomeCliente.setText(selecionado.getNome());
+                }
+            }else{
+                selecionado=null;
+            }
+        }
+    }
+    
+    
+    private void jTFIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIDKeyPressed
+        doIdClienteKeyPressedAction(evt);
+    }//GEN-LAST:event_jTFIDKeyPressed
+
+    private void jTFIDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIDFocusGained
+        jLMsg.setText("Pressione F2 ou F7 para pesquisar");
+    }//GEN-LAST:event_jTFIDFocusGained
+
+    private void jTFIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIDFocusLost
+        jLMsg.setText("");
+    }//GEN-LAST:event_jTFIDFocusLost
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel JPanelCliente;
+    private javax.swing.JPanel JPanelSeach;
     private javax.swing.JButton jBAbrir;
     private javax.swing.JButton jBAddAgenda;
     private javax.swing.JButton jBGravar;
     private javax.swing.JButton jBRmAgenda;
-    private javax.swing.JButton jBRmCli;
     private javax.swing.JButton jBSair;
+    private javax.swing.JButton jBSearch;
     private javax.swing.JLabel jLMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPData;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTable jTBAgenda;
+    private javax.swing.JTable jTBConsulta;
+    private javax.swing.JTextField jTFAno;
     private javax.swing.JTextField jTFHora;
+    private javax.swing.JTextField jTFID;
+    private javax.swing.JTextField jTFMes;
     private javax.swing.JTextField jTFMinuto;
     private javax.swing.JTextField jTFNomeCliente;
-    private javax.swing.JTable jTable1;
     private org.jdesktop.swingx.JXDatePicker jXDate;
-    private javax.swing.JButton jbAddCli;
-    private javax.swing.JButton jbClearCli;
     // End of variables declaration//GEN-END:variables
 }
