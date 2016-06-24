@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.view;
 
 import br.com.model.bd.Cliente;
@@ -78,6 +74,11 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel43 = new javax.swing.JPanel();
         jTFoneFixo2 = validator.getTelefoneTextField();
         jPanel62 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jPanel68 = new javax.swing.JPanel();
+        jTFDoenca = new javax.swing.JTextField();
         Odontograma = new javax.swing.JPanel();
         jPanel63 = new javax.swing.JPanel();
         jPanel44 = new javax.swing.JPanel();
@@ -321,7 +322,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -635,15 +636,68 @@ public class JFTratamento extends javax.swing.JFrame {
 
         jTBPane1.addTab("Cliente", jPanel32);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))), "Queixa Principal"));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+
+        jPanel68.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Doença"));
+
+        jTFDoenca.setBorder(null);
+        jTFDoenca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFDoencaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel68Layout = new javax.swing.GroupLayout(jPanel68);
+        jPanel68.setLayout(jPanel68Layout);
+        jPanel68Layout.setHorizontalGroup(
+            jPanel68Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTFDoenca, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+        );
+        jPanel68Layout.setVerticalGroup(
+            jPanel68Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel68Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTFDoenca, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout jPanel62Layout = new javax.swing.GroupLayout(jPanel62);
         jPanel62.setLayout(jPanel62Layout);
         jPanel62Layout.setHorizontalGroup(
             jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGroup(jPanel62Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel62Layout.createSequentialGroup()
+                        .addComponent(jPanel68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel62Layout.setVerticalGroup(
             jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 245, Short.MAX_VALUE)
+            .addGroup(jPanel62Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel68, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(97, 97, 97))
         );
 
         jTBPane1.addTab("Ficha Anamnese", jPanel62);
@@ -656,7 +710,7 @@ public class JFTratamento extends javax.swing.JFrame {
         );
         OdontogramaLayout.setVerticalGroup(
             OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 245, Short.MAX_VALUE)
+            .addGap(0, 252, Short.MAX_VALUE)
         );
 
         jTBPane1.addTab("Odontograma", Odontograma);
@@ -669,7 +723,7 @@ public class JFTratamento extends javax.swing.JFrame {
         );
         jPanel63Layout.setVerticalGroup(
             jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 245, Short.MAX_VALUE)
+            .addGap(0, 252, Short.MAX_VALUE)
         );
 
         jTBPane1.addTab("Plano Av.Dentaria", jPanel63);
@@ -1049,7 +1103,7 @@ public class JFTratamento extends javax.swing.JFrame {
                 .addGroup(jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         jTBPane1.addTab("End.Trab", jPanel53);
@@ -1424,6 +1478,10 @@ public class JFTratamento extends javax.swing.JFrame {
        // jLMsg.setText("Selecione um dia e abra a agenda");
     }//GEN-LAST:event_jXDateActionPerformed
 
+    private void jTFDoencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFDoencaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFDoencaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1471,6 +1529,7 @@ public class JFTratamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPData;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel34;
@@ -1507,6 +1566,8 @@ public class JFTratamento extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel65;
     private javax.swing.JPanel jPanel66;
     private javax.swing.JPanel jPanel67;
+    private javax.swing.JPanel jPanel68;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTBPane1;
     private javax.swing.JTextField jTFBairroEnderecoTrabalho;
     private javax.swing.JTextField jTFCEPEnderecoTrabalho;
@@ -1522,6 +1583,7 @@ public class JFTratamento extends javax.swing.JFrame {
     private javax.swing.JTextField jTFCidadeEnderecoTrabalho;
     private javax.swing.JTextField jTFComplementoEnderecoCasa;
     private javax.swing.JTextField jTFComplementoEnderecoTrabalho;
+    private javax.swing.JTextField jTFDoenca;
     private javax.swing.JTextField jTFEstadoEnderecoCasa;
     private javax.swing.JTextField jTFEstadoEnderecoTrabalho;
     private javax.swing.JTextField jTFIDResponsavel;
@@ -1539,6 +1601,7 @@ public class JFTratamento extends javax.swing.JFrame {
     private javax.swing.JTextField jTFidEnderecoTrabalho;
     private javax.swing.JTextField jTFoneFixo;
     private javax.swing.JTextField jTFoneFixo2;
+    private javax.swing.JTextArea jTextArea1;
     private org.jdesktop.swingx.JXDatePicker jXDate;
     // End of variables declaration//GEN-END:variables
 }
