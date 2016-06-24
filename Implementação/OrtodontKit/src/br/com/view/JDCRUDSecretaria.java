@@ -1,16 +1,16 @@
 
 package br.com.view;
 
-import br.com.DAO.DAODentista;
+import br.com.DAO.DAOSecretaria;
 import br.com.DAO.DAOEndereco;
 import br.com.DAO.DAOSecretaria;
-import br.com.model.bd.Dentista;
+import br.com.model.bd.Secretaria;
 
 import br.com.model.bd.Endereco;
+import br.com.model.bd.Secretaria;
 import br.com.util.CPFValidator;
 import br.com.util.OperacaoCrud;
 import br.com.util.TextFieldFormatter;
-import br.com.view.exibicao.JDListDentista;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,13 +29,13 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
     private TextFieldFormatter validator;
     private CPFValidator cpfvalitator;
     /**
-     * Creates new form JDCRUDDentista
+     * Creates new form JDCRUDSecretaria
      */
     public JDCRUDSecretaria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         validator = new TextFieldFormatter();        
         initComponents();
-        daoDentista = new DAODentista();        
+        daoSecretaria = new DAOSecretaria();        
         daoEnd = new DAOEndereco();
         setStandardState();
         this.setLocationRelativeTo(null);
@@ -746,12 +746,12 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
     
     
     private void jBReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReadActionPerformed
-        JDListDentista jd = new JDListDentista(null, true);
+        JDListSecretaria jd = new JDListSecretaria(null, true);
         jd.setVisible(true);
         jLMsg.setText("");
         while(jd.isClosed==false&&jd.isAborted==false){};
         if(jd.isClosed==true){
-            Dentista selecionado = jd.dentistaSelecionado;
+            Secretaria selecionado = jd.dentistaSelecionado;
         }
         
     }//GEN-LAST:event_jBReadActionPerformed
@@ -821,7 +821,7 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
         return true;
     }
     
-    private Dentista preencherDentista(Dentista novo){            
+    private Secretaria preencherSecretaria(Secretaria novo){            
             novo.setNome(jTFNome.getText());    
             String cpfConvertido=validator.unmaskCPF(jTFCPF.getText()).trim();                       
             novo.setCpf(cpfConvertido);
@@ -865,7 +865,7 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
     }
     
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        Dentista novo;
+        Secretaria novo;
         if(this.operacao==OperacaoCrud.ADICIONAR){
             if(String.valueOf(jComboBEstadoCivil.getSelectedItem()).equals("Estado Civil")){
                 JOptionPane.showMessageDialog(null, "Selecione o estado civil antes de continuar");
@@ -875,11 +875,11 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Selecione o sexo antes de continuar");
                 return;
             }
-            novo = new Dentista();
-            preencherDentista(novo);
-            daoDentista.inserir(novo);
+            novo = new Secretaria();
+            preencherSecretaria(novo);
+            daoSecretaria.inserir(novo);
             this.setStandardState();
-            jLMsg.setText("Dentista cadastrado(a) com sucesso");
+            jLMsg.setText("Secretaria cadastrado(a) com sucesso");
         }
         if(this.operacao==OperacaoCrud.EDITAR){            
             if(String.valueOf(jComboBEstadoCivil.getSelectedItem()).equals("Estado Civil")){
@@ -890,21 +890,21 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Selecione o sexo antes de continuar");
                 return;
             }
-            novo = preencherDentista(selecionado);
-            daoDentista.atualizar(novo);
+            novo = preencherSecretaria(selecionado);
+            daoSecretaria.atualizar(novo);
             this.setStandardState();
-            jLMsg.setText("Dentista editado(a) com sucesso");
+            jLMsg.setText("Secretaria editado(a) com sucesso");
         }
         if(this.operacao==OperacaoCrud.REMOVER){
-            daoDentista.remover(selecionado.getId());
+            daoSecretaria.remover(selecionado.getId());
             this.setStandardState();            
-            jLMsg.setText("Dentista removido(a) com sucesso");
+            jLMsg.setText("Secretaria removido(a) com sucesso");
         }
     }//GEN-LAST:event_jBGravarActionPerformed
    
-     private void doIdDentistaKeyPressedAction(java.awt.event.KeyEvent evt){
+     private void doIdSecretariaKeyPressedAction(java.awt.event.KeyEvent evt){
         if(evt.getKeyCode() == KeyEvent.VK_F2||evt.getKeyCode() == KeyEvent.VK_F7){
-            JDListDentista jd = new JDListDentista(null, true);
+            JDListSecretaria jd = new JDListSecretaria(null, true);
             jd.setVisible(true);
             jLMsg.setText("");
             while(jd.isClosed==false&&jd.isAborted==false){};
@@ -950,7 +950,7 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
     }//GEN-LAST:event_jTFIDActionPerformed
 
     private void jTFIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIDKeyPressed
-        doIdDentistaKeyPressedAction(evt);
+        doIdSecretariaKeyPressedAction(evt);
     }//GEN-LAST:event_jTFIDKeyPressed
 
     private void jTFoneFixoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFoneFixoActionPerformed
@@ -973,7 +973,7 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFEmailActionPerformed
 
-    private void carregarTextFields(Dentista selecionado){
+    private void carregarTextFields(Secretaria selecionado){
         jTFoneFixo.setText(selecionado.getTelfixo1());
         jTFCasaIdEndereco.setText(selecionado.getIdEndereco().getId()+"");
         jTFID.setText(selecionado.getId()+"");
