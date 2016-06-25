@@ -2,6 +2,7 @@
 package br.com.view;
 
 import br.com.model.bd.Cliente;
+import br.com.model.bd.Fichaanamnese;
 import br.com.model.bd.Tratamento;
 import br.com.model.tables.ModelTabelaProcedimentoDente;
 import br.com.util.OperacaoCrud;
@@ -10,6 +11,7 @@ import br.com.view.exibicao.JDListCliente;
 import br.com.view.exibicao.JDListTratamento;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -1786,10 +1788,31 @@ public class JFTratamento extends javax.swing.JFrame {
     
     private Tratamento generateTramento(){
         Tratamento novo = new Tratamento();
+        if(jTFNumProtocolo.getText().trim().equals("")||jTFNumProtocolo.getText().trim().equals("0")){
+            JOptionPane.showMessageDialog(null, "Escreva o numero do protocolo");
+            return null;
+        }
+        if(jTFIdCliente.getText().trim().equals("")||jTFIdCliente.getText().trim().equals("0")){
+            JOptionPane.showMessageDialog(null, "Selecione o cliente");
+            return null;
+        }
+        
         String date[] = jXDate.getEditor().getText().split("/");
         novo.setDataInicioDia(date[0]);
         novo.setDataInicioMes(date[1]);
         novo.setDataInicioAno(date[2]);
+        novo.setNrProtocolo(Integer.parseInt(jTFNumProtocolo.getText().trim()));
+        novo.setValorCombinadoPecas(Double.parseDouble(jTFTotalEquipamentos.getText()));
+        novo.setValorCombinadoTratamento(Double.parseDouble(jTFTotal.getText().trim()));
+        novo.setIdCliente(clienteSelecionado);
+        
+        Fichaanamnese ficha = new Fichaanamnese();
+        ficha.setQueixaPrincipal(jTFAQueixaPrincipal.getText());
+        ficha.setDoencaAtual(jTFDoenca.getText());
+        ficha.setDoencaInfectocontagiosa(jTFDoencaInfectoContagiosa.getText());
+        ficha.setNomeMedicoAssistente(jTFNomeMedico.getText());
+        ficha.setTelefoneMedicoAssistente(jTFTelefoneMedico.getText());
+        
         //novo.setNrProtocolo(jTFNumProtocolo.getText());
         return null;
     }
