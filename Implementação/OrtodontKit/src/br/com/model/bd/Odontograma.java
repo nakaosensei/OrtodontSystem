@@ -58,6 +58,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Odontograma.findByD28", query = "SELECT o FROM Odontograma o WHERE o.d28 = :d28"),
     @NamedQuery(name = "Odontograma.findByD29", query = "SELECT o FROM Odontograma o WHERE o.d29 = :d29"),
     @NamedQuery(name = "Odontograma.findByD30", query = "SELECT o FROM Odontograma o WHERE o.d30 = :d30"),
+    @NamedQuery(name = "Odontograma.findByD31", query = "SELECT o FROM Odontograma o WHERE o.d31 = :d31"),
     @NamedQuery(name = "Odontograma.findByS0", query = "SELECT o FROM Odontograma o WHERE o.s0 = :s0"),
     @NamedQuery(name = "Odontograma.findByS1", query = "SELECT o FROM Odontograma o WHERE o.s1 = :s1"),
     @NamedQuery(name = "Odontograma.findByS2", query = "SELECT o FROM Odontograma o WHERE o.s2 = :s2"),
@@ -159,6 +160,8 @@ public class Odontograma implements Serializable {
     private Integer d29;
     @Column(name = "d30")
     private Integer d30;
+    @Column(name = "d31")
+    private Integer d31;
     @Column(name = "s0")
     private Integer s0;
     @Column(name = "s1")
@@ -485,6 +488,14 @@ public class Odontograma implements Serializable {
 
     public void setD30(Integer d30) {
         this.d30 = d30;
+    }
+
+    public Integer getD31() {
+        return d31;
+    }
+
+    public void setD31(Integer d31) {
+        this.d31 = d31;
     }
 
     public Integer getS0() {

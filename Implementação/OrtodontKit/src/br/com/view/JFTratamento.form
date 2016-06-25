@@ -249,7 +249,7 @@
                           <Component id="jPanel39" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jPanel36" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <EmptySpace pref="64" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" max="32767" attributes="0"/>
@@ -295,6 +295,7 @@
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFIdTratamentoFocusGained"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFIdTratamentoActionPerformed"/>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFIdTratamentoKeyPressed"/>
                   </Events>
@@ -520,6 +521,7 @@
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFIdClienteFocusGained"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFIdClienteActionPerformed"/>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFIdClienteKeyPressed"/>
                   </Events>
@@ -633,7 +635,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTFNomeResponsavel" alignment="0" pref="276" max="32767" attributes="0"/>
+                      <Component id="jTFNomeResponsavel" alignment="0" pref="272" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -883,7 +885,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTFoneFixo2" alignment="0" pref="136" max="32767" attributes="0"/>
+                      <Component id="jTFoneFixo2" alignment="0" pref="133" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -968,17 +970,23 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jPanel2" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanel68" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jCBEstaTratamento" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="jPanel69" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanel70" max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jCBHasProblemasArticularesReumaticos" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBHasTensaoArterial" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBRealizouCirurgiaComInternacao" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jPanel68" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jCBEstaTratamento" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                      <Component id="jPanel69" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jCBusaMedicacao" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1049,16 +1057,12 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jCBHasProblemasArticularesReumaticos" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jCBHasTensaoArterial" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jCBRealizouCirurgiaComInternacao" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jCBHasDoencaInfectoContagiosa" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="187" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jPanel70" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jPanel71" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1073,12 +1077,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jPanel69" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanel70" min="-2" max="-2" attributes="0"/>
                           <Component id="jPanel68" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                               <Component id="jCBEstaTratamento" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jPanel71" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1130,9 +1134,14 @@
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jCBHasCicatrizacaoRuim" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jCBHasDisturbioPsicologico" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jCBHasCicatrizacaoRuim" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jCBHasDisturbioPsicologico" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jPanel70" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jCBHasEndocarditebacteriana" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1147,9 +1156,7 @@
                           <Component id="jCBHasTensaoArterial" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jCBRealizouCirurgiaComInternacao" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jCBHasDoencaInfectoContagiosa" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="33" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1270,7 +1277,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTFNomeMedico" alignment="0" pref="170" max="32767" attributes="0"/>
+                      <Component id="jTFNomeMedico" alignment="0" pref="294" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -1299,7 +1306,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Telefone m&#xe9;dico">
+                    <TitledBorder title="Doen&#xe7;a InfectoContagiosa">
                       <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
                       </Border>
@@ -1311,27 +1318,27 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTFTelefoneMedico" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jTFDoencaInfectoContagiosa" alignment="0" pref="178" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jTFTelefoneMedico" min="-2" pref="29" max="-2" attributes="0"/>
+                          <Component id="jTFDoencaInfectoContagiosa" min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="jTFTelefoneMedico">
+                <Component class="javax.swing.JTextField" name="jTFDoencaInfectoContagiosa">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFTelefoneMedicoActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFDoencaInfectoContagiosaActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1544,810 +1551,47 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBHasProblemasArticularesReumaticosActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCBHasDoencaInfectoContagiosa">
+            <Container class="javax.swing.JPanel" name="jPanel71">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Doen&#xe7;a infecto contagiosa"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Telefone m&#xe9;dico">
+                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </TitledBorder>
+                  </Border>
+                </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBHasDoencaInfectoContagiosaActionPerformed"/>
-              </Events>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="Odontograma">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Odontograma">
-                <Property name="tabTitle" type="java.lang.String" value="Odontograma"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jBD16" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBD17" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBD18" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBD19" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                              <Component id="jBD20" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBD21" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBD22" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBD23" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jBD24" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBD25" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBD26" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBD27" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                              <Component id="jBD28" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBD29" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBD30" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBD31" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jBD0" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBD1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBD2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBD3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                      <Component id="jBD5" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBD4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBD6" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBD7" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jBS16" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS17" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS18" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS19" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                      <Component id="jBS20" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS21" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS22" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS23" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jBD8" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBD9" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBD10" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBD11" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                      <Component id="jBD12" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBD13" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBD14" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBD15" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jBS24" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS25" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS26" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS27" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                      <Component id="jBS28" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS29" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS30" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS31" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jBS8" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS9" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS10" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS11" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                      <Component id="jBS12" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS13" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS14" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBS15" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jBS0" min="-2" pref="28" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBS1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBS2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBS3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                              <Component id="jBS4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBS5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBS6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBS7" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="121" max="32767" attributes="0"/>
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jTFTelefoneMedico" alignment="0" pref="178" max="32767" attributes="0"/>
                   </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jBD0" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD13" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD14" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBD15" alignment="3" min="-2" max="-2" attributes="0"/>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="jTFTelefoneMedico" min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jBS8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS9" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS13" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS14" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS15" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jBS0" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBS7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jBD24" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD25" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD26" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD27" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD29" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD28" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD30" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD31" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jBD16" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD17" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD18" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD19" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD21" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD20" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD22" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBD23" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jBS16" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS17" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS18" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS19" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS21" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS20" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS22" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS23" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS24" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS25" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS26" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS27" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS29" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS28" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS30" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBS31" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="229" max="32767" attributes="0"/>
                   </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JButton" name="jBD0">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D0"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBD0ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D1"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D2"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D3"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D5"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD5">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D4"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBD5ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD6">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D6"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD7">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D7"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD8">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D8"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD9">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D9"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD10">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D10"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD11">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D11"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBD11ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD12">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D12"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD13">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D13"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD14">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D14"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBD14ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD15">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D15"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS16">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S16"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS17">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S17"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS18">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S18"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS19">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S19"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS20">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S20"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS21">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S21"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS22">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S22"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS23">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S23"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS24">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S24"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS25">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S25"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS26">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S26"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS27">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S27"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS28">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S28"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS29">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S29"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBS29ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS30">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S30"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS31">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S31"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS7">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S7"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS6">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S6"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS5">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S5"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S4"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S3"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBS3ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S2"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S1"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS0">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S0"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD23">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D23"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD22">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D22"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD21">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D21"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD20">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D20"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD19">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D19"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD18">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D18"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD17">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D17"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBD17ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD16">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D16"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD31">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D31"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD30">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D30"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD29">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D29"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD28">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D28"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD27">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D27"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD26">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D26"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD25">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D25"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBD24">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D24"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS15">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S15"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBS15ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS14">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S14"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS13">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S13"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS12">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S12"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS11">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S11"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS10">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S10"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS9">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S9"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBS9ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBS8">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S8"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[40, 20]"/>
-                </Property>
-              </Properties>
-            </Component>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="jTFTelefoneMedico">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFTelefoneMedicoActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel63">
@@ -2362,7 +1606,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane2" alignment="0" pref="865" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="0" pref="858" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel72" min="-2" max="-2" attributes="0"/>
@@ -2621,6 +1865,612 @@
                   <Image iconType="3" name="/br/com/icons/Icons/close1_32.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="Odontograma">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Odontograma">
+                <Property name="tabTitle" type="java.lang.String" value="Odontograma"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jCBD0" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD7" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jCBS8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS9" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS10" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jCBS11" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS12" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS13" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Component id="jCBS14" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS15" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jCBD16" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD17" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                              <Component id="jCBD18" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD19" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD20" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD21" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD22" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD23" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jCBS16" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS17" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS18" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jCBS19" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS20" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS21" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jCBS22" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS23" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jCBD24" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD25" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD26" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD27" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD28" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD29" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD30" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD31" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jCBS24" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS25" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS26" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jCBS27" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS28" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS29" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jCBS30" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS31" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jCBD8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD9" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD10" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD11" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD12" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD13" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD14" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBD15" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jCBS0" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jCBS3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                              <Component id="jCBS4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jCBS6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCBS7" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="392" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jCBD0" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jCBS0" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jCBD9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD15" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jCBS8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS15" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jCBD18" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD19" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD20" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD22" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD23" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD16" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD17" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jCBS16" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS17" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS18" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS19" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS20" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS22" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBS23" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jCBD27" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD28" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD30" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD29" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD31" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD26" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD25" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBD24" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jCBS24" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jCBS25" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBS26" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBS27" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBS28" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="jCBS29" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCBS30" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCBS31" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="180" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JCheckBox" name="jCBD0">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D01"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D03"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D02"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D04"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D05"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D06"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D07"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D08"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD9">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D09"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD10">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D10"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD11">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D11"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD12">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D12"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD13">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D13"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD14">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D14"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD15">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D15"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD16">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D16"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD17">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D17"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBD17ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD18">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D18"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD19">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D19"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD20">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D20"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD21">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D21"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD22">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D22"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD23">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D23"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD24">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D24"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBD24ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD25">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D25"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD26">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D26"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBD26ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD27">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D27"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBD27ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD28">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D28"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD29">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D29"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD30">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D30"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBD31">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D31"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS0">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S00"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBS0ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S01"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S02"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S03"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S05"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S04"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S06"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S07"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S08"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS9">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S09"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS10">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S10"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS11">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S11"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS12">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S12"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS13">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S13"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS14">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S14"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS15">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S15"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS16">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S16"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS17">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S17"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBS17ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS18">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S18"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS19">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S19"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS20">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S20"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS21">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S21"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS22">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S22"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS23">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S23"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS24">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S24"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS25">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S25"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS26">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S26"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS27">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S27"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS28">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S28"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS29">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S29"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS30">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S30"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBS31">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S31"/>
               </Properties>
             </Component>
           </SubComponents>

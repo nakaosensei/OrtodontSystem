@@ -7,6 +7,7 @@ import br.com.model.bd.Tratamento;
 import br.com.model.tables.ModelTabelaListTratamento;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -30,13 +31,15 @@ public class JDListTratamento extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         daoTratamento=new DAOTratamento();
+        tratamentos = new ArrayList<>();
         List<Tratamento> tratamentosR=daoTratamento.listAll();
         for(Tratamento t:tratamentosR){
             tratamentos.add(this.contertTratamentoToTratamentoFilter(t));
         }      
         model=new ModelTabelaListTratamento();
+        model.setData(tratamentos);
         jTBTratamentos.setModel(model);
-        model.addAll(tratamentos);        
+                
         addListeners();
     }
     
@@ -173,7 +176,7 @@ public class JDListTratamento extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBSelecionar)
                 .addGap(21, 21, 21))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
