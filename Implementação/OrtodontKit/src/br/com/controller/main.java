@@ -1,6 +1,7 @@
 package br.com.controller;
 
 import br.com.view.JFLogin;
+import br.com.view.JFTratamento;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 
@@ -24,6 +25,8 @@ public class main {
         //JDCRUDDentista cd = new JDCRUDDentista(null, true);
         //cd.setVisible(true);
         JFLogin jf = new JFLogin();        
-        jf.setVisible(true);         
+        jf.setVisible(true);
+        JFTratamento jft = new JFTratamento();
+        
     }
 }

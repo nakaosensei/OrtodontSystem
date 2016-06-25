@@ -23,7 +23,7 @@ public class ModelTabelaListTratamento extends UsualTableModel<TratamentoFilter>
                 "clienteId=Id Cli",
                 "clienteNome=Cliente",
                 "clienteTelefoneFixo=Fone(Fixo)",
-                "clienteTelefoneFixo=Fone(Celular)"        
+                "clienteTelefoneCel=Fone(Celular)"        
         );
     }
 }

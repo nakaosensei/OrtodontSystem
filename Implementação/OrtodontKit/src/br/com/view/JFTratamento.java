@@ -2,10 +2,14 @@
 package br.com.view;
 
 import br.com.model.bd.Cliente;
+import br.com.model.bd.Tratamento;
+import br.com.model.tables.ModelTabelaProcedimentoDente;
 import br.com.util.OperacaoCrud;
 import br.com.util.TextFieldFormatter;
 import br.com.view.exibicao.JDListCliente;
+import br.com.view.exibicao.JDListTratamento;
 import java.awt.event.KeyEvent;
+import java.util.Calendar;
 
 /**
  *
@@ -13,12 +17,18 @@ import java.awt.event.KeyEvent;
  */
 public class JFTratamento extends javax.swing.JFrame {
     private TextFieldFormatter validator = new TextFieldFormatter();
-    private Cliente selecionado;
+    private Cliente clienteSelecionado;
     private OperacaoCrud operacao;
+    private Tratamento tratamentoSelecionado;
+    private ModelTabelaProcedimentoDente model = new ModelTabelaProcedimentoDente();
     
     public JFTratamento() {
-        initComponents();
+        initComponents();        
         disableShowFields();
+        formatarDatas();
+        setStandardState();
+        this.jTBProcedimento.setModel(model);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -82,7 +92,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel69 = new javax.swing.JPanel();
         jTFNomeMedico = new javax.swing.JTextField();
         jPanel70 = new javax.swing.JPanel();
-        jTFTelefoneMedico = new javax.swing.JTextField();
+        jTFDoencaInfectoContagiosa = new javax.swing.JTextField();
         jCBusaMedicacao = new javax.swing.JCheckBox();
         jCBHasAlergia = new javax.swing.JCheckBox();
         jCBHasAnemia = new javax.swing.JCheckBox();
@@ -109,72 +119,8 @@ public class JFTratamento extends javax.swing.JFrame {
         jCBRealizouCirurgiaComInternacao = new javax.swing.JCheckBox();
         jCBHasTensaoArterial = new javax.swing.JCheckBox();
         jCBHasProblemasArticularesReumaticos = new javax.swing.JCheckBox();
-        jCBHasDoencaInfectoContagiosa = new javax.swing.JCheckBox();
-        Odontograma = new javax.swing.JPanel();
-        jBD0 = new javax.swing.JButton();
-        jBD1 = new javax.swing.JButton();
-        jBD2 = new javax.swing.JButton();
-        jBD3 = new javax.swing.JButton();
-        jBD4 = new javax.swing.JButton();
-        jBD5 = new javax.swing.JButton();
-        jBD6 = new javax.swing.JButton();
-        jBD7 = new javax.swing.JButton();
-        jBD8 = new javax.swing.JButton();
-        jBD9 = new javax.swing.JButton();
-        jBD10 = new javax.swing.JButton();
-        jBD11 = new javax.swing.JButton();
-        jBD12 = new javax.swing.JButton();
-        jBD13 = new javax.swing.JButton();
-        jBD14 = new javax.swing.JButton();
-        jBD15 = new javax.swing.JButton();
-        jBS16 = new javax.swing.JButton();
-        jBS17 = new javax.swing.JButton();
-        jBS18 = new javax.swing.JButton();
-        jBS19 = new javax.swing.JButton();
-        jBS20 = new javax.swing.JButton();
-        jBS21 = new javax.swing.JButton();
-        jBS22 = new javax.swing.JButton();
-        jBS23 = new javax.swing.JButton();
-        jBS24 = new javax.swing.JButton();
-        jBS25 = new javax.swing.JButton();
-        jBS26 = new javax.swing.JButton();
-        jBS27 = new javax.swing.JButton();
-        jBS28 = new javax.swing.JButton();
-        jBS29 = new javax.swing.JButton();
-        jBS30 = new javax.swing.JButton();
-        jBS31 = new javax.swing.JButton();
-        jBS7 = new javax.swing.JButton();
-        jBS6 = new javax.swing.JButton();
-        jBS5 = new javax.swing.JButton();
-        jBS4 = new javax.swing.JButton();
-        jBS3 = new javax.swing.JButton();
-        jBS2 = new javax.swing.JButton();
-        jBS1 = new javax.swing.JButton();
-        jBS0 = new javax.swing.JButton();
-        jBD23 = new javax.swing.JButton();
-        jBD22 = new javax.swing.JButton();
-        jBD21 = new javax.swing.JButton();
-        jBD20 = new javax.swing.JButton();
-        jBD19 = new javax.swing.JButton();
-        jBD18 = new javax.swing.JButton();
-        jBD17 = new javax.swing.JButton();
-        jBD16 = new javax.swing.JButton();
-        jBD31 = new javax.swing.JButton();
-        jBD30 = new javax.swing.JButton();
-        jBD29 = new javax.swing.JButton();
-        jBD28 = new javax.swing.JButton();
-        jBD27 = new javax.swing.JButton();
-        jBD26 = new javax.swing.JButton();
-        jBD25 = new javax.swing.JButton();
-        jBD24 = new javax.swing.JButton();
-        jBS15 = new javax.swing.JButton();
-        jBS14 = new javax.swing.JButton();
-        jBS13 = new javax.swing.JButton();
-        jBS12 = new javax.swing.JButton();
-        jBS11 = new javax.swing.JButton();
-        jBS10 = new javax.swing.JButton();
-        jBS9 = new javax.swing.JButton();
-        jBS8 = new javax.swing.JButton();
+        jPanel71 = new javax.swing.JPanel();
+        jTFTelefoneMedico = new javax.swing.JTextField();
         jPanel63 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTBProcedimento = new javax.swing.JTable();
@@ -189,6 +135,71 @@ public class JFTratamento extends javax.swing.JFrame {
         jTFAProcedimento = new javax.swing.JTextArea();
         jBAddProcedimento = new javax.swing.JButton();
         jBRemoveProcedimento = new javax.swing.JButton();
+        Odontograma = new javax.swing.JPanel();
+        jCBD0 = new javax.swing.JCheckBox();
+        jCBD1 = new javax.swing.JCheckBox();
+        jCBD2 = new javax.swing.JCheckBox();
+        jCBD3 = new javax.swing.JCheckBox();
+        jCBD4 = new javax.swing.JCheckBox();
+        jCBD5 = new javax.swing.JCheckBox();
+        jCBD6 = new javax.swing.JCheckBox();
+        jCBD7 = new javax.swing.JCheckBox();
+        jCBD8 = new javax.swing.JCheckBox();
+        jCBD9 = new javax.swing.JCheckBox();
+        jCBD10 = new javax.swing.JCheckBox();
+        jCBD11 = new javax.swing.JCheckBox();
+        jCBD12 = new javax.swing.JCheckBox();
+        jCBD13 = new javax.swing.JCheckBox();
+        jCBD14 = new javax.swing.JCheckBox();
+        jCBD15 = new javax.swing.JCheckBox();
+        jCBD16 = new javax.swing.JCheckBox();
+        jCBD17 = new javax.swing.JCheckBox();
+        jCBD18 = new javax.swing.JCheckBox();
+        jCBD19 = new javax.swing.JCheckBox();
+        jCBD20 = new javax.swing.JCheckBox();
+        jCBD21 = new javax.swing.JCheckBox();
+        jCBD22 = new javax.swing.JCheckBox();
+        jCBD23 = new javax.swing.JCheckBox();
+        jCBD24 = new javax.swing.JCheckBox();
+        jCBD25 = new javax.swing.JCheckBox();
+        jCBD26 = new javax.swing.JCheckBox();
+        jCBD27 = new javax.swing.JCheckBox();
+        jCBD28 = new javax.swing.JCheckBox();
+        jCBD29 = new javax.swing.JCheckBox();
+        jCBD30 = new javax.swing.JCheckBox();
+        jCBD31 = new javax.swing.JCheckBox();
+        jCBS0 = new javax.swing.JCheckBox();
+        jCBS1 = new javax.swing.JCheckBox();
+        jCBS2 = new javax.swing.JCheckBox();
+        jCBS3 = new javax.swing.JCheckBox();
+        jCBS4 = new javax.swing.JCheckBox();
+        jCBS5 = new javax.swing.JCheckBox();
+        jCBS6 = new javax.swing.JCheckBox();
+        jCBS7 = new javax.swing.JCheckBox();
+        jCBS8 = new javax.swing.JCheckBox();
+        jCBS9 = new javax.swing.JCheckBox();
+        jCBS10 = new javax.swing.JCheckBox();
+        jCBS11 = new javax.swing.JCheckBox();
+        jCBS12 = new javax.swing.JCheckBox();
+        jCBS13 = new javax.swing.JCheckBox();
+        jCBS14 = new javax.swing.JCheckBox();
+        jCBS15 = new javax.swing.JCheckBox();
+        jCBS16 = new javax.swing.JCheckBox();
+        jCBS17 = new javax.swing.JCheckBox();
+        jCBS18 = new javax.swing.JCheckBox();
+        jCBS19 = new javax.swing.JCheckBox();
+        jCBS20 = new javax.swing.JCheckBox();
+        jCBS21 = new javax.swing.JCheckBox();
+        jCBS22 = new javax.swing.JCheckBox();
+        jCBS23 = new javax.swing.JCheckBox();
+        jCBS24 = new javax.swing.JCheckBox();
+        jCBS25 = new javax.swing.JCheckBox();
+        jCBS26 = new javax.swing.JCheckBox();
+        jCBS27 = new javax.swing.JCheckBox();
+        jCBS28 = new javax.swing.JCheckBox();
+        jCBS29 = new javax.swing.JCheckBox();
+        jCBS30 = new javax.swing.JCheckBox();
+        jCBS31 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -242,6 +253,11 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel64.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Id Tratamento"));
 
         jTFIdTratamento.setBorder(null);
+        jTFIdTratamento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFIdTratamentoFocusGained(evt);
+            }
+        });
         jTFIdTratamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFIdTratamentoActionPerformed(evt);
@@ -392,6 +408,11 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel33.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Id Cliente"));
 
         jTFIdCliente.setBorder(null);
+        jTFIdCliente.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFIdClienteFocusGained(evt);
+            }
+        });
         jTFIdCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFIdClienteActionPerformed(evt);
@@ -487,7 +508,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel41.setLayout(jPanel41Layout);
         jPanel41Layout.setHorizontalGroup(
             jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFNomeResponsavel, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+            .addComponent(jTFNomeResponsavel, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
         );
         jPanel41Layout.setVerticalGroup(
             jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -599,7 +620,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel43.setLayout(jPanel43Layout);
         jPanel43Layout.setHorizontalGroup(
             jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFoneFixo2, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+            .addComponent(jTFoneFixo2, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
         );
         jPanel43Layout.setVerticalGroup(
             jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -704,7 +725,7 @@ public class JFTratamento extends javax.swing.JFrame {
                     .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -773,7 +794,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel69.setLayout(jPanel69Layout);
         jPanel69Layout.setHorizontalGroup(
             jPanel69Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFNomeMedico, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+            .addComponent(jTFNomeMedico, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
         );
         jPanel69Layout.setVerticalGroup(
             jPanel69Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -782,12 +803,12 @@ public class JFTratamento extends javax.swing.JFrame {
                 .addComponent(jTFNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel70.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Telefone médico"));
+        jPanel70.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Doença InfectoContagiosa"));
 
-        jTFTelefoneMedico.setBorder(null);
-        jTFTelefoneMedico.addActionListener(new java.awt.event.ActionListener() {
+        jTFDoencaInfectoContagiosa.setBorder(null);
+        jTFDoencaInfectoContagiosa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFTelefoneMedicoActionPerformed(evt);
+                jTFDoencaInfectoContagiosaActionPerformed(evt);
             }
         });
 
@@ -795,13 +816,13 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel70.setLayout(jPanel70Layout);
         jPanel70Layout.setHorizontalGroup(
             jPanel70Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFTelefoneMedico)
+            .addComponent(jTFDoencaInfectoContagiosa, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
         );
         jPanel70Layout.setVerticalGroup(
             jPanel70Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel70Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jTFTelefoneMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTFDoencaInfectoContagiosa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jCBusaMedicacao.setText("Usa medicação");
@@ -986,12 +1007,27 @@ public class JFTratamento extends javax.swing.JFrame {
             }
         });
 
-        jCBHasDoencaInfectoContagiosa.setText("Doença infecto contagiosa");
-        jCBHasDoencaInfectoContagiosa.addActionListener(new java.awt.event.ActionListener() {
+        jPanel71.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Telefone médico"));
+
+        jTFTelefoneMedico.setBorder(null);
+        jTFTelefoneMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBHasDoencaInfectoContagiosaActionPerformed(evt);
+                jTFTelefoneMedicoActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel71Layout = new javax.swing.GroupLayout(jPanel71);
+        jPanel71.setLayout(jPanel71Layout);
+        jPanel71Layout.setHorizontalGroup(
+            jPanel71Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTFTelefoneMedico, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+        );
+        jPanel71Layout.setVerticalGroup(
+            jPanel71Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel71Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jTFTelefoneMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout jPanel62Layout = new javax.swing.GroupLayout(jPanel62);
         jPanel62.setLayout(jPanel62Layout);
@@ -1002,15 +1038,20 @@ public class JFTratamento extends javax.swing.JFrame {
                 .addGroup(jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel62Layout.createSequentialGroup()
-                        .addComponent(jPanel68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCBHasProblemasArticularesReumaticos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCBEstaTratamento)
-                        .addGap(1, 1, 1)
-                        .addComponent(jPanel69, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCBHasTensaoArterial)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel70, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jCBRealizouCirurgiaComInternacao)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel62Layout.createSequentialGroup()
-                        .addGroup(jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel62Layout.createSequentialGroup()
+                                .addComponent(jPanel68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCBEstaTratamento)
+                                .addGap(1, 1, 1)
+                                .addComponent(jPanel69, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel62Layout.createSequentialGroup()
                                 .addGroup(jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jCBusaMedicacao)
@@ -1062,15 +1103,11 @@ public class JFTratamento extends javax.swing.JFrame {
                                         .addComponent(jCBHasEndocarditebacteriana))
                                     .addGroup(jPanel62Layout.createSequentialGroup()
                                         .addGap(1, 1, 1)
-                                        .addComponent(jCBHasProblemaRenal))))
-                            .addGroup(jPanel62Layout.createSequentialGroup()
-                                .addComponent(jCBHasProblemasArticularesReumaticos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCBHasTensaoArterial)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCBRealizouCirurgiaComInternacao))
-                            .addComponent(jCBHasDoencaInfectoContagiosa))
-                        .addGap(0, 187, Short.MAX_VALUE)))
+                                        .addComponent(jCBHasProblemaRenal)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel70, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel71, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel62Layout.setVerticalGroup(
@@ -1081,11 +1118,11 @@ public class JFTratamento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel69, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel62Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
-                        .addComponent(jCBEstaTratamento)))
+                        .addComponent(jCBEstaTratamento))
+                    .addComponent(jPanel71, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel62Layout.createSequentialGroup()
@@ -1126,9 +1163,12 @@ public class JFTratamento extends javax.swing.JFrame {
                             .addComponent(jCBHasEpilepsia)
                             .addComponent(jCBHasProblemaCardiaco)))
                     .addGroup(jPanel62Layout.createSequentialGroup()
-                        .addComponent(jCBHasCicatrizacaoRuim)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCBHasDisturbioPsicologico)
+                        .addGroup(jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel62Layout.createSequentialGroup()
+                                .addComponent(jCBHasCicatrizacaoRuim)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCBHasDisturbioPsicologico))
+                            .addComponent(jPanel70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCBHasEndocarditebacteriana)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1140,474 +1180,10 @@ public class JFTratamento extends javax.swing.JFrame {
                     .addComponent(jCBHasProblemasArticularesReumaticos)
                     .addComponent(jCBHasTensaoArterial)
                     .addComponent(jCBRealizouCirurgiaComInternacao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCBHasDoencaInfectoContagiosa)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 33, Short.MAX_VALUE))
         );
 
         jTBPane1.addTab("Ficha Anamnese", jPanel62);
-
-        jBD0.setText("D0");
-        jBD0.setMinimumSize(new java.awt.Dimension(40, 20));
-        jBD0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBD0ActionPerformed(evt);
-            }
-        });
-
-        jBD1.setText("D1");
-        jBD1.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD2.setText("D2");
-        jBD2.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD3.setText("D3");
-        jBD3.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD4.setText("D5");
-        jBD4.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD5.setText("D4");
-        jBD5.setMinimumSize(new java.awt.Dimension(40, 20));
-        jBD5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBD5ActionPerformed(evt);
-            }
-        });
-
-        jBD6.setText("D6");
-        jBD6.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD7.setText("D7");
-        jBD7.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD8.setText("D8");
-        jBD8.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD9.setText("D9");
-        jBD9.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD10.setText("D10");
-        jBD10.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD11.setText("D11");
-        jBD11.setMinimumSize(new java.awt.Dimension(40, 20));
-        jBD11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBD11ActionPerformed(evt);
-            }
-        });
-
-        jBD12.setText("D12");
-        jBD12.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD13.setText("D13");
-        jBD13.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD14.setText("D14");
-        jBD14.setMinimumSize(new java.awt.Dimension(40, 20));
-        jBD14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBD14ActionPerformed(evt);
-            }
-        });
-
-        jBD15.setText("D15");
-        jBD15.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS16.setText("S16");
-        jBS16.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS17.setText("S17");
-        jBS17.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS18.setText("S18");
-        jBS18.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS19.setText("S19");
-        jBS19.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS20.setText("S20");
-        jBS20.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS21.setText("S21");
-        jBS21.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS22.setText("S22");
-        jBS22.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS23.setText("S23");
-        jBS23.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS24.setText("S24");
-        jBS24.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS25.setText("S25");
-        jBS25.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS26.setText("S26");
-        jBS26.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS27.setText("S27");
-        jBS27.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS28.setText("S28");
-        jBS28.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS29.setText("S29");
-        jBS29.setMinimumSize(new java.awt.Dimension(40, 20));
-        jBS29.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBS29ActionPerformed(evt);
-            }
-        });
-
-        jBS30.setText("S30");
-        jBS30.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS31.setText("S31");
-        jBS31.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS7.setText("S7");
-        jBS7.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS6.setText("S6");
-        jBS6.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS5.setText("S5");
-        jBS5.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS4.setText("S4");
-        jBS4.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS3.setText("S3");
-        jBS3.setMinimumSize(new java.awt.Dimension(40, 20));
-        jBS3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBS3ActionPerformed(evt);
-            }
-        });
-
-        jBS2.setText("S2");
-        jBS2.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS1.setText("S1");
-        jBS1.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS0.setText("S0");
-        jBS0.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD23.setText("D23");
-        jBD23.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD22.setText("D22");
-        jBD22.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD21.setText("D21");
-        jBD21.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD20.setText("D20");
-        jBD20.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD19.setText("D19");
-        jBD19.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD18.setText("D18");
-        jBD18.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD17.setText("D17");
-        jBD17.setMinimumSize(new java.awt.Dimension(40, 20));
-        jBD17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBD17ActionPerformed(evt);
-            }
-        });
-
-        jBD16.setText("D16");
-        jBD16.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD31.setText("D31");
-        jBD31.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD30.setText("D30");
-        jBD30.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD29.setText("D29");
-        jBD29.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD28.setText("D28");
-        jBD28.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD27.setText("D27");
-        jBD27.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD26.setText("D26");
-        jBD26.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD25.setText("D25");
-        jBD25.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBD24.setText("D24");
-        jBD24.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS15.setText("S15");
-        jBS15.setMinimumSize(new java.awt.Dimension(40, 20));
-        jBS15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBS15ActionPerformed(evt);
-            }
-        });
-
-        jBS14.setText("S14");
-        jBS14.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS13.setText("S13");
-        jBS13.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS12.setText("S12");
-        jBS12.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS11.setText("S11");
-        jBS11.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS10.setText("S10");
-        jBS10.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        jBS9.setText("S9");
-        jBS9.setMinimumSize(new java.awt.Dimension(40, 20));
-        jBS9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBS9ActionPerformed(evt);
-            }
-        });
-
-        jBS8.setText("S8");
-        jBS8.setMinimumSize(new java.awt.Dimension(40, 20));
-
-        javax.swing.GroupLayout OdontogramaLayout = new javax.swing.GroupLayout(Odontograma);
-        Odontograma.setLayout(OdontogramaLayout);
-        OdontogramaLayout.setHorizontalGroup(
-            OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(OdontogramaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(OdontogramaLayout.createSequentialGroup()
-                        .addComponent(jBD16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBD17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBD18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBD19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(jBD20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBD21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBD22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBD23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBD24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBD25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBD26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBD27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(jBD28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBD29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBD30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBD31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(OdontogramaLayout.createSequentialGroup()
-                        .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(OdontogramaLayout.createSequentialGroup()
-                                .addComponent(jBD0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)
-                                .addComponent(jBD5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBD4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBD6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBD7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(OdontogramaLayout.createSequentialGroup()
-                                .addComponent(jBS16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)
-                                .addComponent(jBS20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(58, 58, 58)
-                        .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(OdontogramaLayout.createSequentialGroup()
-                                .addComponent(jBD8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBD9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBD10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBD11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)
-                                .addComponent(jBD12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBD13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBD14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBD15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(OdontogramaLayout.createSequentialGroup()
-                                .addComponent(jBS24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)
-                                .addComponent(jBS28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(OdontogramaLayout.createSequentialGroup()
-                                .addComponent(jBS8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)
-                                .addComponent(jBS12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBS15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, OdontogramaLayout.createSequentialGroup()
-                        .addComponent(jBS0, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBS1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBS2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBS3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(jBS4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBS5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBS6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBS7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(121, Short.MAX_VALUE))
-        );
-        OdontogramaLayout.setVerticalGroup(
-            OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(OdontogramaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBD0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBD15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBS8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBS0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBS7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(41, 41, 41)
-                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBD24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBD16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBD23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBS16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBS31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(229, Short.MAX_VALUE))
-        );
-
-        jTBPane1.addTab("Odontograma", Odontograma);
 
         jTBProcedimento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1732,7 +1308,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel63.setLayout(jPanel63Layout);
         jPanel63Layout.setHorizontalGroup(
             jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)
             .addGroup(jPanel63Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel72, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1765,6 +1341,396 @@ public class JFTratamento extends javax.swing.JFrame {
         );
 
         jTBPane1.addTab("Procedimentos", jPanel63);
+
+        jCBD0.setText("D00");
+
+        jCBD1.setText("D01");
+
+        jCBD2.setText("D03");
+
+        jCBD3.setText("D02");
+
+        jCBD4.setText("D04");
+
+        jCBD5.setText("D05");
+
+        jCBD6.setText("D06");
+
+        jCBD7.setText("D07");
+
+        jCBD8.setText("D08");
+
+        jCBD9.setText("D09");
+
+        jCBD10.setText("D10");
+
+        jCBD11.setText("D11");
+
+        jCBD12.setText("D12");
+
+        jCBD13.setText("D13");
+
+        jCBD14.setText("D14");
+
+        jCBD15.setText("D15");
+
+        jCBD16.setText("D16");
+
+        jCBD17.setText("D17");
+        jCBD17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBD17ActionPerformed(evt);
+            }
+        });
+
+        jCBD18.setText("D18");
+
+        jCBD19.setText("D19");
+
+        jCBD20.setText("D20");
+
+        jCBD21.setText("D21");
+
+        jCBD22.setText("D22");
+
+        jCBD23.setText("D23");
+
+        jCBD24.setText("D24");
+        jCBD24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBD24ActionPerformed(evt);
+            }
+        });
+
+        jCBD25.setText("D25");
+
+        jCBD26.setText("D26");
+        jCBD26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBD26ActionPerformed(evt);
+            }
+        });
+
+        jCBD27.setText("D27");
+        jCBD27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBD27ActionPerformed(evt);
+            }
+        });
+
+        jCBD28.setText("D28");
+
+        jCBD29.setText("D29");
+
+        jCBD30.setText("D30");
+
+        jCBD31.setText("D31");
+
+        jCBS0.setText("S00");
+        jCBS0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBS0ActionPerformed(evt);
+            }
+        });
+
+        jCBS1.setText("S01");
+
+        jCBS2.setText("S02");
+
+        jCBS3.setText("S03");
+
+        jCBS4.setText("S05");
+
+        jCBS5.setText("S04");
+
+        jCBS6.setText("S06");
+
+        jCBS7.setText("S07");
+
+        jCBS8.setText("S08");
+
+        jCBS9.setText("S09");
+
+        jCBS10.setText("S10");
+
+        jCBS11.setText("S11");
+
+        jCBS12.setText("S12");
+
+        jCBS13.setText("S13");
+
+        jCBS14.setText("S14");
+
+        jCBS15.setText("S15");
+
+        jCBS16.setText("S16");
+
+        jCBS17.setText("S17");
+        jCBS17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBS17ActionPerformed(evt);
+            }
+        });
+
+        jCBS18.setText("S18");
+
+        jCBS19.setText("S19");
+
+        jCBS20.setText("S20");
+
+        jCBS21.setText("S21");
+
+        jCBS22.setText("S22");
+
+        jCBS23.setText("S23");
+
+        jCBS24.setText("S24");
+
+        jCBS25.setText("S25");
+
+        jCBS26.setText("S26");
+
+        jCBS27.setText("S27");
+
+        jCBS28.setText("S28");
+
+        jCBS29.setText("S29");
+
+        jCBS30.setText("S30");
+
+        jCBS31.setText("S31");
+
+        javax.swing.GroupLayout OdontogramaLayout = new javax.swing.GroupLayout(Odontograma);
+        Odontograma.setLayout(OdontogramaLayout);
+        OdontogramaLayout.setHorizontalGroup(
+            OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OdontogramaLayout.createSequentialGroup()
+                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(OdontogramaLayout.createSequentialGroup()
+                        .addComponent(jCBD0)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD7))
+                    .addGroup(OdontogramaLayout.createSequentialGroup()
+                        .addComponent(jCBS8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCBS11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS13)
+                        .addGap(12, 12, 12)
+                        .addComponent(jCBS14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS15))
+                    .addGroup(OdontogramaLayout.createSequentialGroup()
+                        .addComponent(jCBD16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD17)
+                        .addGap(3, 3, 3)
+                        .addComponent(jCBD18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD23))
+                    .addGroup(OdontogramaLayout.createSequentialGroup()
+                        .addComponent(jCBS16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCBS19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCBS22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS23))
+                    .addGroup(OdontogramaLayout.createSequentialGroup()
+                        .addComponent(jCBD24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD25)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD31))
+                    .addGroup(OdontogramaLayout.createSequentialGroup()
+                        .addComponent(jCBS24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS25)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCBS27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCBS30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS31)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(OdontogramaLayout.createSequentialGroup()
+                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(OdontogramaLayout.createSequentialGroup()
+                        .addComponent(jCBD8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBD15))
+                    .addGroup(OdontogramaLayout.createSequentialGroup()
+                        .addComponent(jCBS0)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCBS3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS5)
+                        .addGap(9, 9, 9)
+                        .addComponent(jCBS4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCBS6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBS7)))
+                .addContainerGap(392, Short.MAX_VALUE))
+        );
+        OdontogramaLayout.setVerticalGroup(
+            OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OdontogramaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCBD0)
+                    .addComponent(jCBD1)
+                    .addComponent(jCBD2)
+                    .addComponent(jCBD3)
+                    .addComponent(jCBD4)
+                    .addComponent(jCBD5)
+                    .addComponent(jCBD6)
+                    .addComponent(jCBD7))
+                .addGap(3, 3, 3)
+                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCBS0)
+                    .addComponent(jCBS1)
+                    .addComponent(jCBS2)
+                    .addComponent(jCBS3)
+                    .addComponent(jCBS5)
+                    .addComponent(jCBS4)
+                    .addComponent(jCBS6)
+                    .addComponent(jCBS7))
+                .addGap(18, 18, 18)
+                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCBD9)
+                    .addComponent(jCBD10)
+                    .addComponent(jCBD12)
+                    .addComponent(jCBD11)
+                    .addComponent(jCBD13)
+                    .addComponent(jCBD14)
+                    .addComponent(jCBD15)
+                    .addComponent(jCBD8))
+                .addGap(2, 2, 2)
+                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCBS8)
+                    .addComponent(jCBS9)
+                    .addComponent(jCBS10)
+                    .addComponent(jCBS11)
+                    .addComponent(jCBS12)
+                    .addComponent(jCBS13)
+                    .addComponent(jCBS14)
+                    .addComponent(jCBS15))
+                .addGap(18, 18, 18)
+                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCBD18)
+                    .addComponent(jCBD19)
+                    .addComponent(jCBD21)
+                    .addComponent(jCBD20)
+                    .addComponent(jCBD22)
+                    .addComponent(jCBD23)
+                    .addComponent(jCBD16)
+                    .addComponent(jCBD17))
+                .addGap(2, 2, 2)
+                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCBS16)
+                    .addComponent(jCBS17)
+                    .addComponent(jCBS18)
+                    .addComponent(jCBS19)
+                    .addComponent(jCBS20)
+                    .addComponent(jCBS21)
+                    .addComponent(jCBS22)
+                    .addComponent(jCBS23))
+                .addGap(18, 18, 18)
+                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCBD27)
+                    .addComponent(jCBD28)
+                    .addComponent(jCBD30)
+                    .addComponent(jCBD29)
+                    .addComponent(jCBD31)
+                    .addComponent(jCBD26)
+                    .addComponent(jCBD25)
+                    .addComponent(jCBD24))
+                .addGap(2, 2, 2)
+                .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jCBS24)
+                    .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(OdontogramaLayout.createSequentialGroup()
+                            .addGap(2, 2, 2)
+                            .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jCBS25)
+                                .addComponent(jCBS26)
+                                .addComponent(jCBS27)
+                                .addComponent(jCBS28)))
+                        .addGroup(OdontogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCBS29)
+                            .addComponent(jCBS30)
+                            .addComponent(jCBS31))))
+                .addContainerGap(180, Short.MAX_VALUE))
+        );
+
+        jTBPane1.addTab("Odontograma", Odontograma);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1817,21 +1783,24 @@ public class JFTratamento extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
+    
+    private Tratamento generateTramento(){
+        Tratamento novo = new Tratamento();
+        String date[] = jXDate.getEditor().getText().split("/");
+        novo.setDataInicioDia(date[0]);
+        novo.setDataInicioMes(date[1]);
+        novo.setDataInicioAno(date[2]);
+        //novo.setNrProtocolo(jTFNumProtocolo.getText());
+        return null;
+    }
+    
+    
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        /*Cliente novo;
+        Cliente novo;
         if(this.operacao==OperacaoCrud.ADICIONAR){
-            if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){
-                novo = new Cliente();
-                novo=preencherCliente(novo);
-            }else{
-                novo = new Cliente();
-                novo=preencherClienteDependente(novo);
-            }
-            daoCli.inserir(novo);
-            this.setStandardState();
-            jLMsg.setText("Cliente cadastrado com sucesso");
+           
         }
-        if(this.operacao==OperacaoCrud.EDITAR){
+        /*if(this.operacao==OperacaoCrud.EDITAR){
             if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){
                 novo =preencherCliente(selecionado);
                 novo.setIdClienteResponsavel(null);
@@ -1854,16 +1823,27 @@ public class JFTratamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jBReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReadActionPerformed
-        JDListCliente jd = new JDListCliente(null, true);
+        JDListTratamento jd = new JDListTratamento(null, true);
         jd.setVisible(true);
         jLMsg.setText("");
         while(jd.isClosed==false&&jd.isAborted==false){};
         if(jd.isClosed==true){
-            Cliente selecionado = jd.clienteSelecionado;
+            
         }
 
     }//GEN-LAST:event_jBReadActionPerformed
-
+    private void formatarDatas() {
+        jXDate.setFormats("dd/MM/yyyy");
+        Calendar cal = Calendar.getInstance();
+        int ano = cal.get(Calendar.YEAR);
+        int mes = cal.get(Calendar.MONTH);
+        System.out.println(Calendar.JANUARY);
+        int dia = cal.get(Calendar.DAY_OF_MONTH);
+        mes++;
+        String data = dia+"/"+mes+"/"+ano;
+        jXDate.getEditor().setText(data);
+        
+    }
     private void disableShowFields(){
         jTFoneFixo.setEditable(false);       
         jTFRG.setEditable(false);
@@ -1884,6 +1864,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jTFIdTratamento.setEditable(id);        
         jTFNumProtocolo.setEditable(nonId);
         jTFAProcedimento.setEnabled(nonId);
+        jTFTelefoneMedico.setEditable(nonId);
         jTFAProcedimento.setEditable(nonId);
         jTFDente.setEditable(nonId);
         jTFRegiao.setEditable(nonId);
@@ -1896,7 +1877,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jTFAQueixaPrincipal.setEnabled(nonId);
         jTFDoenca.setEditable(nonId);
         jTFNomeMedico.setEditable(nonId);
-        jTFTelefoneMedico.setEditable(nonId);
+        jTFDoencaInfectoContagiosa.setEditable(nonId);
         jCBEstaTratamento.setEnabled(nonId);
         jCBFuma.setEnabled(nonId);
         jCBHasAlergia.setEnabled(nonId);
@@ -1906,7 +1887,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jCBHasDesmaios.setEnabled(nonId);
         jCBHasDiabetes.setEnabled(nonId);
         jCBHasDisturbioPsicologico.setEnabled(nonId);
-        jCBHasDoencaInfectoContagiosa.setEnabled(nonId);
+        jTFDoencaInfectoContagiosa.setEnabled(nonId);
         jCBHasEndocarditebacteriana.setEnabled(nonId);
         jCBHasEpilepsia.setEnabled(nonId);
         jCBHasFebreReumatica.setEnabled(nonId);
@@ -1925,70 +1906,70 @@ public class JFTratamento extends javax.swing.JFrame {
         jCBIsGravida.setEnabled(nonId);
         jCBRealizouCirurgiaComInternacao.setEnabled(nonId);
         jCBusaMedicacao.setEnabled(nonId);
-        jBD0.setEnabled(nonId);
-        jBD1.setEnabled(nonId);
-        jBD10.setEnabled(nonId);
-        jBD11.setEnabled(nonId);
-        jBD12.setEnabled(nonId);
-        jBD13.setEnabled(nonId);
-        jBD14.setEnabled(nonId);
-        jBD15.setEnabled(nonId);
-        jBD16.setEnabled(nonId);
-        jBD17.setEnabled(nonId);
-        jBD18.setEnabled(nonId);
-        jBD19.setEnabled(nonId);
-        jBD2.setEnabled(nonId);
-        jBD20.setEnabled(nonId);
-        jBD21.setEnabled(nonId);
-        jBD22.setEnabled(nonId);
-        jBD23.setEnabled(nonId);
-        jBD24.setEnabled(nonId);
-        jBD25.setEnabled(nonId);
-        jBD26.setEnabled(nonId);
-        jBD27.setEnabled(nonId);
-        jBD28.setEnabled(nonId);
-        jBD29.setEnabled(nonId);
-        jBD3.setEnabled(nonId);
-        jBD30.setEnabled(nonId);
-        jBD31.setEnabled(nonId);
-        jBD4.setEnabled(nonId);
-        jBD5.setEnabled(nonId);
-        jBD6.setEnabled(nonId);
-        jBD7.setEnabled(nonId);
-        jBD8.setEnabled(nonId);
-        jBD9.setEnabled(nonId);
-        jBS0.setEnabled(nonId);
-        jBS1.setEnabled(nonId);
-        jBS10.setEnabled(nonId);
-        jBS11.setEnabled(nonId);
-        jBS12.setEnabled(nonId);
-        jBS13.setEnabled(nonId);
-        jBS14.setEnabled(nonId);
-        jBS15.setEnabled(nonId);
-        jBS16.setEnabled(nonId);
-        jBS17.setEnabled(nonId);
-        jBS18.setEnabled(nonId);
-        jBS19.setEnabled(nonId);
-        jBS2.setEnabled(nonId);
-        jBS20.setEnabled(nonId);
-        jBS21.setEnabled(nonId);
-        jBS22.setEnabled(nonId);
-        jBS23.setEnabled(nonId);
-        jBS24.setEnabled(nonId);
-        jBS25.setEnabled(nonId);
-        jBS26.setEnabled(nonId);
-        jBS27.setEnabled(nonId);
-        jBS28.setEnabled(nonId);
-        jBS29.setEnabled(nonId);
-        jBS3.setEnabled(nonId);
-        jBS30.setEnabled(nonId);
-        jBS31.setEnabled(nonId);
-        jBS4.setEnabled(nonId);
-        jBS5.setEnabled(nonId);
-        jBS6.setEnabled(nonId);
-        jBS7.setEnabled(nonId);
-        jBS8.setEnabled(nonId);
-        jBS9.setEnabled(nonId);
+        	jCBD0.setEnabled(nonId);
+        jCBD1.setEnabled(nonId);
+        jCBD10.setEnabled(nonId);
+        jCBD11.setEnabled(nonId);
+        jCBD12.setEnabled(nonId);
+        jCBD13.setEnabled(nonId);
+        jCBD14.setEnabled(nonId);
+        jCBD15.setEnabled(nonId);
+        jCBD16.setEnabled(nonId);
+        jCBD17.setEnabled(nonId);
+        jCBD18.setEnabled(nonId);
+        jCBD19.setEnabled(nonId);
+        jCBD2.setEnabled(nonId);
+        jCBD20.setEnabled(nonId);
+        jCBD21.setEnabled(nonId);
+        jCBD22.setEnabled(nonId);
+        jCBD23.setEnabled(nonId);
+        jCBD24.setEnabled(nonId);
+        jCBD25.setEnabled(nonId);
+        jCBD26.setEnabled(nonId);
+        jCBD27.setEnabled(nonId);
+        jCBD28.setEnabled(nonId);
+        jCBD29.setEnabled(nonId);
+        jCBD3.setEnabled(nonId);
+        jCBD30.setEnabled(nonId);
+        jCBD31.setEnabled(nonId);
+        jCBD4.setEnabled(nonId);
+        jCBD5.setEnabled(nonId);
+        jCBD6.setEnabled(nonId);
+        jCBD7.setEnabled(nonId);
+        jCBD8.setEnabled(nonId);
+        jCBD9.setEnabled(nonId);
+        jCBS0.setEnabled(nonId);
+        jCBS1.setEnabled(nonId);
+        jCBS10.setEnabled(nonId);
+        jCBS11.setEnabled(nonId);
+        jCBS12.setEnabled(nonId);
+        jCBS13.setEnabled(nonId);
+        jCBS14.setEnabled(nonId);
+        jCBS15.setEnabled(nonId);
+        jCBS16.setEnabled(nonId);
+        jCBS17.setEnabled(nonId);
+        jCBS18.setEnabled(nonId);
+        jCBS19.setEnabled(nonId);
+        jCBS2.setEnabled(nonId);
+        jCBS20.setEnabled(nonId);
+        jCBS21.setEnabled(nonId);
+        jCBS22.setEnabled(nonId);
+        jCBS23.setEnabled(nonId);
+        jCBS24.setEnabled(nonId);
+        jCBS25.setEnabled(nonId);
+        jCBS26.setEnabled(nonId);
+        jCBS27.setEnabled(nonId);
+        jCBS28.setEnabled(nonId);
+        jCBS29.setEnabled(nonId);
+        jCBS3.setEnabled(nonId);
+        jCBS30.setEnabled(nonId);
+        jCBS31.setEnabled(nonId);
+        jCBS4.setEnabled(nonId);
+        jCBS5.setEnabled(nonId);
+        jCBS6.setEnabled(nonId);
+        jCBS7.setEnabled(nonId);
+        jCBS8.setEnabled(nonId);
+        jCBS9.setEnabled(nonId);
         jBRemoveProcedimento.setEnabled(nonId);
         jBAddProcedimento.setEnabled(nonId);
     }
@@ -2003,31 +1984,130 @@ public class JFTratamento extends javax.swing.JFrame {
         
     }
    
-    private void clearTextFields(){
+    private void clearComponents(){
         jTFoneFixo.setText("");
-        
-        jTFIdCliente.setText("0");
-        
-        jTFRG.setText("0");
-        
+        jTFIdTratamento.setText("0");
+        jTFNumProtocolo.setText("0");
+        jTFTelefoneMedico.setText("");
+        jTFTotal.setText("0.0");
+        jTFTotalEquipamentos.setText("0.0");
+        jTFAQueixaPrincipal.setText("");
+        jTFAProcedimento.setText("");
+        jTFDoenca.setText("");
+        jTFDente.setText("0");
+        jTFRegiao.setText("0");
+        jTFFace.setText("0");
+        jTFNomeMedico.setText("");
+        jTFDoencaInfectoContagiosa.setText("");
+        jTFIdCliente.setText("0");        
+        jTFRG.setText("0");        
         jTFNome.setText("");
         jTFoneFixo2.setText("");
-        jTFParentesco.setText("");
-        
+        jTFParentesco.setText("");        
         jTFCelular2.setText("");
         jTFCelular.setText("");
-        jTFCPF.setText("");
-        
-        jTFNomeResponsavel.setText("");
-        
+        jTFCPF.setText("");        
+        jTFNomeResponsavel.setText("");        
         jTFIDResponsavel.setText("0");
         jTFNomeResponsavel.setText("");
+        jCBD0.setSelected(false);
+        jCBD1.setSelected(false);
+        jCBD10.setSelected(false);
+        jCBD11.setSelected(false);
+        jCBD12.setSelected(false);
+        jCBD13.setSelected(false);
+        jCBD14.setSelected(false);
+        jCBD15.setSelected(false);
+        jCBD16.setSelected(false);
+        jCBD17.setSelected(false);
+        jCBD18.setSelected(false);
+        jCBD19.setSelected(false);
+        jCBD2.setSelected(false);
+        jCBD20.setSelected(false);
+        jCBD21.setSelected(false);
+        jCBD22.setSelected(false);
+        jCBD23.setSelected(false);
+        jCBD24.setSelected(false);
+        jCBD25.setSelected(false);
+        jCBD26.setSelected(false);
+        jCBD27.setSelected(false);
+        jCBD28.setSelected(false);
+        jCBD29.setSelected(false);
+        jCBD3.setSelected(false);
+        jCBD30.setSelected(false);
+        jCBD31.setSelected(false);
+        jCBD4.setSelected(false);
+        jCBD5.setSelected(false);
+        jCBD6.setSelected(false);
+        jCBD7.setSelected(false);
+        jCBD8.setSelected(false);
+        jCBD9.setSelected(false);
+        jCBS0.setSelected(false);
+        jCBS1.setSelected(false);
+        jCBS10.setSelected(false);
+        jCBS11.setSelected(false);
+        jCBS12.setSelected(false);
+        jCBS13.setSelected(false);
+        jCBS14.setSelected(false);
+        jCBS15.setSelected(false);
+        jCBS16.setSelected(false);
+        jCBS17.setSelected(false);
+        jCBS18.setSelected(false);
+        jCBS19.setSelected(false);
+        jCBS2.setSelected(false);
+        jCBS20.setSelected(false);
+        jCBS21.setSelected(false);
+        jCBS22.setSelected(false);
+        jCBS23.setSelected(false);
+        jCBS24.setSelected(false);
+        jCBS25.setSelected(false);
+        jCBS26.setSelected(false);
+        jCBS27.setSelected(false);
+        jCBS28.setSelected(false);
+        jCBS29.setSelected(false);
+        jCBS3.setSelected(false);
+        jCBS30.setSelected(false);
+        jCBS31.setSelected(false);
+        jCBS4.setSelected(false);
+        jCBS5.setSelected(false);
+        jCBS6.setSelected(false);
+        jCBS7.setSelected(false);
+        jCBS8.setSelected(false);
+        jCBS9.setSelected(false);
+        jCBEstaTratamento.setSelected(false);
+        jCBusaMedicacao.setSelected(false);
+        jCBHasAlergia.setSelected(false);
+        jCBHasAnemia.setSelected(false);
+        jCBHasHepatite.setSelected(false);
+        jCBHasSifilis.setSelected(false);
+        jCBHasHIV.setSelected(false);
+        jCBHasTuberculose.setSelected(false);
+        jCBHasAsma.setSelected(false);
+        jCBFuma.setSelected(false);
+        jCBIngereHormonios.setSelected(false);
+        jCBIsAlcoolatra.setSelected(false);
+        jCBHasHerpes.setSelected(false);
+        jCBIsGravida.setSelected(false);
+        jCBHasDesmaios.setSelected(false);
+        jCBHasFebreReumatica.setSelected(false);
+        jCBHasDiabetes.setSelected(false);
+        jCBHasEpilepsia.setSelected(false);
+        jCBHasEndocarditebacteriana.setSelected(false);
+        jCBHasDisturbioPsicologico.setSelected(false);
+        jCBHasCicatrizacaoRuim.setSelected(false);
+        jCBHasProblemaCardiaco.setSelected(false);
+        jCBHasProblemaRenal.setSelected(false);
+        jCBHasProblemaHepatico.setSelected(false);
+        jCBRealizouCirurgiaComInternacao.setSelected(false);
+        jCBHasTensaoArterial.setSelected(false);
+        jCBHasProblemasArticularesReumaticos.setSelected(false);
+        jTFDoencaInfectoContagiosa.setText("");
     }
     
     private void setStandardState(){
         this.setAll(false, true);
         jTFIdCliente.setEditable(false);
-        this.clearTextFields();
+        this.clearComponents();
         
     }
     
@@ -2039,7 +2119,7 @@ public class JFTratamento extends javax.swing.JFrame {
     private void jBRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRemoveActionPerformed
         setEditState();
         this.operacao=OperacaoCrud.REMOVER;
-        clearTextFields();
+        clearComponents();
         jLMsg.setText("Selecione o campo id e pressione F2 ou F7");
         jTFIdCliente.grabFocus();
     }//GEN-LAST:event_jBRemoveActionPerformed
@@ -2047,50 +2127,18 @@ public class JFTratamento extends javax.swing.JFrame {
     private void jBEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditActionPerformed
         setEditState();
         this.operacao=OperacaoCrud.EDITAR;
-        clearTextFields();
+        clearComponents();
         jLMsg.setText("Selecione o campo id e pressione F2 ou F7");
         jTFIdCliente.grabFocus();
     }//GEN-LAST:event_jBEditActionPerformed
 
     private void jBAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddActionPerformed
         jLMsg.setText("");
-        this.clearTextFields();
+        this.clearComponents();
         this.setAddState();
         this.operacao=OperacaoCrud.ADICIONAR;
 
     }//GEN-LAST:event_jBAddActionPerformed
-
-    private void jBS9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBS9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBS9ActionPerformed
-
-    private void jBS15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBS15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBS15ActionPerformed
-
-    private void jBD17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBD17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBD17ActionPerformed
-
-    private void jBS3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBS3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBS3ActionPerformed
-
-    private void jBD14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBD14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBD14ActionPerformed
-
-    private void jBD11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBD11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBD11ActionPerformed
-
-    private void jBD5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBD5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBD5ActionPerformed
-
-    private void jCBHasDoencaInfectoContagiosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBHasDoencaInfectoContagiosaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBHasDoencaInfectoContagiosaActionPerformed
 
     private void jCBHasProblemasArticularesReumaticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBHasProblemasArticularesReumaticosActionPerformed
         // TODO add your handling code here:
@@ -2196,9 +2244,9 @@ public class JFTratamento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBusaMedicacaoActionPerformed
 
-    private void jTFTelefoneMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefoneMedicoActionPerformed
+    private void jTFDoencaInfectoContagiosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFDoencaInfectoContagiosaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTFTelefoneMedicoActionPerformed
+    }//GEN-LAST:event_jTFDoencaInfectoContagiosaActionPerformed
 
     private void jTFNomeMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeMedicoActionPerformed
         // TODO add your handling code here:
@@ -2283,20 +2331,12 @@ public class JFTratamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFNumProtocoloActionPerformed
 
     private void jTFIdTratamentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIdTratamentoKeyPressed
-        // TODO add your handling code here:
+        doIdTratamentoKeyPressedAction(evt);
     }//GEN-LAST:event_jTFIdTratamentoKeyPressed
 
     private void jTFIdTratamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFIdTratamentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFIdTratamentoActionPerformed
-
-    private void jBS29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBS29ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBS29ActionPerformed
-
-    private void jBD0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBD0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBD0ActionPerformed
 
     private void jTFDenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFDenteActionPerformed
         // TODO add your handling code here:
@@ -2326,7 +2366,7 @@ public class JFTratamento extends javax.swing.JFrame {
     
     private void jTFTotalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTotalKeyReleased
         boolean valido=this.validator.validateDoubleStringNumber(jTFTotal.getText());
-        if(valido==false){
+        if(valido==false&&!jTFTotal.getText().equals("")){
             jTFTotal.setText("");
             jLMsg.setText("Digite um numero real válido, como 12.8");
         }
@@ -2334,7 +2374,7 @@ public class JFTratamento extends javax.swing.JFrame {
 
     private void jTFTotalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFTotalFocusLost
         boolean valido=this.validator.validateDoubleStringNumber(jTFTotal.getText());
-        if(valido==false){
+        if(valido==false&&!jTFTotal.getText().equals("")){
             jTFTotal.setText("");
             jLMsg.setText("Digite um numero real válido, como 12.8");
         }
@@ -2342,7 +2382,7 @@ public class JFTratamento extends javax.swing.JFrame {
 
     private void jTFTotalEquipamentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTotalEquipamentosKeyReleased
         boolean valido=this.validator.validateDoubleStringNumber(jTFTotalEquipamentos.getText());
-        if(valido==false){
+        if(valido==false&&!jTFTotalEquipamentos.getText().equals("")){
             jTFTotalEquipamentos.setText("");
             jLMsg.setText("Digite um numero real válido, como 12.8");
         }
@@ -2350,28 +2390,383 @@ public class JFTratamento extends javax.swing.JFrame {
 
     private void jTFTotalEquipamentosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFTotalEquipamentosFocusLost
         boolean valido=this.validator.validateDoubleStringNumber(jTFTotalEquipamentos.getText());
-        if(valido==false){
+        if(valido==false&&!jTFTotalEquipamentos.getText().equals("")){
             jTFTotalEquipamentos.setText("");
             jLMsg.setText("Digite um numero real válido, como 12.8");
         }
     }//GEN-LAST:event_jTFTotalEquipamentosFocusLost
+
+    private void jCBD24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBD24ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBD24ActionPerformed
+
+    private void jCBD26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBD26ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBD26ActionPerformed
+
+    private void jCBS17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBS17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBS17ActionPerformed
+
+    private void jCBD17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBD17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBD17ActionPerformed
+
+    private void jCBS0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBS0ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBS0ActionPerformed
+
+    private void jCBD27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBD27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBD27ActionPerformed
+
+    private void jTFIdClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIdClienteFocusGained
+        jLMsg.setText("Pressione F2 ou F7 para consultar");
+    }//GEN-LAST:event_jTFIdClienteFocusGained
+
+    private void jTFTelefoneMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefoneMedicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFTelefoneMedicoActionPerformed
+
+    private void jTFIdTratamentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIdTratamentoFocusGained
+        jLMsg.setText("Pressione F2 ou F7 para pesquisar");
+    }//GEN-LAST:event_jTFIdTratamentoFocusGained
+    
+    
+    
+    private void carregarTextFields(Tratamento selecionado){
+        model.setData(selecionado.getProcedimentododenteList());
+        jTFIdTratamento.setText(selecionado.getId()+"");       
+        jTFNumProtocolo.setText(selecionado.getNrProtocolo()+"");
+        jTFTotal.setText(selecionado.getValorCombinadoTratamento()+"");
+        jTFTotalEquipamentos.setText(selecionado.getValorCombinadoPecas()+"");
+        jXDate.getEditor().setText(selecionado.getDataInicioDia()+"/"+selecionado.getDataInicioMes()+"/"+selecionado.getDataInicioAno());
+        carregarTextFields(selecionado.getIdCliente());
+        jTFAQueixaPrincipal.setText(selecionado.getIdFichaAnamnese().getQueixaPrincipal());
+        jTFDoenca.setText(selecionado.getIdFichaAnamnese().getDoencaAtual());
+        jTFNomeMedico.setText(selecionado.getIdFichaAnamnese().getNomeMedicoAssistente());
+        jTFTelefoneMedico.setText(selecionado.getIdFichaAnamnese().getTelefoneMedicoAssistente());
+       	jTFDoencaInfectoContagiosa.setText(selecionado.getIdFichaAnamnese().getDoencaInfectocontagiosa());
+        if(selecionado.getIdFichaAnamnese().getEstatratamentoMedico()==1){
+            jCBEstaTratamento.setSelected(true);
+        }else{
+            jCBEstaTratamento.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getUsaMedicacao()==1){
+            jCBusaMedicacao.setSelected(true);
+        }else{
+            jCBusaMedicacao.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasAlergia()==1){
+            jCBHasAlergia.setSelected(true);
+        }else{
+            jCBHasAlergia.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasAnemia()==1){
+            jCBHasAnemia.setSelected(true);
+        }else{
+            jCBHasAnemia.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasHepatite()==1){
+            jCBHasHepatite.setSelected(true);
+        }else{
+            jCBHasHepatite.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasSifilis()==1){
+            jCBHasSifilis.setSelected(true);
+        }else{
+            jCBHasSifilis.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasHiv()==1){
+            jCBHasHIV.setSelected(true);
+        }else{
+            jCBHasHIV.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasTuberculose()==1){
+            jCBHasTuberculose.setSelected(true);
+        }else{
+            jCBHasTuberculose.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasAsma()==1){
+            jCBHasAsma.setSelected(true);
+        }else{
+            jCBHasAsma.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getIsfUmante()==1){
+            jCBFuma.setSelected(true);
+        }else{
+            jCBFuma.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasHormonios()==1){
+            jCBIngereHormonios.setSelected(true);
+        }else{
+            jCBIngereHormonios.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getIsAlcoolista()==1){
+            jCBIsAlcoolatra.setSelected(true);
+        }else{
+            jCBIsAlcoolatra.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasHerpes()==1){
+            jCBHasHerpes.setSelected(true);
+        }else{
+            jCBHasHerpes.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasGravidez()==1){
+            jCBIsGravida.setSelected(true);
+        }else{
+            jCBIsGravida.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasDesmaios()==1){
+            jCBHasDesmaios.setSelected(true);
+        }else{
+            jCBHasDesmaios.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasFebrereumatica()==1){
+            jCBHasFebreReumatica.setSelected(true);
+        }else{
+            jCBHasFebreReumatica.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasDiabetes()==1){
+            jCBHasDiabetes.setSelected(true);
+        }else{
+            jCBHasDiabetes.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasEpilepsia()==1){
+            jCBHasEpilepsia.setSelected(true);
+        }else{
+            jCBHasEpilepsia.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasEndocarditebacteriana()==1){
+            jCBHasEndocarditebacteriana.setSelected(true);
+        }else{
+            jCBHasEndocarditebacteriana.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasDisturbiopsicologico()==1){
+            jCBHasDisturbioPsicologico.setSelected(true);
+        }else{
+            jCBHasDisturbioPsicologico.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasCicatrizacaoruim()==1){
+            jCBHasCicatrizacaoRuim.setSelected(true);
+        }else{
+            jCBHasCicatrizacaoRuim.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasProblemacardiaco()==1){
+            jCBHasProblemaCardiaco.setSelected(true);
+        }else{
+            jCBHasProblemaCardiaco.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasProblemarenal()==1){
+            jCBHasProblemaRenal.setSelected(true);
+        }else{
+            jCBHasProblemaRenal.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasProblemahepatico()==1){
+            jCBHasProblemaHepatico.setSelected(true);
+        }else{
+            jCBHasProblemaHepatico.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasCirurgiacominternacaohospilar()==1){
+            jCBRealizouCirurgiaComInternacao.setSelected(true);
+        }else{
+            jCBRealizouCirurgiaComInternacao.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasTensaoarterial()==1){
+            jCBHasTensaoArterial.setSelected(true);
+        }else{
+            jCBHasTensaoArterial.setSelected(false);  
+        }
+        if(selecionado.getIdFichaAnamnese().getHasProblemasarticularesreumaticos()==1){
+            jCBHasProblemasArticularesReumaticos.setSelected(true);
+        }else{
+            jCBHasProblemasArticularesReumaticos.setSelected(false);  
+        }
+        
+        if(selecionado.getIdOdontograma().getD0()==1){
+            jCBD0.setSelected(true);
+        }else{
+            jCBD0.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD1()==1){
+            jCBD1.setSelected(true);
+        }else{
+            jCBD1.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD2()==1){
+            jCBD2.setSelected(true);
+        }else{
+            jCBD2.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD3()==1){
+            jCBD3.setSelected(true);
+        }else{
+            jCBD3.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD4()==1){
+            jCBD4.setSelected(true);
+        }else{
+            jCBD4.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD5()==1){
+            jCBD5.setSelected(true);
+        }else{
+            jCBD5.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD6()==1){
+            jCBD6.setSelected(true);
+        }else{
+            jCBD6.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD7()==1){
+            jCBD7.setSelected(true);
+        }else{
+            jCBD7.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD8()==1){
+            jCBD8.setSelected(true);
+        }else{
+            jCBD8.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD9()==1){
+            jCBD9.setSelected(true);
+        }else{
+            jCBD9.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD10()==1){
+            jCBD10.setSelected(true);
+        }else{
+            jCBD10.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD11()==1){
+            jCBD11.setSelected(true);
+        }else{
+            jCBD11.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD12()==1){
+            jCBD12.setSelected(true);
+        }else{
+            jCBD12.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD13()==1){
+            jCBD13.setSelected(true);
+        }else{
+            jCBD13.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD14()==1){
+            jCBD14.setSelected(true);
+        }else{
+            jCBD14.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD15()==1){
+            jCBD15.setSelected(true);
+        }else{
+            jCBD15.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD16()==1){
+            jCBD16.setSelected(true);
+        }else{
+            jCBD16.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD17()==1){
+            jCBD17.setSelected(true);
+        }else{
+            jCBD17.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD18()==1){
+            jCBD18.setSelected(true);
+        }else{
+            jCBD18.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD19()==1){
+            jCBD19.setSelected(true);
+        }else{
+            jCBD19.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD20()==1){
+            jCBD20.setSelected(true);
+        }else{
+            jCBD20.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD21()==1){
+            jCBD21.setSelected(true);
+        }else{
+            jCBD21.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD22()==1){
+            jCBD22.setSelected(true);
+        }else{
+            jCBD22.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD23()==1){
+            jCBD23.setSelected(true);
+        }else{
+            jCBD23.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD24()==1){
+            jCBD24.setSelected(true);
+        }else{
+            jCBD24.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD25()==1){
+            jCBD25.setSelected(true);
+        }else{
+            jCBD25.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD26()==1){
+            jCBD26.setSelected(true);
+        }else{
+            jCBD26.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD27()==1){
+            jCBD27.setSelected(true);
+        }else{
+            jCBD27.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD28()==1){
+            jCBD28.setSelected(true);
+        }else{
+            jCBD28.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD29()==1){
+            jCBD29.setSelected(true);
+        }else{
+            jCBD29.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD30()==1){
+            jCBD30.setSelected(true);
+        }else{
+            jCBD30.setSelected(false);
+        }
+        if(selecionado.getIdOdontograma().getD31()==1){
+            jCBD31.setSelected(true);
+        }else{
+            jCBD31.setSelected(false);
+        }
+        
+    }
+    
+    public void generateCodeQueToComPreguicaDeEscrever(){
+        for(int i = 0;i<=31;i++){
+            System.out.println("        if(selecionado.getIdOdontograma().getD"+i+"()==1){\n" +
+"            jCBD"+i+".setSelected(true);\n" +
+"        }else{\n" +
+"            jCBD"+i+".setSelected(false);\n" +
+"        }");
+        }
+    }
+    
     
     private void carregarTextFields(Cliente selecionado){
-        jTFoneFixo.setText(selecionado.getTelfixo1());
-        
-        jTFIdCliente.setText(selecionado.getId()+"");
-        
+        jTFoneFixo.setText(selecionado.getTelfixo1());        
+        jTFIdCliente.setText(selecionado.getId()+"");        
         jTFRG.setText(selecionado.getRg());
-
         jTFNome.setText(selecionado.getNome());
-        jTFoneFixo2.setText(selecionado.getTelfixo2());        
-       
+        jTFoneFixo2.setText(selecionado.getTelfixo2());      
         jTFCelular2.setText(selecionado.getTelcelular2());
         jTFCelular.setText(selecionado.getTelcelular1());
-        jTFCPF.setText(selecionado.getCpf());
-       
-        if(selecionado.getIdClienteResponsavel()!=null){
-            
+        jTFCPF.setText(selecionado.getCpf());       
+        if(selecionado.getIdClienteResponsavel()!=null){            
             jTFIDResponsavel.setText(selecionado.getIdClienteResponsavel().getId()+"");
             jTFNomeResponsavel.setText(selecionado.getIdClienteResponsavel().getNome());
             jTFParentesco.setText(selecionado.getParentesco());
@@ -2383,6 +2778,32 @@ public class JFTratamento extends javax.swing.JFrame {
     }
     
     
+    private void doIdTratamentoKeyPressedAction(java.awt.event.KeyEvent evt){
+        if(evt.getKeyCode() == KeyEvent.VK_F2||evt.getKeyCode() == KeyEvent.VK_F7){
+            JDListTratamento jd = new JDListTratamento(null, true);
+            jd.setVisible(true);
+            jLMsg.setText("");
+            while(jd.isClosed==false&&jd.isAborted==false){};
+            if(jd.isClosed=true){
+                tratamentoSelecionado = jd.selecionado;
+                if(tratamentoSelecionado!=null){
+                    carregarTextFields(tratamentoSelecionado);
+                    if(operacao==OperacaoCrud.EDITAR){
+                        setAddState();                        
+                    }else if(operacao==OperacaoCrud.REMOVER){
+                        setRemovalState();
+                    }                    
+                }else{
+                    this.clearComponents();
+                    setStandardState();
+                }                
+            }else{
+                this.clearComponents();
+                setStandardState();
+            }
+        }
+    }
+    
     private void doIdClienteKeyPressedAction(java.awt.event.KeyEvent evt){
         if(evt.getKeyCode() == KeyEvent.VK_F2||evt.getKeyCode() == KeyEvent.VK_F7){
             JDListCliente jd = new JDListCliente(null, true);
@@ -2390,24 +2811,15 @@ public class JFTratamento extends javax.swing.JFrame {
             jLMsg.setText("");
             while(jd.isClosed==false&&jd.isAborted==false){};
             if(jd.isClosed=true){
-                selecionado = jd.clienteSelecionado;
-                if(selecionado!=null){
-                    carregarTextFields(selecionado);
+                clienteSelecionado = jd.clienteSelecionado;
+                if(clienteSelecionado!=null){
+                    carregarTextFields(clienteSelecionado);
                     if(operacao==OperacaoCrud.EDITAR){
-                        setAddState();
                         if(!jTFIDResponsavel.getText().equals("0")&&!jTFIDResponsavel.getText().equals("")){
                             jTFParentesco.setEditable(true);
                         }
-                    }else if(operacao==OperacaoCrud.REMOVER){
-                        setRemovalState();
                     }                    
-                }else{
-                    this.clearTextFields();
-                    setStandardState();
                 }                
-            }else{
-                this.clearTextFields();
-                setStandardState();
             }
         }
     }
@@ -2452,75 +2864,43 @@ public class JFTratamento extends javax.swing.JFrame {
     private javax.swing.JButton jBAdd;
     private javax.swing.JButton jBAddProcedimento;
     private javax.swing.JButton jBCancelar;
-    private javax.swing.JButton jBD0;
-    private javax.swing.JButton jBD1;
-    private javax.swing.JButton jBD10;
-    private javax.swing.JButton jBD11;
-    private javax.swing.JButton jBD12;
-    private javax.swing.JButton jBD13;
-    private javax.swing.JButton jBD14;
-    private javax.swing.JButton jBD15;
-    private javax.swing.JButton jBD16;
-    private javax.swing.JButton jBD17;
-    private javax.swing.JButton jBD18;
-    private javax.swing.JButton jBD19;
-    private javax.swing.JButton jBD2;
-    private javax.swing.JButton jBD20;
-    private javax.swing.JButton jBD21;
-    private javax.swing.JButton jBD22;
-    private javax.swing.JButton jBD23;
-    private javax.swing.JButton jBD24;
-    private javax.swing.JButton jBD25;
-    private javax.swing.JButton jBD26;
-    private javax.swing.JButton jBD27;
-    private javax.swing.JButton jBD28;
-    private javax.swing.JButton jBD29;
-    private javax.swing.JButton jBD3;
-    private javax.swing.JButton jBD30;
-    private javax.swing.JButton jBD31;
-    private javax.swing.JButton jBD4;
-    private javax.swing.JButton jBD5;
-    private javax.swing.JButton jBD6;
-    private javax.swing.JButton jBD7;
-    private javax.swing.JButton jBD8;
-    private javax.swing.JButton jBD9;
     private javax.swing.JButton jBEdit;
     private javax.swing.JButton jBGravar;
     private javax.swing.JButton jBRead;
     private javax.swing.JButton jBRemove;
     private javax.swing.JButton jBRemoveProcedimento;
-    private javax.swing.JButton jBS0;
-    private javax.swing.JButton jBS1;
-    private javax.swing.JButton jBS10;
-    private javax.swing.JButton jBS11;
-    private javax.swing.JButton jBS12;
-    private javax.swing.JButton jBS13;
-    private javax.swing.JButton jBS14;
-    private javax.swing.JButton jBS15;
-    private javax.swing.JButton jBS16;
-    private javax.swing.JButton jBS17;
-    private javax.swing.JButton jBS18;
-    private javax.swing.JButton jBS19;
-    private javax.swing.JButton jBS2;
-    private javax.swing.JButton jBS20;
-    private javax.swing.JButton jBS21;
-    private javax.swing.JButton jBS22;
-    private javax.swing.JButton jBS23;
-    private javax.swing.JButton jBS24;
-    private javax.swing.JButton jBS25;
-    private javax.swing.JButton jBS26;
-    private javax.swing.JButton jBS27;
-    private javax.swing.JButton jBS28;
-    private javax.swing.JButton jBS29;
-    private javax.swing.JButton jBS3;
-    private javax.swing.JButton jBS30;
-    private javax.swing.JButton jBS31;
-    private javax.swing.JButton jBS4;
-    private javax.swing.JButton jBS5;
-    private javax.swing.JButton jBS6;
-    private javax.swing.JButton jBS7;
-    private javax.swing.JButton jBS8;
-    private javax.swing.JButton jBS9;
+    private javax.swing.JCheckBox jCBD0;
+    private javax.swing.JCheckBox jCBD1;
+    private javax.swing.JCheckBox jCBD10;
+    private javax.swing.JCheckBox jCBD11;
+    private javax.swing.JCheckBox jCBD12;
+    private javax.swing.JCheckBox jCBD13;
+    private javax.swing.JCheckBox jCBD14;
+    private javax.swing.JCheckBox jCBD15;
+    private javax.swing.JCheckBox jCBD16;
+    private javax.swing.JCheckBox jCBD17;
+    private javax.swing.JCheckBox jCBD18;
+    private javax.swing.JCheckBox jCBD19;
+    private javax.swing.JCheckBox jCBD2;
+    private javax.swing.JCheckBox jCBD20;
+    private javax.swing.JCheckBox jCBD21;
+    private javax.swing.JCheckBox jCBD22;
+    private javax.swing.JCheckBox jCBD23;
+    private javax.swing.JCheckBox jCBD24;
+    private javax.swing.JCheckBox jCBD25;
+    private javax.swing.JCheckBox jCBD26;
+    private javax.swing.JCheckBox jCBD27;
+    private javax.swing.JCheckBox jCBD28;
+    private javax.swing.JCheckBox jCBD29;
+    private javax.swing.JCheckBox jCBD3;
+    private javax.swing.JCheckBox jCBD30;
+    private javax.swing.JCheckBox jCBD31;
+    private javax.swing.JCheckBox jCBD4;
+    private javax.swing.JCheckBox jCBD5;
+    private javax.swing.JCheckBox jCBD6;
+    private javax.swing.JCheckBox jCBD7;
+    private javax.swing.JCheckBox jCBD8;
+    private javax.swing.JCheckBox jCBD9;
     private javax.swing.JCheckBox jCBEstaTratamento;
     private javax.swing.JCheckBox jCBFuma;
     private javax.swing.JCheckBox jCBHasAlergia;
@@ -2530,7 +2910,6 @@ public class JFTratamento extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCBHasDesmaios;
     private javax.swing.JCheckBox jCBHasDiabetes;
     private javax.swing.JCheckBox jCBHasDisturbioPsicologico;
-    private javax.swing.JCheckBox jCBHasDoencaInfectoContagiosa;
     private javax.swing.JCheckBox jCBHasEndocarditebacteriana;
     private javax.swing.JCheckBox jCBHasEpilepsia;
     private javax.swing.JCheckBox jCBHasFebreReumatica;
@@ -2548,6 +2927,38 @@ public class JFTratamento extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCBIsAlcoolatra;
     private javax.swing.JCheckBox jCBIsGravida;
     private javax.swing.JCheckBox jCBRealizouCirurgiaComInternacao;
+    private javax.swing.JCheckBox jCBS0;
+    private javax.swing.JCheckBox jCBS1;
+    private javax.swing.JCheckBox jCBS10;
+    private javax.swing.JCheckBox jCBS11;
+    private javax.swing.JCheckBox jCBS12;
+    private javax.swing.JCheckBox jCBS13;
+    private javax.swing.JCheckBox jCBS14;
+    private javax.swing.JCheckBox jCBS15;
+    private javax.swing.JCheckBox jCBS16;
+    private javax.swing.JCheckBox jCBS17;
+    private javax.swing.JCheckBox jCBS18;
+    private javax.swing.JCheckBox jCBS19;
+    private javax.swing.JCheckBox jCBS2;
+    private javax.swing.JCheckBox jCBS20;
+    private javax.swing.JCheckBox jCBS21;
+    private javax.swing.JCheckBox jCBS22;
+    private javax.swing.JCheckBox jCBS23;
+    private javax.swing.JCheckBox jCBS24;
+    private javax.swing.JCheckBox jCBS25;
+    private javax.swing.JCheckBox jCBS26;
+    private javax.swing.JCheckBox jCBS27;
+    private javax.swing.JCheckBox jCBS28;
+    private javax.swing.JCheckBox jCBS29;
+    private javax.swing.JCheckBox jCBS3;
+    private javax.swing.JCheckBox jCBS30;
+    private javax.swing.JCheckBox jCBS31;
+    private javax.swing.JCheckBox jCBS4;
+    private javax.swing.JCheckBox jCBS5;
+    private javax.swing.JCheckBox jCBS6;
+    private javax.swing.JCheckBox jCBS7;
+    private javax.swing.JCheckBox jCBS8;
+    private javax.swing.JCheckBox jCBS9;
     private javax.swing.JCheckBox jCBusaMedicacao;
     private javax.swing.JLabel jLMsg;
     private javax.swing.JLabel jLabel1;
@@ -2575,6 +2986,7 @@ public class JFTratamento extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel68;
     private javax.swing.JPanel jPanel69;
     private javax.swing.JPanel jPanel70;
+    private javax.swing.JPanel jPanel71;
     private javax.swing.JPanel jPanel72;
     private javax.swing.JPanel jPanel73;
     private javax.swing.JPanel jPanel74;
@@ -2590,6 +3002,7 @@ public class JFTratamento extends javax.swing.JFrame {
     private javax.swing.JTextField jTFCelular2;
     private javax.swing.JTextField jTFDente;
     private javax.swing.JTextField jTFDoenca;
+    private javax.swing.JTextField jTFDoencaInfectoContagiosa;
     private javax.swing.JTextField jTFFace;
     private javax.swing.JTextField jTFIDResponsavel;
     private javax.swing.JTextField jTFIdCliente;
