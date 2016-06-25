@@ -81,6 +81,8 @@ public class Cliente implements Serializable {
     private List<Fichaclinica> fichaclinicaList;
     @OneToMany(mappedBy = "idClienteResponsavel")
     private List<Fichaclinica> fichaclinicaList1;
+    @OneToMany(mappedBy = "idCliente")
+    private List<Tratamento> tratamentoList;
 
     public Cliente() {
     }
@@ -223,6 +225,14 @@ public class Cliente implements Serializable {
 
     public void setFichaclinicaList1(List<Fichaclinica> fichaclinicaList1) {
         this.fichaclinicaList1 = fichaclinicaList1;
+    }
+
+    public List<Tratamento> getTratamentoList() {
+        return tratamentoList;
+    }
+
+    public void setTratamentoList(List<Tratamento> tratamentoList) {
+        this.tratamentoList = tratamentoList;
     }
 
     @Override

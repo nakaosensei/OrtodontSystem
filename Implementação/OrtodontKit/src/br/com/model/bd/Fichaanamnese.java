@@ -6,6 +6,7 @@
 package br.com.model.bd;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -74,7 +76,7 @@ public class Fichaanamnese implements Serializable {
     @Column(name = "nomeMedicoAssistente")
     private String nomeMedicoAssistente;
     @Column(name = "telefoneMedicoAssistente")
-    private Integer telefoneMedicoAssistente;
+    private String telefoneMedicoAssistente;
     @Column(name = "usaMedicacao")
     private Integer usaMedicacao;
     @Column(name = "hasAlergia")
@@ -129,6 +131,8 @@ public class Fichaanamnese implements Serializable {
     private Integer hasCirurgiacominternacaohospilar;
     @Column(name = "doencaInfectocontagiosa")
     private String doencaInfectocontagiosa;
+    @OneToMany(mappedBy = "idFichaAnamnese")
+    private List<Tratamento> tratamentoList;
 
     public Fichaanamnese() {
     }
@@ -177,11 +181,11 @@ public class Fichaanamnese implements Serializable {
         this.nomeMedicoAssistente = nomeMedicoAssistente;
     }
 
-    public Integer getTelefoneMedicoAssistente() {
+    public String getTelefoneMedicoAssistente() {
         return telefoneMedicoAssistente;
     }
 
-    public void setTelefoneMedicoAssistente(Integer telefoneMedicoAssistente) {
+    public void setTelefoneMedicoAssistente(String telefoneMedicoAssistente) {
         this.telefoneMedicoAssistente = telefoneMedicoAssistente;
     }
 
@@ -399,6 +403,14 @@ public class Fichaanamnese implements Serializable {
 
     public void setDoencaInfectocontagiosa(String doencaInfectocontagiosa) {
         this.doencaInfectocontagiosa = doencaInfectocontagiosa;
+    }
+
+    public List<Tratamento> getTratamentoList() {
+        return tratamentoList;
+    }
+
+    public void setTratamentoList(List<Tratamento> tratamentoList) {
+        this.tratamentoList = tratamentoList;
     }
 
     @Override

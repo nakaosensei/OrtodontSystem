@@ -70,6 +70,16 @@ public class TextFieldFormatter {
        return jtf;
    }
    
+   public boolean validateDoubleStringNumber(String in){
+       String dNumber=in.replaceFirst(",", "."); 
+       try{            
+            double valor=Double.parseDouble(dNumber.trim());
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+        
+    }
    
    public String unmaskCEP(String cpf){
        cpf=cpf.replace(".", "");

@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -33,10 +35,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Tratamento.findByValorCombinadoPecas", query = "SELECT t FROM Tratamento t WHERE t.valorCombinadoPecas = :valorCombinadoPecas"),
     @NamedQuery(name = "Tratamento.findByDataInicioDia", query = "SELECT t FROM Tratamento t WHERE t.dataInicioDia = :dataInicioDia"),
     @NamedQuery(name = "Tratamento.findByDataInicioMes", query = "SELECT t FROM Tratamento t WHERE t.dataInicioMes = :dataInicioMes"),
-    @NamedQuery(name = "Tratamento.findByDataInicioAno", query = "SELECT t FROM Tratamento t WHERE t.dataInicioAno = :dataInicioAno"),
-    @NamedQuery(name = "Tratamento.findByIdFichaAnamnese", query = "SELECT t FROM Tratamento t WHERE t.idFichaAnamnese = :idFichaAnamnese"),
-    @NamedQuery(name = "Tratamento.findByIdOdontograma", query = "SELECT t FROM Tratamento t WHERE t.idOdontograma = :idOdontograma"),
-    @NamedQuery(name = "Tratamento.findByIdCliente", query = "SELECT t FROM Tratamento t WHERE t.idCliente = :idCliente")})
+    @NamedQuery(name = "Tratamento.findByDataInicioAno", query = "SELECT t FROM Tratamento t WHERE t.dataInicioAno = :dataInicioAno")})
 public class Tratamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,14 +58,17 @@ public class Tratamento implements Serializable {
     private String dataInicioMes;
     @Column(name = "dataInicioAno")
     private String dataInicioAno;
-    @Column(name = "idFichaAnamnese")
-    private Integer idFichaAnamnese;
-    @Column(name = "idOdontograma")
-    private Integer idOdontograma;
-    @Column(name = "idCliente")
-    private Integer idCliente;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTratamento")
     private List<Procedimentododente> procedimentododenteList;
+    @JoinColumn(name = "idFichaAnamnese", referencedColumnName = "id")
+    @ManyToOne
+    private Fichaanamnese idFichaAnamnese;
+    @JoinColumn(name = "idCliente", referencedColumnName = "id")
+    @ManyToOne
+    private Cliente idCliente;
+    @JoinColumn(name = "idOdontograma", referencedColumnName = "id")
+    @ManyToOne
+    private Odontograma idOdontograma;
 
     public Tratamento() {
     }
@@ -136,36 +138,36 @@ public class Tratamento implements Serializable {
         this.dataInicioAno = dataInicioAno;
     }
 
-    public Integer getIdFichaAnamnese() {
-        return idFichaAnamnese;
-    }
-
-    public void setIdFichaAnamnese(Integer idFichaAnamnese) {
-        this.idFichaAnamnese = idFichaAnamnese;
-    }
-
-    public Integer getIdOdontograma() {
-        return idOdontograma;
-    }
-
-    public void setIdOdontograma(Integer idOdontograma) {
-        this.idOdontograma = idOdontograma;
-    }
-
-    public Integer getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
-    }
-
     public List<Procedimentododente> getProcedimentododenteList() {
         return procedimentododenteList;
     }
 
     public void setProcedimentododenteList(List<Procedimentododente> procedimentododenteList) {
         this.procedimentododenteList = procedimentododenteList;
+    }
+
+    public Fichaanamnese getIdFichaAnamnese() {
+        return idFichaAnamnese;
+    }
+
+    public void setIdFichaAnamnese(Fichaanamnese idFichaAnamnese) {
+        this.idFichaAnamnese = idFichaAnamnese;
+    }
+
+    public Cliente getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Cliente idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Odontograma getIdOdontograma() {
+        return idOdontograma;
+    }
+
+    public void setIdOdontograma(Odontograma idOdontograma) {
+        this.idOdontograma = idOdontograma;
     }
 
     @Override
