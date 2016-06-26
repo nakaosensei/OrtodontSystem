@@ -10,6 +10,7 @@ import br.com.model.bd.Dentista;
 import br.com.model.bd.Recibo;
 import br.com.model.bd.Secretaria;
 import br.com.util.TextFieldFormatter;
+import br.com.view.exibicao.JDExibirRecibo;
 import br.com.view.exibicao.JDListCliente;
 import br.com.view.exibicao.JDListDentista;
 import java.text.SimpleDateFormat;
@@ -241,6 +242,11 @@ public class EmitirRecibo extends javax.swing.JDialog {
         });
 
         jBImprimir.setText("Imprimir Recibo");
+        jBImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBImprimirActionPerformed(evt);
+            }
+        });
 
         jPanel37.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Data"));
 
@@ -391,9 +397,19 @@ public class EmitirRecibo extends javax.swing.JDialog {
     private void jBGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGerarActionPerformed
         if(validator.validateDoubleStringNumber(jTFValor.getText())){
             preencherRecibo();
-            
+            JDExibirRecibo jdExibirRecibo = new JDExibirRecibo(null, true, recibo.getNrRecibo(),
+            recibo.getIdCliente().getNome(),recibo.getIdEmitente().getNome(),recibo.getValor(),
+            recibo.getDescricaoServico(),recibo.getData());
+            jdExibirRecibo.setVisible(true);
+            if(jdExibirRecibo.isClose){
+                jBImprimirActionPerformed(evt);
+            }
         }
     }//GEN-LAST:event_jBGerarActionPerformed
+
+    private void jBImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBImprimirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCP;
