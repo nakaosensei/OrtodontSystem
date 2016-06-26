@@ -16,6 +16,7 @@ import br.com.view.exibicao.JDListCliente;
 import br.com.view.exibicao.JDListDentista;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
@@ -404,10 +405,14 @@ public class JDEmitirRecibo extends javax.swing.JDialog {
 
     private void jBGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGerarActionPerformed
         if(validator.validateDoubleStringNumber(jTFValor.getText())){
+            if(this.dentista == null || this.cliente == null){
+                JOptionPane.showMessageDialog(null, "Selecione os campos necessários");
+                return;
+            }
             preencherRecibo();
             JDExibirRecibo jdExibirRecibo = new JDExibirRecibo(null, true, recibo.getNrRecibo(),
             recibo.getIdCliente().getNome(),recibo.getIdEmitente().getNome(),recibo.getValor(),
-            recibo.getDescricaoServico(),recibo.getData());
+            recibo.getDescricaoServico(),recibo.getData(), recibo.getIdEmitente().getCpf());
             jdExibirRecibo.setVisible(true);
             if(jdExibirRecibo.isClose){
                 jBImprimirActionPerformed(evt);
