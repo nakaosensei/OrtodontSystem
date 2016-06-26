@@ -5,6 +5,7 @@
  */
 package br.com.view;
 
+import br.com.DAO.DAORecibo;
 import br.com.model.bd.Cliente;
 import br.com.model.bd.Dentista;
 import br.com.model.bd.Recibo;
@@ -21,21 +22,23 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
  *
  * @author Convidado
  */
-public class EmitirRecibo extends javax.swing.JDialog {
+public class JDEmitirRecibo extends javax.swing.JDialog {
 
     TextFieldFormatter validator;
     Cliente cliente;
     Dentista dentista;
     Recibo recibo;
+    DAORecibo daoRecibo;
     
     /**
      * Creates new form EmitirRecibo
      */
-    public EmitirRecibo(java.awt.Frame parent, boolean modal) {
+    public JDEmitirRecibo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);        
         initComponents();
         validator = new TextFieldFormatter();
         recibo = new Recibo();
+        daoRecibo = new DAORecibo();
         clearTFs();
     }
 
@@ -58,7 +61,7 @@ public class EmitirRecibo extends javax.swing.JDialog {
         recibo.setIdCliente(cliente);
         recibo.setIdEmitente(dentista);
         recibo.setValor(Float.valueOf(jTFValor.getText()));
-        
+        daoRecibo.inserir(recibo);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -270,6 +273,11 @@ public class EmitirRecibo extends javax.swing.JDialog {
         );
 
         jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -410,6 +418,10 @@ public class EmitirRecibo extends javax.swing.JDialog {
     private void jBImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImprimirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBImprimirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCP;
