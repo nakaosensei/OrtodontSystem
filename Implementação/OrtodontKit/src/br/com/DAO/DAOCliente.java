@@ -33,6 +33,32 @@ public class DAOCliente extends DAOGenerico<Cliente>{
         Query q =em.createQuery("UPDATE Cliente SET idClienteResponsavel = NULL,parentesco=NULL WHERE :id = idClienteResponsavel.id");
         int count=q.setParameter("id", id).executeUpdate();        
         em.getTransaction().commit();
-    }   
+    }
+    
+    public boolean checkIfClienteHasTratamento(int id){
+        Query q = em.createQuery("SELECT t FROM Tratamento t where t.idCliente.id=:id");
+        q.setParameter("id", id);
+        if(!q.getResultList().isEmpty()){
+            return true;
+        }
+        return false;
+    }
+    public boolean checkIfClienteHasRecibo(int id){
+        Query q = em.createQuery("SELECT t FROM Recibo t where t.idCliente.id=:id");
+        q.setParameter("id", id);
+        if(!q.getResultList().isEmpty()){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkIfClienteHasEvento(int id){
+        Query q = em.createQuery("SELECT t FROM Evento t where t.idCliente.id=:id");
+        q.setParameter("id", id);
+        if(!q.getResultList().isEmpty()){
+            return true;
+        }
+        return false;
+    }
 }
 

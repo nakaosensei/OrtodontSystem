@@ -24,5 +24,28 @@ public class DAODentista extends DAOGenerico<Dentista> {
             return (Dentista)q.getResultList().get(0);
         }       
     }
-    
+    public boolean checkIfDentistaHasSecretaria(int id){
+        Query q = em.createQuery("SELECT t FROM Secretaria t where t.idDentistaPatrao.id=:id");
+        q.setParameter("id", id);
+        if(!q.getResultList().isEmpty()){
+            return true;
+        }
+        return false;
+    }
+    public boolean checkIfDentistaHasEvento(int id){
+        Query q = em.createQuery("SELECT t FROM Evento t where t.idDentista.id=:id");
+        q.setParameter("id", id);
+        if(!q.getResultList().isEmpty()){
+            return true;
+        }
+        return false;
+    }
+    public boolean checkIfDentistaHasRecibo(int id){
+        Query q = em.createQuery("SELECT t FROM Recibo t where t.idEmitente.id=:id");
+        q.setParameter("id", id);
+        if(!q.getResultList().isEmpty()){
+            return true;
+        }
+        return false;
+    }
 }

@@ -31,6 +31,8 @@ import javax.persistence.Table;
     @NamedQuery(name = "Tratamento.findAll", query = "SELECT t FROM Tratamento t"),
     @NamedQuery(name = "Tratamento.findById", query = "SELECT t FROM Tratamento t WHERE t.id = :id"),
     @NamedQuery(name = "Tratamento.findByNrProtocolo", query = "SELECT t FROM Tratamento t WHERE t.nrProtocolo = :nrProtocolo"),
+    @NamedQuery(name = "Tratamento.findByIndica\u00e7ao", query = "SELECT t FROM Tratamento t WHERE t.indica\u00e7ao = :indica\u00e7ao"),
+    @NamedQuery(name = "Tratamento.findByAtendimentoinicial", query = "SELECT t FROM Tratamento t WHERE t.atendimentoinicial = :atendimentoinicial"),
     @NamedQuery(name = "Tratamento.findByValorCombinadoTratamento", query = "SELECT t FROM Tratamento t WHERE t.valorCombinadoTratamento = :valorCombinadoTratamento"),
     @NamedQuery(name = "Tratamento.findByValorCombinadoPecas", query = "SELECT t FROM Tratamento t WHERE t.valorCombinadoPecas = :valorCombinadoPecas"),
     @NamedQuery(name = "Tratamento.findByDataInicioDia", query = "SELECT t FROM Tratamento t WHERE t.dataInicioDia = :dataInicioDia"),
@@ -47,6 +49,10 @@ public class Tratamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "nrProtocolo")
     private int nrProtocolo;
+    @Column(name = "indica\u00e7ao")
+    private String indicaçao;
+    @Column(name = "atendimentoinicial")
+    private String atendimentoinicial;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valorCombinadoTratamento")
     private Double valorCombinadoTratamento;
@@ -96,6 +102,22 @@ public class Tratamento implements Serializable {
 
     public void setNrProtocolo(int nrProtocolo) {
         this.nrProtocolo = nrProtocolo;
+    }
+
+    public String getIndicaçao() {
+        return indicaçao;
+    }
+
+    public void setIndicaçao(String indicaçao) {
+        this.indicaçao = indicaçao;
+    }
+
+    public String getAtendimentoinicial() {
+        return atendimentoinicial;
+    }
+
+    public void setAtendimentoinicial(String atendimentoinicial) {
+        this.atendimentoinicial = atendimentoinicial;
     }
 
     public Double getValorCombinadoTratamento() {

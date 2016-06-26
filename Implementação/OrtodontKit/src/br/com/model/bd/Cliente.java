@@ -78,10 +78,6 @@ public class Cliente implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private List<Evento> eventoList;
     @OneToMany(mappedBy = "idCliente")
-    private List<Fichaclinica> fichaclinicaList;
-    @OneToMany(mappedBy = "idClienteResponsavel")
-    private List<Fichaclinica> fichaclinicaList1;
-    @OneToMany(mappedBy = "idCliente")
     private List<Tratamento> tratamentoList;
 
     public Cliente() {
@@ -209,22 +205,6 @@ public class Cliente implements Serializable {
 
     public void setEventoList(List<Evento> eventoList) {
         this.eventoList = eventoList;
-    }
-
-    public List<Fichaclinica> getFichaclinicaList() {
-        return fichaclinicaList;
-    }
-
-    public void setFichaclinicaList(List<Fichaclinica> fichaclinicaList) {
-        this.fichaclinicaList = fichaclinicaList;
-    }
-
-    public List<Fichaclinica> getFichaclinicaList1() {
-        return fichaclinicaList1;
-    }
-
-    public void setFichaclinicaList1(List<Fichaclinica> fichaclinicaList1) {
-        this.fichaclinicaList1 = fichaclinicaList1;
     }
 
     public List<Tratamento> getTratamentoList() {

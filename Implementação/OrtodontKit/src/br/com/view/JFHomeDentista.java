@@ -192,6 +192,11 @@ public class JFHomeDentista extends javax.swing.JFrame {
 
         jMIEmitirRecibo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         jMIEmitirRecibo.setText("Emitir ");
+        jMIEmitirRecibo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIEmitirReciboActionPerformed(evt);
+            }
+        });
         jMenuRecibos.add(jMIEmitirRecibo);
 
         jMenuBar1.add(jMenuRecibos);
@@ -319,8 +324,14 @@ public class JFHomeDentista extends javax.swing.JFrame {
         crudClienteAction();
     }//GEN-LAST:event_jMIClienteActionPerformed
 
+    
+    private void openReciboWindow(){
+        JDEmitirRecibo jd = new JDEmitirRecibo(this, true);
+        jd.setVisible(true);
+    }
+    
     private void jBReciboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReciboActionPerformed
-        // TODO add your handling code here:
+        openReciboWindow();
     }//GEN-LAST:event_jBReciboActionPerformed
 
     private void doCrudSecretariaAction(){
@@ -366,6 +377,10 @@ public class JFHomeDentista extends javax.swing.JFrame {
     private void jBTratamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTratamentoActionPerformed
         doTratamentoAction();
     }//GEN-LAST:event_jBTratamentoActionPerformed
+
+    private void jMIEmitirReciboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIEmitirReciboActionPerformed
+        openReciboWindow();
+    }//GEN-LAST:event_jMIEmitirReciboActionPerformed
     
     private void close(){
         int res = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?");

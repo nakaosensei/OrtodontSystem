@@ -247,6 +247,16 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
         jPanel35.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "RG"));
 
         jTFRG.setBorder(null);
+        jTFRG.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFRGFocusLost(evt);
+            }
+        });
+        jTFRG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFRGKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
         jPanel35.setLayout(jPanel35Layout);
@@ -342,6 +352,16 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
         jPanel40.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "RG Orgão Expedidor"));
 
         jTFRGOrgao.setBorder(null);
+        jTFRGOrgao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFRGOrgaoFocusLost(evt);
+            }
+        });
+        jTFRGOrgao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFRGOrgaoKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel40Layout = new javax.swing.GroupLayout(jPanel40);
         jPanel40.setLayout(jPanel40Layout);
@@ -680,8 +700,8 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBGravar))
@@ -764,18 +784,19 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
         jTFCidadeEnderecoCasa.setText("");
         jTFRG.setText("0");
         jTFCelular2.setText("");
+        jTFCelular.setText("");
         jTFCPF.setText("");
         jTFCasaEnderecoCEP.setText("");
         jTFCasaEnderecoBairro.setText("");
        
         jTFEmail.setText("");
         jTFLogin.setText("");
-        jTFRGOrgao.setText("");
+        jTFRGOrgao.setText("0");
         jTFSenha.setText("");
     }
     
     private void setStandardState(){
-        this.setAll(false, true);
+        this.setAll(false, false);
         this.clearTextFields();
         jTFCasaIdEndereco.setEditable(false);
     }
@@ -952,6 +973,22 @@ public class JDCRUDSecretaria extends javax.swing.JDialog {
     private void jTFEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFEmailActionPerformed
+
+    private void jTFRGKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRGKeyReleased
+        jTFRG.setText(validator.getStringInThatRange(jTFRG.getText(), 17));
+    }//GEN-LAST:event_jTFRGKeyReleased
+
+    private void jTFRGFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFRGFocusLost
+        jTFRG.setText(validator.getStringInThatRange(jTFRG.getText(), 17));
+    }//GEN-LAST:event_jTFRGFocusLost
+
+    private void jTFRGOrgaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFRGOrgaoFocusLost
+        jTFRGOrgao.setText(validator.getStringInThatRange(jTFRGOrgao.getText(), 19));
+    }//GEN-LAST:event_jTFRGOrgaoFocusLost
+
+    private void jTFRGOrgaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRGOrgaoKeyReleased
+        jTFRGOrgao.setText(validator.getStringInThatRange(jTFRGOrgao.getText(), 19));
+    }//GEN-LAST:event_jTFRGOrgaoKeyReleased
 
     private void carregarTextFields(Secretaria selecionado){
         jTFoneFixo.setText(selecionado.getTelfixo1());

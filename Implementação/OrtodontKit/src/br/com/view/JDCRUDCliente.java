@@ -258,6 +258,16 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "RG"));
 
         jTFRG.setBorder(null);
+        jTFRG.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFRGFocusLost(evt);
+            }
+        });
+        jTFRG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFRGKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -877,8 +887,8 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             .addComponent(jTBPane)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBGravar)
@@ -981,7 +991,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
     }
     
     private void setStandardState(){
-        this.setAll(false, true);
+        this.setAll(false, false);
         this.clearTextFields();
         jTFidEnderecoTrabalho.setEditable(false);
         jTFCasaIdEndereco.setEditable(false);
@@ -1104,8 +1114,7 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){                
                 novo =preencherCliente(selecionado);
                 novo.setIdClienteResponsavel(null);
-                novo.setParentesco("");
-                System.out.println("oioioi");
+                novo.setParentesco("");                
             }else{                
                 novo=preencherClienteDependente(selecionado);                
             }
@@ -1116,9 +1125,18 @@ public class JDCRUDCliente extends javax.swing.JDialog {
         if(this.operacao==OperacaoCrud.REMOVER){
             selecionado.setIdClienteResponsavel(null);
             daoCli.removeAllDependenciesOfThatClientFromClient(selecionado.getId());
-            daoCli.remover(selecionado.getId());
-            this.setStandardState();            
-            jLMsg.setText("Cliente removido com sucesso");
+            if(daoCli.checkIfClienteHasEvento(selecionado.getId())){
+                jLMsg.setText("Cliente possui hora marcada, não pode ser deletado");
+            }else if(daoCli.checkIfClienteHasTratamento(selecionado.getId())){
+                jLMsg.setText("Cliente possui um tratamento, não pode ser deletado");
+            }else if(daoCli.checkIfClienteHasRecibo(selecionado.getId())){
+                jLMsg.setText("Cliente teve um recibo emitido, não pode ser deletado");
+            }else{
+                daoCli.remover(selecionado.getId());
+                this.setStandardState();            
+                jLMsg.setText("Cliente removido com sucesso");
+            }
+            
         }
     }//GEN-LAST:event_jBGravarActionPerformed
 
@@ -1233,6 +1251,14 @@ public class JDCRUDCliente extends javax.swing.JDialog {
             jTFParentesco.setEditable(true);
         }
     }//GEN-LAST:event_jTFIDResponsavelFocusGained
+
+    private void jTFRGKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRGKeyReleased
+        jTFRG.setText(validator.getStringInThatRange(jTFRG.getText(), 17));
+    }//GEN-LAST:event_jTFRGKeyReleased
+
+    private void jTFRGFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFRGFocusLost
+        jTFRG.setText(validator.getStringInThatRange(jTFRG.getText(), 17));
+    }//GEN-LAST:event_jTFRGFocusLost
 
     private void carregarTextFields(Cliente selecionado){
         jTFoneFixo.setText(selecionado.getTelfixo1());

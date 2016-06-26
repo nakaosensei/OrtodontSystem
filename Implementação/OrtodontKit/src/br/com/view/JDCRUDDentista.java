@@ -243,6 +243,16 @@ public class JDCRUDDentista extends javax.swing.JDialog {
         jPanel35.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "RG"));
 
         jTFRG.setBorder(null);
+        jTFRG.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFRGFocusLost(evt);
+            }
+        });
+        jTFRG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFRGKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
         jPanel35.setLayout(jPanel35Layout);
@@ -338,6 +348,16 @@ public class JDCRUDDentista extends javax.swing.JDialog {
         jPanel40.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "RG Orgão Expedidor"));
 
         jTFRGOrgao.setBorder(null);
+        jTFRGOrgao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFRGOrgaoFocusLost(evt);
+            }
+        });
+        jTFRGOrgao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFRGOrgaoKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel40Layout = new javax.swing.GroupLayout(jPanel40);
         jPanel40.setLayout(jPanel40Layout);
@@ -528,7 +548,7 @@ public class JDCRUDDentista extends javax.swing.JDialog {
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFCasaEnderecoNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+            .addComponent(jTFCasaEnderecoNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -697,7 +717,7 @@ public class JDCRUDDentista extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBRead, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                .addGap(2, 2, 2))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -775,9 +795,9 @@ public class JDCRUDDentista extends javax.swing.JDialog {
     }
     
     private void setStandardState(){
-        this.setAll(false, true);
+        this.setAll(false, false);
         this.clearTextFields();
-        jTFCasaIdEndereco.setEditable(false);
+        
     }
     
     private void setRemovalState(){
@@ -875,9 +895,18 @@ public class JDCRUDDentista extends javax.swing.JDialog {
             jLMsg.setText("Dentista editado(a) com sucesso");
         }
         if(this.operacao==OperacaoCrud.REMOVER){
-            daoDentista.remover(selecionado.getId());
-            this.setStandardState();            
-            jLMsg.setText("Dentista removido(a) com sucesso");
+            if(daoDentista.checkIfDentistaHasSecretaria(selecionado.getId())){
+                jLMsg.setText("Impossivel deletar, pois possui uma secretaria");
+            }else if(daoDentista.checkIfDentistaHasEvento(selecionado.getId())){
+                jLMsg.setText("Impossivel deletar, pois possui uma consulta(Agenda)");
+            }else if(daoDentista.checkIfDentistaHasRecibo(selecionado.getId())){
+                jLMsg.setText("Impossivel deletar, pois existe um recibo deste Dentista");
+            }else{
+                daoDentista.remover(selecionado.getId());
+                this.setStandardState();            
+                jLMsg.setText("Dentista removido(a) com sucesso");
+            }            
+            
         }
     }//GEN-LAST:event_jBGravarActionPerformed
    
@@ -951,6 +980,22 @@ public class JDCRUDDentista extends javax.swing.JDialog {
     private void jTFEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFEmailActionPerformed
+
+    private void jTFRGOrgaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRGOrgaoKeyReleased
+        jTFRGOrgao.setText(validator.getStringInThatRange(jTFRGOrgao.getText(), 19));
+    }//GEN-LAST:event_jTFRGOrgaoKeyReleased
+
+    private void jTFRGOrgaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFRGOrgaoFocusLost
+        jTFRGOrgao.setText(validator.getStringInThatRange(jTFRGOrgao.getText(), 19));
+    }//GEN-LAST:event_jTFRGOrgaoFocusLost
+
+    private void jTFRGKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRGKeyReleased
+        jTFRG.setText(validator.getStringInThatRange(jTFRG.getText(), 19));
+    }//GEN-LAST:event_jTFRGKeyReleased
+
+    private void jTFRGFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFRGFocusLost
+        jTFRG.setText(validator.getStringInThatRange(jTFRG.getText(), 19));
+    }//GEN-LAST:event_jTFRGFocusLost
 
     private void carregarTextFields(Dentista selecionado){
         jTFoneFixo.setText(selecionado.getTelfixo1());

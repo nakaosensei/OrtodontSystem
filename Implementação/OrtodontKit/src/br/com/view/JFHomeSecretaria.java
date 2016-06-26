@@ -5,20 +5,65 @@
  */
 package br.com.view;
 
+import br.com.model.bd.Dentista;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author a1061712
  */
 public class JFHomeSecretaria extends javax.swing.JFrame {
-
+    private Dentista owner;
     /**
      * Creates new form JFHome
      */
-    public JFHomeSecretaria() {
+    public JFHomeSecretaria(Dentista owner) {
+        this.owner=owner;
         initComponents();
         this.setLocationRelativeTo(null);
+        addListeners();
     }
 
+    private void addListeners(){
+        this.addWindowListener( new WindowListener(){
+            public void windowClosing( WindowEvent e ){
+                close();
+            }
+            public void windowClosed( WindowEvent e ){
+                
+                JFLogin jf = new JFLogin();
+                jf.setVisible(true);
+            }
+
+            @Override
+            public void windowOpened(WindowEvent e) {
+            //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,67 +79,103 @@ public class JFHomeSecretaria extends javax.swing.JFrame {
         jBRecibo = new javax.swing.JButton();
         jBCliente = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jBReport = new javax.swing.JButton();
+        jBSair = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAgenda = new javax.swing.JMenu();
-        jMIAgendar = new javax.swing.JMenuItem();
-        jMIDesagendar = new javax.swing.JMenuItem();
         jMIVer = new javax.swing.JMenuItem();
         jMenuRecibos = new javax.swing.JMenu();
         jMIEmitirRecibo = new javax.swing.JMenuItem();
         JMenuCadastros = new javax.swing.JMenu();
         jMICliente = new javax.swing.JMenuItem();
-        jMISair = new javax.swing.JMenu();
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/agenda48.png"))); // NOI18N
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jLabelBackGround.setFont(new java.awt.Font("TakaoPGothic", 1, 14)); // NOI18N
         jLabelBackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logo128.png"))); // NOI18N
         jLabelBackGround.setText("Ortodont System");
 
         jBAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/agenda48.png"))); // NOI18N
+        jBAgenda.setText("Agenda");
+        jBAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgendaActionPerformed(evt);
+            }
+        });
 
         jBRecibo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/recibo48.png"))); // NOI18N
+        jBRecibo.setText("Recibos");
+        jBRecibo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBReciboActionPerformed(evt);
+            }
+        });
 
         jBCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/cliente48.png"))); // NOI18N
+        jBCliente.setText("Cliente");
+        jBCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBClienteActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Logo/nkStation16.png"))); // NOI18N
         jLabel3.setText("Powered by Nk Station");
 
-        jBReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logout48.png"))); // NOI18N
+        jBSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/logout48.png"))); // NOI18N
+        jBSair.setText("Sair");
+        jBSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSairActionPerformed(evt);
+            }
+        });
 
         jMenuAgenda.setText("Agenda");
 
-        jMIAgendar.setText("Marcar");
-        jMenuAgenda.add(jMIAgendar);
-
-        jMIDesagendar.setText("Desmarcar");
-        jMenuAgenda.add(jMIDesagendar);
-
-        jMIVer.setText("Ver");
+        jMIVer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jMIVer.setText("Abrir");
+        jMIVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIVerActionPerformed(evt);
+            }
+        });
         jMenuAgenda.add(jMIVer);
 
         jMenuBar1.add(jMenuAgenda);
 
         jMenuRecibos.setText("Recibo");
 
+        jMIEmitirRecibo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         jMIEmitirRecibo.setText("Emitir ");
+        jMIEmitirRecibo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIEmitirReciboActionPerformed(evt);
+            }
+        });
         jMenuRecibos.add(jMIEmitirRecibo);
 
         jMenuBar1.add(jMenuRecibos);
 
         JMenuCadastros.setText("Cadastros");
+        JMenuCadastros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuCadastrosActionPerformed(evt);
+            }
+        });
 
+        jMICliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
         jMICliente.setText("Cadastrar Cliente");
+        jMICliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIClienteActionPerformed(evt);
+            }
+        });
         JMenuCadastros.add(jMICliente);
 
         jMenuBar1.add(JMenuCadastros);
-
-        jMISair.setText("Sair");
-        jMenuBar1.add(jMISair);
 
         setJMenuBar(jMenuBar1);
 
@@ -108,75 +189,100 @@ public class JFHomeSecretaria extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel3))
+                        .addComponent(jLabel3)
+                        .addGap(12, 12, 12))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(126, 126, 126)
-                                .addComponent(jBReport, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 12, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jBAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBSair, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(jBRecibo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(5, 5, 5))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56)))
+                .addComponent(jBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBReport, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3))
-            .addComponent(jLabelBackGround, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+            .addComponent(jLabelBackGround, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFHomeSecretaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFHomeSecretaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFHomeSecretaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFHomeSecretaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void jMIVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIVerActionPerformed
+        JFAgenda jfa = new JFAgenda(owner);
+        jfa.setVisible(true);
+    }//GEN-LAST:event_jMIVerActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFHomeSecretaria().setVisible(true);
-            }
-        });
+    private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
+        close();
+    }//GEN-LAST:event_jBSairActionPerformed
+
+    private void crudClienteAction(){
+        JDCRUDCliente jd = new JDCRUDCliente(this, true);
+        jd.setVisible(true);
+    }
+    
+    private void jMIClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIClienteActionPerformed
+        crudClienteAction();
+    }//GEN-LAST:event_jMIClienteActionPerformed
+
+    
+    private void openReciboWindow(){
+        JDEmitirRecibo jd = new JDEmitirRecibo(this, true);
+        jd.setVisible(true);
+    }
+    
+    private void jBReciboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReciboActionPerformed
+        openReciboWindow();
+    }//GEN-LAST:event_jBReciboActionPerformed
+
+    private void doCrudSecretariaAction(){
+        JDCRUDSecretaria jd = new JDCRUDSecretaria(this, true,owner);
+        jd.setVisible(true);
+    }
+    
+    private void jBClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBClienteActionPerformed
+        crudClienteAction();
+    }//GEN-LAST:event_jBClienteActionPerformed
+
+    private void JMenuCadastrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCadastrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JMenuCadastrosActionPerformed
+
+    private void jBAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgendaActionPerformed
+        JFAgenda jda = new JFAgenda(owner);
+        jda.setVisible(true);
+    }//GEN-LAST:event_jBAgendaActionPerformed
+
+    private void doTratamentoAction(){
+        JFTratamento jft = new JFTratamento();
+        jft.setVisible(true);
+    }
+    
+    private void jMIEmitirReciboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIEmitirReciboActionPerformed
+        openReciboWindow();
+    }//GEN-LAST:event_jMIEmitirReciboActionPerformed
+    
+    private void close(){
+        int res = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?");
+        if(res==0){
+            this.dispose();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -184,15 +290,12 @@ public class JFHomeSecretaria extends javax.swing.JFrame {
     private javax.swing.JButton jBAgenda;
     private javax.swing.JButton jBCliente;
     private javax.swing.JButton jBRecibo;
-    private javax.swing.JButton jBReport;
+    private javax.swing.JButton jBSair;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelBackGround;
-    private javax.swing.JMenuItem jMIAgendar;
     private javax.swing.JMenuItem jMICliente;
-    private javax.swing.JMenuItem jMIDesagendar;
     private javax.swing.JMenuItem jMIEmitirRecibo;
-    private javax.swing.JMenu jMISair;
     private javax.swing.JMenuItem jMIVer;
     private javax.swing.JMenu jMenuAgenda;
     private javax.swing.JMenuBar jMenuBar1;

@@ -6,6 +6,7 @@
 package br.com.DAO;
 
 import br.com.model.bd.Tratamento;
+import javax.persistence.Query;
 
 /**
  *
@@ -15,6 +16,16 @@ public class DAOTratamento extends DAOGenerico<Tratamento>{
     
     public DAOTratamento(){
         super(Tratamento.class);
+    }
+   
+    public int idLastInsert(){
+        Query q = em.createQuery("SELECT MAX(t.id) from Tratamento t");
+        if(q.getResultList()==null||q.getResultList().isEmpty()){
+            return 0;
+            
+        }else{
+            return (int)q.getResultList().get(0);
+        }            
     }
     
 }

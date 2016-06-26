@@ -9,7 +9,6 @@ import br.com.DAO.DAORecibo;
 import br.com.model.bd.Cliente;
 import br.com.model.bd.Dentista;
 import br.com.model.bd.Recibo;
-import br.com.model.bd.Secretaria;
 import br.com.util.TextFieldFormatter;
 import br.com.view.exibicao.JDExibirRecibo;
 import br.com.view.exibicao.JDListCliente;
@@ -17,7 +16,6 @@ import br.com.view.exibicao.JDListDentista;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
  *
@@ -36,10 +34,11 @@ public class JDEmitirRecibo extends javax.swing.JDialog {
      */
     public JDEmitirRecibo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);        
-        initComponents();
         validator = new TextFieldFormatter();
         recibo = new Recibo();
         daoRecibo = new DAORecibo();
+        initComponents();        
+        this.setLocationRelativeTo(null);
         clearTFs();
     }
 
@@ -189,9 +188,19 @@ public class JDEmitirRecibo extends javax.swing.JDialog {
         jPanel36.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Valor"));
 
         jTFValor.setBorder(null);
+        jTFValor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFValorFocusLost(evt);
+            }
+        });
         jTFValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFValorActionPerformed(evt);
+            }
+        });
+        jTFValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFValorKeyReleased(evt);
             }
         });
 
@@ -264,7 +273,7 @@ public class JDEmitirRecibo extends javax.swing.JDialog {
         jPanel37.setLayout(jPanel37Layout);
         jPanel37Layout.setHorizontalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFData, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+            .addComponent(jTFData, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
         );
         jPanel37Layout.setVerticalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,7 +319,7 @@ public class JDEmitirRecibo extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(93, 93, 93)
+                    .addGap(61, 61, 61)
                     .addComponent(jBImprimir)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jBGerar)
@@ -349,7 +358,7 @@ public class JDEmitirRecibo extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBDenntistaEminente, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                        .addComponent(jBDenntistaEminente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, Short.MAX_VALUE)
                         .addGap(112, 112, 112))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -374,6 +383,7 @@ public class JDEmitirRecibo extends javax.swing.JDialog {
 
     private void jBDenntistaEminenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDenntistaEminenteActionPerformed
         JDListDentista jd = new JDListDentista(null, true);
+        jd.setVisible(true);
         while(jd.isClosed==false&&jd.isAborted==false){};
         if(jd.isClosed==true){
             dentista = jd.dentistaSelecionado;
@@ -396,6 +406,7 @@ public class JDEmitirRecibo extends javax.swing.JDialog {
 
     private void jBCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCPActionPerformed
         JDListCliente jd = new JDListCliente(null, true);
+        jd.setVisible(true);
         while(jd.isClosed==false&&jd.isAborted==false){};
         if(jd.isClosed==true){
             cliente = jd.clienteSelecionado;
@@ -417,6 +428,8 @@ public class JDEmitirRecibo extends javax.swing.JDialog {
             if(jdExibirRecibo.isClose){
                 jBImprimirActionPerformed(evt);
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione o valor, o cliente e o dentista");
         }
     }//GEN-LAST:event_jBGerarActionPerformed
 
@@ -427,6 +440,20 @@ public class JDEmitirRecibo extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTFValorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFValorKeyReleased
+        boolean valido=this.validator.validateDoubleStringNumber(jTFValor.getText());
+        if(valido==false&&!jTFValor.getText().equals("")){
+            jTFValor.setText("");            
+        }
+    }//GEN-LAST:event_jTFValorKeyReleased
+
+    private void jTFValorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFValorFocusLost
+        boolean valido=this.validator.validateDoubleStringNumber(jTFValor.getText());
+        if(valido==false&&!jTFValor.getText().equals("")){
+            jTFValor.setText("");            
+        }
+    }//GEN-LAST:event_jTFValorFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCP;

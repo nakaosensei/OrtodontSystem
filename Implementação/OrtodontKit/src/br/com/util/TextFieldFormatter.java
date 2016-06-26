@@ -79,8 +79,19 @@ public class TextFieldFormatter {
             return false;
         }
         
-    }
+   }
+   public String getStringInThatRange(String in,int limitRange){
+       if(in.length()>limitRange){
+           String nova="";
+           nova=in.substring(0, limitRange-1);
+           return nova;
+       }else{
+           return in;
+       }
+        
+   }
    
+    
    public String unmaskCEP(String cpf){
        cpf=cpf.replace(".", "");
        cpf=cpf.replace("-", "");       

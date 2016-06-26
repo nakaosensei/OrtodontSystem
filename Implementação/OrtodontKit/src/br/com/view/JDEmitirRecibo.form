@@ -55,7 +55,7 @@
           <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
               <Group type="102" attributes="0">
                   <Component id="jPanel37" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                   <Component id="jBImprimir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jBGerar" min="-2" max="-2" attributes="0"/>
@@ -348,7 +348,9 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFValorFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFValorActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFValorKeyReleased"/>
           </Events>
         </Component>
       </SubComponents>
@@ -441,7 +443,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jTFData" alignment="0" pref="70" max="32767" attributes="0"/>
+              <Component id="jTFData" alignment="0" pref="102" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

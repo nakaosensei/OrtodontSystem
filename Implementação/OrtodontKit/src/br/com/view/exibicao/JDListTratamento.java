@@ -34,7 +34,7 @@ public class JDListTratamento extends javax.swing.JDialog {
         tratamentos = new ArrayList<>();
         List<Tratamento> tratamentosR=daoTratamento.listAll();
         for(Tratamento t:tratamentosR){
-            tratamentos.add(this.contertTratamentoToTratamentoFilter(t));
+            tratamentos.add(this.convertTratamentoToTratamentoFilter(t));
         }      
         model=new ModelTabelaListTratamento();
         model.setData(tratamentos);
@@ -43,7 +43,7 @@ public class JDListTratamento extends javax.swing.JDialog {
         addListeners();
     }
     
-    private TratamentoFilter contertTratamentoToTratamentoFilter(Tratamento t){
+    private TratamentoFilter convertTratamentoToTratamentoFilter(Tratamento t){
         TratamentoFilter tf = new TratamentoFilter();
         tf.setAno(t.getDataInicioAno());
         tf.setMes(t.getDataInicioMes());

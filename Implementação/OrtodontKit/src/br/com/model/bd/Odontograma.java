@@ -89,7 +89,8 @@ import javax.persistence.Table;
     @NamedQuery(name = "Odontograma.findByS27", query = "SELECT o FROM Odontograma o WHERE o.s27 = :s27"),
     @NamedQuery(name = "Odontograma.findByS28", query = "SELECT o FROM Odontograma o WHERE o.s28 = :s28"),
     @NamedQuery(name = "Odontograma.findByS29", query = "SELECT o FROM Odontograma o WHERE o.s29 = :s29"),
-    @NamedQuery(name = "Odontograma.findByS30", query = "SELECT o FROM Odontograma o WHERE o.s30 = :s30")})
+    @NamedQuery(name = "Odontograma.findByS30", query = "SELECT o FROM Odontograma o WHERE o.s30 = :s30"),
+    @NamedQuery(name = "Odontograma.findByS31", query = "SELECT o FROM Odontograma o WHERE o.s31 = :s31")})
 public class Odontograma implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -224,6 +225,8 @@ public class Odontograma implements Serializable {
     private Integer s29;
     @Column(name = "s30")
     private Integer s30;
+    @Column(name = "s31")
+    private Integer s31;
     @OneToMany(mappedBy = "idOdontograma")
     private List<Tratamento> tratamentoList;
 
@@ -744,6 +747,14 @@ public class Odontograma implements Serializable {
 
     public void setS30(Integer s30) {
         this.s30 = s30;
+    }
+
+    public Integer getS31() {
+        return s31;
+    }
+
+    public void setS31(Integer s31) {
+        this.s31 = s31;
     }
 
     public List<Tratamento> getTratamentoList() {

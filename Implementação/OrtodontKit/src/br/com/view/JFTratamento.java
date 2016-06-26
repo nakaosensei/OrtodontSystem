@@ -1,8 +1,15 @@
 
 package br.com.view;
 
+import br.com.DAO.DAOFichaAnamnese;
+
+import br.com.DAO.DAOOdontograma;
+import br.com.DAO.DAOProcedimento;
+import br.com.DAO.DAOTratamento;
 import br.com.model.bd.Cliente;
 import br.com.model.bd.Fichaanamnese;
+import br.com.model.bd.Odontograma;
+import br.com.model.bd.Procedimentododente;
 import br.com.model.bd.Tratamento;
 import br.com.model.tables.ModelTabelaProcedimentoDente;
 import br.com.util.OperacaoCrud;
@@ -10,7 +17,9 @@ import br.com.util.TextFieldFormatter;
 import br.com.view.exibicao.JDListCliente;
 import br.com.view.exibicao.JDListTratamento;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,7 +31,13 @@ public class JFTratamento extends javax.swing.JFrame {
     private Cliente clienteSelecionado;
     private OperacaoCrud operacao;
     private Tratamento tratamentoSelecionado;
+    private Procedimentododente procedimentoSelecionado;
     private ModelTabelaProcedimentoDente model = new ModelTabelaProcedimentoDente();
+    private DAOFichaAnamnese daoFichaAnamn = new DAOFichaAnamnese();
+    private DAOOdontograma daoOdontograma = new DAOOdontograma();
+    private DAOProcedimento daoProcedimento = new DAOProcedimento();   
+    private DAOTratamento daoTratamento = new DAOTratamento();
+    
     
     public JFTratamento() {
         initComponents();        
@@ -70,10 +85,6 @@ public class JFTratamento extends javax.swing.JFrame {
         jTFIDResponsavel = validator.getIntegerTextField();
         jPanel41 = new javax.swing.JPanel();
         jTFNomeResponsavel = new javax.swing.JTextField();
-        jPanel35 = new javax.swing.JPanel();
-        jTFCPF = validator.getCPFTextField();
-        jPanel36 = new javax.swing.JPanel();
-        jTFRG = validator.getIntegerTextField();
         jPanel40 = new javax.swing.JPanel();
         jTFCelular = validator.getTelefoneTextField();
         jPanel37 = new javax.swing.JPanel();
@@ -84,6 +95,12 @@ public class JFTratamento extends javax.swing.JFrame {
         jTFoneFixo2 = validator.getTelefoneTextField();
         jPanel38 = new javax.swing.JPanel();
         jTFParentesco = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTFAIndicacao = new javax.swing.JTextArea();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTFAAtendimentoInicial = new javax.swing.JTextArea();
         jPanel62 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -414,6 +431,9 @@ public class JFTratamento extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTFIdClienteFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFIdClienteFocusLost(evt);
+            }
         });
         jTFIdCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -510,47 +530,13 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel41.setLayout(jPanel41Layout);
         jPanel41Layout.setHorizontalGroup(
             jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFNomeResponsavel, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+            .addComponent(jTFNomeResponsavel, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
         );
         jPanel41Layout.setVerticalGroup(
             jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel41Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jTFNomeResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel35.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "CPF"));
-
-        jTFCPF.setBorder(null);
-
-        javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
-        jPanel35.setLayout(jPanel35Layout);
-        jPanel35Layout.setHorizontalGroup(
-            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFCPF)
-        );
-        jPanel35Layout.setVerticalGroup(
-            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel35Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTFCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel36.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "RG"));
-
-        jTFRG.setBorder(null);
-
-        javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
-        jPanel36.setLayout(jPanel36Layout);
-        jPanel36Layout.setHorizontalGroup(
-            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFRG, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel36Layout.setVerticalGroup(
-            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel36Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTFRG, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel40.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Fone(Celular)"));
@@ -561,7 +547,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel40.setLayout(jPanel40Layout);
         jPanel40Layout.setHorizontalGroup(
             jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+            .addComponent(jTFCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
         jPanel40Layout.setVerticalGroup(
             jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -583,7 +569,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel37.setLayout(jPanel37Layout);
         jPanel37Layout.setHorizontalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFoneFixo)
+            .addComponent(jTFoneFixo, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
         );
         jPanel37Layout.setVerticalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -600,7 +586,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel39.setLayout(jPanel39Layout);
         jPanel39Layout.setHorizontalGroup(
             jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFCelular2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTFCelular2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
         );
         jPanel39Layout.setVerticalGroup(
             jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -622,7 +608,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel43.setLayout(jPanel43Layout);
         jPanel43Layout.setHorizontalGroup(
             jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTFoneFixo2, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+            .addComponent(jTFoneFixo2, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
         );
         jPanel43Layout.setVerticalGroup(
             jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -649,6 +635,44 @@ public class JFTratamento extends javax.swing.JFrame {
                 .addComponent(jTFParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))), "Indicação"));
+
+        jTFAIndicacao.setColumns(20);
+        jTFAIndicacao.setRows(5);
+        jScrollPane4.setViewportView(jTFAIndicacao);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))), "Atendimento Inicial"));
+
+        jTFAAtendimentoInicial.setColumns(20);
+        jTFAAtendimentoInicial.setRows(5);
+        jScrollPane6.setViewportView(jTFAAtendimentoInicial);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane6)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -656,40 +680,39 @@ public class JFTratamento extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel64, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel66, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel65, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel67, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jPanel41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanel64, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel66, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel43, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jPanel65, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel67, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel43, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
                 .addGap(21, 21, 21))
@@ -697,7 +720,6 @@ public class JFTratamento extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -707,7 +729,11 @@ public class JFTratamento extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel67, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel66, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -717,17 +743,12 @@ public class JFTratamento extends javax.swing.JFrame {
                         .addComponent(jPanel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel43, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel43, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                    .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -805,7 +826,7 @@ public class JFTratamento extends javax.swing.JFrame {
                 .addComponent(jTFNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel70.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Doença InfectoContagiosa"));
+        jPanel70.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Doença Inf Contagiosa"));
 
         jTFDoencaInfectoContagiosa.setBorder(null);
         jTFDoencaInfectoContagiosa.addActionListener(new java.awt.event.ActionListener() {
@@ -1198,6 +1219,11 @@ public class JFTratamento extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTBProcedimento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTBProcedimentoMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTBProcedimento);
 
         jPanel72.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dente"));
@@ -1302,9 +1328,19 @@ public class JFTratamento extends javax.swing.JFrame {
 
         jBAddProcedimento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/add1_32.png"))); // NOI18N
         jBAddProcedimento.setText("Adicionar");
+        jBAddProcedimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAddProcedimentoActionPerformed(evt);
+            }
+        });
 
         jBRemoveProcedimento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icons/Icons/close1_32.png"))); // NOI18N
         jBRemoveProcedimento.setText("Remover");
+        jBRemoveProcedimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRemoveProcedimentoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel63Layout = new javax.swing.GroupLayout(jPanel63);
         jPanel63.setLayout(jPanel63Layout);
@@ -1786,17 +1822,15 @@ public class JFTratamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     
-    private Tratamento generateTramento(){
-        Tratamento novo = new Tratamento();
+    private Tratamento preencherTratamento(Tratamento novo){        
         if(jTFNumProtocolo.getText().trim().equals("")||jTFNumProtocolo.getText().trim().equals("0")){
             JOptionPane.showMessageDialog(null, "Escreva o numero do protocolo");
             return null;
         }
-        if(jTFIdCliente.getText().trim().equals("")||jTFIdCliente.getText().trim().equals("0")){
+        if(jTFIdCliente.getText().trim().equals("")||jTFIdCliente.getText().trim().equals("0")||clienteSelecionado==null){
             JOptionPane.showMessageDialog(null, "Selecione o cliente");
             return null;
-        }
-        
+        }        
         String date[] = jXDate.getEditor().getText().split("/");
         novo.setDataInicioDia(date[0]);
         novo.setDataInicioMes(date[1]);
@@ -1804,45 +1838,179 @@ public class JFTratamento extends javax.swing.JFrame {
         novo.setNrProtocolo(Integer.parseInt(jTFNumProtocolo.getText().trim()));
         novo.setValorCombinadoPecas(Double.parseDouble(jTFTotalEquipamentos.getText()));
         novo.setValorCombinadoTratamento(Double.parseDouble(jTFTotal.getText().trim()));
-        novo.setIdCliente(clienteSelecionado);
-        
-        Fichaanamnese ficha = new Fichaanamnese();
+        novo.setIndicaçao(jTFAIndicacao.getText());
+        novo.setAtendimentoinicial(jTFAAtendimentoInicial.getText());
+        Fichaanamnese ficha;
+        Odontograma odont;
+        if(this.operacao==operacao.ADICIONAR){
+            ficha= new Fichaanamnese();
+            odont = new Odontograma();
+        }else{
+            ficha = daoFichaAnamn.obter(tratamentoSelecionado.getIdFichaAnamnese().getId());
+            odont = daoOdontograma.obter(tratamentoSelecionado.getIdOdontograma().getId());
+        }         
         ficha.setQueixaPrincipal(jTFAQueixaPrincipal.getText());
         ficha.setDoencaAtual(jTFDoenca.getText());
         ficha.setDoencaInfectocontagiosa(jTFDoencaInfectoContagiosa.getText());
         ficha.setNomeMedicoAssistente(jTFNomeMedico.getText());
-        ficha.setTelefoneMedicoAssistente(jTFTelefoneMedico.getText());
+        ficha.setTelefoneMedicoAssistente(jTFTelefoneMedico.getText());        
+        ficha.setEstatratamentoMedico(jCBEstaTratamento.isSelected()?1:0);
+        ficha.setIsfUmante(jCBFuma.isSelected()?1:0);
+        ficha.setHasAlergia(jCBHasAlergia.isSelected()?1:0);
+        ficha.setHasAnemia(jCBHasAnemia.isSelected()?1:0);
+        ficha.setHasAsma(jCBHasAsma.isSelected()?1:0);
+        ficha.setHasCicatrizacaoruim(jCBHasCicatrizacaoRuim.isSelected()?1:0);
+        ficha.setHasDesmaios(jCBHasDesmaios.isSelected()?1:0);
+        ficha.setHasDiabetes(jCBHasDiabetes.isSelected()?1:0);
+        ficha.setHasDisturbiopsicologico(jCBHasDisturbioPsicologico.isSelected()?1:0);
+        ficha.setHasEndocarditebacteriana(jCBHasEndocarditebacteriana.isSelected()?1:0);
+        ficha.setHasEpilepsia(jCBHasEpilepsia.isSelected()?1:0);
+        ficha.setHasFebrereumatica(jCBHasFebreReumatica.isSelected()?1:0);
+        ficha.setHasHiv(jCBHasHIV.isSelected()?1:0);
+        ficha.setHasHepatite(jCBHasHepatite.isSelected()?1:0);
+        ficha.setHasHerpes(jCBHasHerpes.isSelected()?1:0);
+        ficha.setHasProblemacardiaco(jCBHasProblemaCardiaco.isSelected()?1:0);
+        ficha.setHasProblemahepatico(jCBHasProblemaHepatico.isSelected()?1:0);
+        ficha.setHasProblemarenal(jCBHasProblemaRenal.isSelected()?1:0);
+        ficha.setHasProblemasarticularesreumaticos(jCBHasProblemasArticularesReumaticos.isSelected()?1:0);
+        ficha.setHasSifilis(jCBHasSifilis.isSelected()?1:0);
+        ficha.setHasTensaoarterial(jCBHasTensaoArterial.isSelected()?1:0);
+        ficha.setHasTuberculose(jCBHasTuberculose.isSelected()?1:0);
+        ficha.setHasHormonios(jCBIngereHormonios.isSelected()?1:0);
+        ficha.setIsAlcoolista(jCBIsAlcoolatra.isSelected()?1:0);
+        ficha.setHasGravidez(jCBIsGravida.isSelected()?1:0);
+        ficha.setHasCirurgiacominternacaohospilar(jCBRealizouCirurgiaComInternacao.isSelected()?1:0);
+        ficha.setUsaMedicacao(jCBusaMedicacao.isSelected()?1:0);
+                 
         
-        //novo.setNrProtocolo(jTFNumProtocolo.getText());
-        return null;
+        odont.setD0(jCBD0.isSelected()?1:0);
+        odont.setD1(jCBD1.isSelected()?1:0);
+        odont.setD10(jCBD10.isSelected()?1:0);
+        odont.setD11(jCBD11.isSelected()?1:0);
+        odont.setD12(jCBD12.isSelected()?1:0);
+        odont.setD13(jCBD13.isSelected()?1:0);
+        odont.setD14(jCBD14.isSelected()?1:0);
+        odont.setD15(jCBD15.isSelected()?1:0);
+        odont.setD16(jCBD16.isSelected()?1:0);
+        odont.setD17(jCBD17.isSelected()?1:0);
+        odont.setD18(jCBD18.isSelected()?1:0);
+        odont.setD19(jCBD19.isSelected()?1:0);
+        odont.setD2(jCBD2.isSelected()?1:0);
+        odont.setD20(jCBD20.isSelected()?1:0);
+        odont.setD21(jCBD21.isSelected()?1:0);
+        odont.setD22(jCBD22.isSelected()?1:0);
+        odont.setD23(jCBD23.isSelected()?1:0);
+        odont.setD24(jCBD24.isSelected()?1:0);
+        odont.setD25(jCBD25.isSelected()?1:0);
+        odont.setD26(jCBD26.isSelected()?1:0);
+        odont.setD27(jCBD27.isSelected()?1:0);
+        odont.setD28(jCBD28.isSelected()?1:0);
+        odont.setD29(jCBD29.isSelected()?1:0);
+        odont.setD3(jCBD3.isSelected()?1:0);
+        odont.setD30(jCBD30.isSelected()?1:0);
+        odont.setD31(jCBD31.isSelected()?1:0);
+        odont.setD4(jCBD4.isSelected()?1:0);
+        odont.setD5(jCBD5.isSelected()?1:0);
+        odont.setD6(jCBD6.isSelected()?1:0);
+        odont.setD7(jCBD7.isSelected()?1:0);
+        odont.setD8(jCBD8.isSelected()?1:0);
+        odont.setD9(jCBD9.isSelected()?1:0);
+        odont.setS0(jCBS0.isSelected()?1:0);
+        odont.setS1(jCBS1.isSelected()?1:0);
+        odont.setS10(jCBS10.isSelected()?1:0);
+        odont.setS11(jCBS11.isSelected()?1:0);
+        odont.setS12(jCBS12.isSelected()?1:0);
+        odont.setS13(jCBS13.isSelected()?1:0);
+        odont.setS14(jCBS14.isSelected()?1:0);
+        odont.setS15(jCBS15.isSelected()?1:0);
+        odont.setS16(jCBS16.isSelected()?1:0);
+        odont.setS17(jCBS17.isSelected()?1:0);
+        odont.setS18(jCBS18.isSelected()?1:0);
+        odont.setS19(jCBS19.isSelected()?1:0);
+        odont.setS2(jCBS2.isSelected()?1:0);
+        odont.setS20(jCBS20.isSelected()?1:0);
+        odont.setS21(jCBS21.isSelected()?1:0);
+        odont.setS22(jCBS22.isSelected()?1:0);
+        odont.setS23(jCBS23.isSelected()?1:0);
+        odont.setS24(jCBS24.isSelected()?1:0);
+        odont.setS25(jCBS25.isSelected()?1:0);
+        odont.setS26(jCBS26.isSelected()?1:0);
+        odont.setS27(jCBS27.isSelected()?1:0);
+        odont.setS28(jCBS28.isSelected()?1:0);
+        odont.setS29(jCBS29.isSelected()?1:0);
+        odont.setS3(jCBS3.isSelected()?1:0);
+        odont.setS30(jCBS30.isSelected()?1:0);
+        odont.setS31(jCBS31.isSelected()?1:0);
+        odont.setS4(jCBS4.isSelected()?1:0);
+        odont.setS5(jCBS5.isSelected()?1:0);
+        odont.setS6(jCBS6.isSelected()?1:0);
+        odont.setS7(jCBS7.isSelected()?1:0);
+        odont.setS8(jCBS8.isSelected()?1:0);
+        odont.setS9(jCBS9.isSelected()?1:0);                        
+        List<Procedimentododente> proceds = new ArrayList<>();        
+        if(operacao==OperacaoCrud.ADICIONAR){
+            daoFichaAnamn.inserir(ficha);
+            daoOdontograma.inserir(odont);
+            novo.setIdFichaAnamnese(ficha);
+            novo.setIdOdontograma(odont);        
+            novo.setIdCliente(clienteSelecionado);
+            daoTratamento.inserir(novo);
+            novo=daoTratamento.obter(daoTratamento.idLastInsert());
+            daoProcedimento.removeAllFromTratamento(novo.getId());
+            for(Procedimentododente p:model.getData()){
+                p.setIdTratamento(novo);
+                daoProcedimento.inserir(p);
+                proceds.add(p);
+            }
+            novo.setProcedimentododenteList(proceds);
+            daoTratamento.atualizar(novo);
+        }else if(operacao==OperacaoCrud.EDITAR){
+            daoOdontograma.atualizar(odont);
+            daoFichaAnamn.atualizar(ficha);            
+            novo.setIdCliente(clienteSelecionado);
+            novo.setIdFichaAnamnese(ficha);
+            novo.setIdOdontograma(odont);
+            daoProcedimento.removeAllFromTratamento(tratamentoSelecionado.getId());
+            for(Procedimentododente pdt:model.getData()){
+                daoProcedimento.inserir(pdt);
+            }
+            novo.setProcedimentododenteList(model.getData());
+            daoTratamento.atualizar(novo);
+        }                
+        return novo;
     }
     
     
+       
+    
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        Cliente novo;
+        Tratamento novo;
         if(this.operacao==OperacaoCrud.ADICIONAR){
-           
-        }
-        /*if(this.operacao==OperacaoCrud.EDITAR){
-            if(jTFIDResponsavel.getText().trim().equals("")||jTFIDResponsavel.getText().trim().equals("0")){
-                novo =preencherCliente(selecionado);
-                novo.setIdClienteResponsavel(null);
-                novo.setParentesco("");
-                System.out.println("oioioi");
-            }else{
-                novo=preencherClienteDependente(selecionado);
+            novo = new Tratamento();
+            novo = preencherTratamento(novo);
+            if(novo!=null){                
+                this.setStandardState();
+                jLMsg.setText("Tratamento cadastrado com sucesso");
+            }            
+        }else if(this.operacao==OperacaoCrud.EDITAR){
+            novo=preencherTratamento(this.tratamentoSelecionado);
+            if(novo!=null){
+                this.setStandardState();
+                jLMsg.setText("Tratamento editado com sucesso");
+            }            
+        }else if(this.operacao==OperacaoCrud.REMOVER){
+            for(Procedimentododente d:model.lista){
+                daoProcedimento.remover(d.getId());
             }
-            daoCli.atualizar(novo);
+            
+            daoTratamento.remover(tratamentoSelecionado.getId());
+            daoOdontograma.remover(tratamentoSelecionado.getIdOdontograma().getId());
+            daoFichaAnamn.remover(tratamentoSelecionado.getIdFichaAnamnese().getId());
+            
             this.setStandardState();
-            jLMsg.setText("Cliente editado com sucesso");
+            jLMsg.setText("Tratamento deletado com sucesso");
         }
-        if(this.operacao==OperacaoCrud.REMOVER){
-            selecionado.setIdClienteResponsavel(null);
-            daoCli.removeAllDependenciesOfThatClientFromClient(selecionado.getId());
-            daoCli.remover(selecionado.getId());
-            this.setStandardState();
-            jLMsg.setText("Cliente removido com sucesso");
-        }*/
+        
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jBReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReadActionPerformed
@@ -1853,7 +2021,9 @@ public class JFTratamento extends javax.swing.JFrame {
         if(jd.isClosed==true){
             
         }
-
+        this.clearComponents();
+        this.setStandardState();
+        
     }//GEN-LAST:event_jBReadActionPerformed
     private void formatarDatas() {
         jXDate.setFormats("dd/MM/yyyy");
@@ -1869,13 +2039,13 @@ public class JFTratamento extends javax.swing.JFrame {
     }
     private void disableShowFields(){
         jTFoneFixo.setEditable(false);       
-        jTFRG.setEditable(false);
+        
         jTFNome.setEditable(false);
         jTFoneFixo2.setEditable(false);
         jTFParentesco.setEditable(false);
         jTFCelular2.setEditable(false);
         jTFCelular.setEditable(false);
-        jTFCPF.setEditable(false);
+        
         jTFNomeResponsavel.setEditable(false);        
         jTFIDResponsavel.setEditable(false);
         jTFNomeResponsavel.setEditable(false);
@@ -1886,6 +2056,8 @@ public class JFTratamento extends javax.swing.JFrame {
         jTBProcedimento.setEnabled(nonId);
         jTFIdTratamento.setEditable(id);        
         jTFNumProtocolo.setEditable(nonId);
+        jTFAAtendimentoInicial.setEnabled(nonId);
+        jTFAIndicacao.setEnabled(nonId);
         jTFAProcedimento.setEnabled(nonId);
         jTFTelefoneMedico.setEditable(nonId);
         jTFAProcedimento.setEditable(nonId);
@@ -1929,7 +2101,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jCBIsGravida.setEnabled(nonId);
         jCBRealizouCirurgiaComInternacao.setEnabled(nonId);
         jCBusaMedicacao.setEnabled(nonId);
-        	jCBD0.setEnabled(nonId);
+        jCBD0.setEnabled(nonId);
         jCBD1.setEnabled(nonId);
         jCBD10.setEnabled(nonId);
         jCBD11.setEnabled(nonId);
@@ -2008,9 +2180,12 @@ public class JFTratamento extends javax.swing.JFrame {
     }
    
     private void clearComponents(){
+        model.setData(new ArrayList<>());
         jTFoneFixo.setText("");
         jTFIdTratamento.setText("0");
         jTFNumProtocolo.setText("0");
+        jTFAAtendimentoInicial.setText("");
+        jTFAIndicacao.setText("");
         jTFTelefoneMedico.setText("");
         jTFTotal.setText("0.0");
         jTFTotalEquipamentos.setText("0.0");
@@ -2023,13 +2198,13 @@ public class JFTratamento extends javax.swing.JFrame {
         jTFNomeMedico.setText("");
         jTFDoencaInfectoContagiosa.setText("");
         jTFIdCliente.setText("0");        
-        jTFRG.setText("0");        
+               
         jTFNome.setText("");
         jTFoneFixo2.setText("");
         jTFParentesco.setText("");        
         jTFCelular2.setText("");
         jTFCelular.setText("");
-        jTFCPF.setText("");        
+              
         jTFNomeResponsavel.setText("");        
         jTFIDResponsavel.setText("0");
         jTFNomeResponsavel.setText("");
@@ -2128,8 +2303,7 @@ public class JFTratamento extends javax.swing.JFrame {
     }
     
     private void setStandardState(){
-        this.setAll(false, true);
-        jTFIdCliente.setEditable(false);
+        this.setAll(false, false);        
         this.clearComponents();
         
     }
@@ -2144,7 +2318,7 @@ public class JFTratamento extends javax.swing.JFrame {
         this.operacao=OperacaoCrud.REMOVER;
         clearComponents();
         jLMsg.setText("Selecione o campo id e pressione F2 ou F7");
-        jTFIdCliente.grabFocus();
+        jTFIdTratamento.grabFocus();
     }//GEN-LAST:event_jBRemoveActionPerformed
 
     private void jBEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditActionPerformed
@@ -2152,7 +2326,7 @@ public class JFTratamento extends javax.swing.JFrame {
         this.operacao=OperacaoCrud.EDITAR;
         clearComponents();
         jLMsg.setText("Selecione o campo id e pressione F2 ou F7");
-        jTFIdCliente.grabFocus();
+        jTFIdTratamento.grabFocus();
     }//GEN-LAST:event_jBEditActionPerformed
 
     private void jBAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddActionPerformed
@@ -2162,6 +2336,84 @@ public class JFTratamento extends javax.swing.JFrame {
         this.operacao=OperacaoCrud.ADICIONAR;
 
     }//GEN-LAST:event_jBAddActionPerformed
+
+    private void jCBS17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBS17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBS17ActionPerformed
+
+    private void jCBS0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBS0ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBS0ActionPerformed
+
+    private void jCBD27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBD27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBD27ActionPerformed
+
+    private void jCBD26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBD26ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBD26ActionPerformed
+
+    private void jCBD24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBD24ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBD24ActionPerformed
+
+    private void jCBD17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBD17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBD17ActionPerformed
+
+    private void jBRemoveProcedimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRemoveProcedimentoActionPerformed
+        if(procedimentoSelecionado!=null){
+            model.remove(procedimentoSelecionado);
+        }
+        procedimentoSelecionado=null;
+    }//GEN-LAST:event_jBRemoveProcedimentoActionPerformed
+
+    private void jBAddProcedimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddProcedimentoActionPerformed
+        Procedimentododente p = new Procedimentododente();
+        p.setDente(Integer.parseInt(jTFDente.getText()));
+        p.setFace(Integer.parseInt(jTFFace.getText()));
+        p.setProcedimentoIndicado(jTFAProcedimento.getText());
+        p.setRegiao(Integer.parseInt(jTFRegiao.getText()));
+        p.setIdTratamento(tratamentoSelecionado);
+        model.add(p);
+    }//GEN-LAST:event_jBAddProcedimentoActionPerformed
+
+    private void jTFFaceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFFaceKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFFaceKeyPressed
+
+    private void jTFFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFFaceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFFaceActionPerformed
+
+    private void jTFRegiaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRegiaoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFRegiaoKeyPressed
+
+    private void jTFRegiaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRegiaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFRegiaoActionPerformed
+
+    private void jTFDenteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDenteKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFDenteKeyPressed
+
+    private void jTFDenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFDenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFDenteActionPerformed
+
+    private void jTBProcedimentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBProcedimentoMouseClicked
+        try {
+            int linhaSelecionada = jTBProcedimento.convertRowIndexToModel(jTBProcedimento.getSelectedRow());
+            procedimentoSelecionado=model.getValue(linhaSelecionada);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTBProcedimentoMouseClicked
+
+    private void jTFTelefoneMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefoneMedicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFTelefoneMedicoActionPerformed
 
     private void jCBHasProblemasArticularesReumaticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBHasProblemasArticularesReumaticosActionPerformed
         // TODO add your handling code here:
@@ -2323,11 +2575,23 @@ public class JFTratamento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFIdClienteActionPerformed
 
+    private void jTFIdClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIdClienteFocusGained
+        jLMsg.setText("Pressione F2 ou F7 para consultar");
+    }//GEN-LAST:event_jTFIdClienteFocusGained
+
     private void jXDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXDateActionPerformed
         // this.clearFields();
         // this.disableComponents();
         // jLMsg.setText("Selecione um dia e abra a agenda");
     }//GEN-LAST:event_jXDateActionPerformed
+
+    private void jTFTotalEquipamentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTotalEquipamentosKeyReleased
+        boolean valido=this.validator.validateDoubleStringNumber(jTFTotalEquipamentos.getText());
+        if(valido==false&&!jTFTotalEquipamentos.getText().equals("")){
+            jTFTotalEquipamentos.setText("");
+            jLMsg.setText("Digite um numero real válido, como 12.8");
+        }
+    }//GEN-LAST:event_jTFTotalEquipamentosKeyReleased
 
     private void jTFTotalEquipamentosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTotalEquipamentosKeyPressed
         // TODO add your handling code here:
@@ -2337,6 +2601,22 @@ public class JFTratamento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFTotalEquipamentosActionPerformed
 
+    private void jTFTotalEquipamentosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFTotalEquipamentosFocusLost
+        boolean valido=this.validator.validateDoubleStringNumber(jTFTotalEquipamentos.getText());
+        if(valido==false&&!jTFTotalEquipamentos.getText().equals("")){
+            jTFTotalEquipamentos.setText("");
+            jLMsg.setText("Digite um numero real válido, como 12.8");
+        }
+    }//GEN-LAST:event_jTFTotalEquipamentosFocusLost
+
+    private void jTFTotalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTotalKeyReleased
+        boolean valido=this.validator.validateDoubleStringNumber(jTFTotal.getText());
+        if(valido==false&&!jTFTotal.getText().equals("")){
+            jTFTotal.setText("");
+            jLMsg.setText("Digite um numero real válido, como 12.8");
+        }
+    }//GEN-LAST:event_jTFTotalKeyReleased
+
     private void jTFTotalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTotalKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFTotalKeyPressed
@@ -2344,6 +2624,14 @@ public class JFTratamento extends javax.swing.JFrame {
     private void jTFTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFTotalActionPerformed
+
+    private void jTFTotalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFTotalFocusLost
+        boolean valido=this.validator.validateDoubleStringNumber(jTFTotal.getText());
+        if(valido==false&&!jTFTotal.getText().equals("")){
+            jTFTotal.setText("");
+            jLMsg.setText("Digite um numero real válido, como 12.8");
+        }
+    }//GEN-LAST:event_jTFTotalFocusLost
 
     private void jTFNumProtocoloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNumProtocoloKeyPressed
         // TODO add your handling code here:
@@ -2361,110 +2649,44 @@ public class JFTratamento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFIdTratamentoActionPerformed
 
-    private void jTFDenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFDenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFDenteActionPerformed
-
-    private void jTFDenteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDenteKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFDenteKeyPressed
-
-    private void jTFRegiaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRegiaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFRegiaoActionPerformed
-
-    private void jTFRegiaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRegiaoKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFRegiaoKeyPressed
-
-    private void jTFFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFFaceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFFaceActionPerformed
-
-    private void jTFFaceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFFaceKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFFaceKeyPressed
-
-    
-    
-    private void jTFTotalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTotalKeyReleased
-        boolean valido=this.validator.validateDoubleStringNumber(jTFTotal.getText());
-        if(valido==false&&!jTFTotal.getText().equals("")){
-            jTFTotal.setText("");
-            jLMsg.setText("Digite um numero real válido, como 12.8");
-        }
-    }//GEN-LAST:event_jTFTotalKeyReleased
-
-    private void jTFTotalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFTotalFocusLost
-        boolean valido=this.validator.validateDoubleStringNumber(jTFTotal.getText());
-        if(valido==false&&!jTFTotal.getText().equals("")){
-            jTFTotal.setText("");
-            jLMsg.setText("Digite um numero real válido, como 12.8");
-        }
-    }//GEN-LAST:event_jTFTotalFocusLost
-
-    private void jTFTotalEquipamentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTotalEquipamentosKeyReleased
-        boolean valido=this.validator.validateDoubleStringNumber(jTFTotalEquipamentos.getText());
-        if(valido==false&&!jTFTotalEquipamentos.getText().equals("")){
-            jTFTotalEquipamentos.setText("");
-            jLMsg.setText("Digite um numero real válido, como 12.8");
-        }
-    }//GEN-LAST:event_jTFTotalEquipamentosKeyReleased
-
-    private void jTFTotalEquipamentosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFTotalEquipamentosFocusLost
-        boolean valido=this.validator.validateDoubleStringNumber(jTFTotalEquipamentos.getText());
-        if(valido==false&&!jTFTotalEquipamentos.getText().equals("")){
-            jTFTotalEquipamentos.setText("");
-            jLMsg.setText("Digite um numero real válido, como 12.8");
-        }
-    }//GEN-LAST:event_jTFTotalEquipamentosFocusLost
-
-    private void jCBD24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBD24ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBD24ActionPerformed
-
-    private void jCBD26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBD26ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBD26ActionPerformed
-
-    private void jCBS17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBS17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBS17ActionPerformed
-
-    private void jCBD17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBD17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBD17ActionPerformed
-
-    private void jCBS0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBS0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBS0ActionPerformed
-
-    private void jCBD27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBD27ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBD27ActionPerformed
-
-    private void jTFIdClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIdClienteFocusGained
-        jLMsg.setText("Pressione F2 ou F7 para consultar");
-    }//GEN-LAST:event_jTFIdClienteFocusGained
-
-    private void jTFTelefoneMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefoneMedicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFTelefoneMedicoActionPerformed
-
     private void jTFIdTratamentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIdTratamentoFocusGained
         jLMsg.setText("Pressione F2 ou F7 para pesquisar");
     }//GEN-LAST:event_jTFIdTratamentoFocusGained
+
+    private void jTFIdClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIdClienteFocusLost
+        try {
+            Integer.parseInt(jTFIdCliente.getText());
+        } catch (Exception e) {
+            clearCliente();        
+        }
+    }//GEN-LAST:event_jTFIdClienteFocusLost
+
     
-    
+        
+    private void clearCliente(){
+        jTFNome.setText("");
+        jTFIDResponsavel.setText("0");
+        jTFNomeResponsavel.setText("");
+        jTFParentesco.setText("");
+        jTFIdCliente.setText("0");
+        jTFoneFixo.setText("");
+        jTFoneFixo2.setText("");
+        jTFCelular.setText("");
+        jTFCelular2.setText("");
+        
+    }
     
     private void carregarTextFields(Tratamento selecionado){
         model.setData(selecionado.getProcedimentododenteList());
+        jTFAAtendimentoInicial.setText(selecionado.getAtendimentoinicial());
+        jTFAIndicacao.setText(selecionado.getIndicaçao());
         jTFIdTratamento.setText(selecionado.getId()+"");       
         jTFNumProtocolo.setText(selecionado.getNrProtocolo()+"");
         jTFTotal.setText(selecionado.getValorCombinadoTratamento()+"");
         jTFTotalEquipamentos.setText(selecionado.getValorCombinadoPecas()+"");
         jXDate.getEditor().setText(selecionado.getDataInicioDia()+"/"+selecionado.getDataInicioMes()+"/"+selecionado.getDataInicioAno());
         carregarTextFields(selecionado.getIdCliente());
+        this.clienteSelecionado=selecionado.getIdCliente();
         jTFAQueixaPrincipal.setText(selecionado.getIdFichaAnamnese().getQueixaPrincipal());
         jTFDoenca.setText(selecionado.getIdFichaAnamnese().getDoencaAtual());
         jTFNomeMedico.setText(selecionado.getIdFichaAnamnese().getNomeMedicoAssistente());
@@ -2783,12 +3005,12 @@ public class JFTratamento extends javax.swing.JFrame {
     private void carregarTextFields(Cliente selecionado){
         jTFoneFixo.setText(selecionado.getTelfixo1());        
         jTFIdCliente.setText(selecionado.getId()+"");        
-        jTFRG.setText(selecionado.getRg());
+        
         jTFNome.setText(selecionado.getNome());
         jTFoneFixo2.setText(selecionado.getTelfixo2());      
         jTFCelular2.setText(selecionado.getTelcelular2());
         jTFCelular.setText(selecionado.getTelcelular1());
-        jTFCPF.setText(selecionado.getCpf());       
+               
         if(selecionado.getIdClienteResponsavel()!=null){            
             jTFIDResponsavel.setText(selecionado.getIdClienteResponsavel().getId()+"");
             jTFNomeResponsavel.setText(selecionado.getIdClienteResponsavel().getNome());
@@ -2872,6 +3094,7 @@ public class JFTratamento extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JFTratamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -2991,15 +3214,15 @@ public class JFTratamento extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel34;
-    private javax.swing.JPanel jPanel35;
-    private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
     private javax.swing.JPanel jPanel39;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel40;
     private javax.swing.JPanel jPanel41;
     private javax.swing.JPanel jPanel42;
     private javax.swing.JPanel jPanel43;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel62;
     private javax.swing.JPanel jPanel63;
     private javax.swing.JPanel jPanel64;
@@ -3016,11 +3239,14 @@ public class JFTratamento extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTBPane1;
     private javax.swing.JTable jTBProcedimento;
+    private javax.swing.JTextArea jTFAAtendimentoInicial;
+    private javax.swing.JTextArea jTFAIndicacao;
     private javax.swing.JTextArea jTFAProcedimento;
     private javax.swing.JTextArea jTFAQueixaPrincipal;
-    private javax.swing.JTextField jTFCPF;
     private javax.swing.JTextField jTFCelular;
     private javax.swing.JTextField jTFCelular2;
     private javax.swing.JTextField jTFDente;
@@ -3035,7 +3261,6 @@ public class JFTratamento extends javax.swing.JFrame {
     private javax.swing.JTextField jTFNomeResponsavel;
     private javax.swing.JTextField jTFNumProtocolo;
     private javax.swing.JTextField jTFParentesco;
-    private javax.swing.JTextField jTFRG;
     private javax.swing.JTextField jTFRegiao;
     private javax.swing.JTextField jTFTelefoneMedico;
     private javax.swing.JTextField jTFTotal;

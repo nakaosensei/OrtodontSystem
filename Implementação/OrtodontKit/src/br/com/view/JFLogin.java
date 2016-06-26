@@ -203,7 +203,7 @@ public class JFLogin extends javax.swing.JFrame {
                 DAOSecretaria daos = new DAOSecretaria();
                 Secretaria cadastrada = daos.getIfIsRegistered(login, pw);
                 if(cadastrada!=null){
-                    JFHomeSecretaria jfs = new JFHomeSecretaria();
+                    JFHomeSecretaria jfs = new JFHomeSecretaria(cadastrada.getIdDentistaPatrao());
                     jfs.setVisible(true);
                     this.dispose();
                 }else{
