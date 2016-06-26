@@ -17,11 +17,13 @@ public class JDExibirRecibo extends javax.swing.JDialog {
     /**
      * Creates new form JDExibirRecibo
      */
+    public boolean isClose;
     public JDExibirRecibo(java.awt.Frame parent, boolean modal,int id, String nomeCliente,String nomeDentista,Float valor,
             String descricao, Date dia) {
         super(parent, modal);
         initComponents();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        isClose = false;
         jLCliente.setText(nomeCliente);
         jLDentista.setText(nomeDentista);
         jLDia.setText(sdf.format(dia));
@@ -93,6 +95,11 @@ public class JDExibirRecibo extends javax.swing.JDialog {
         jLabel12.setText("_______________________________________________");
 
         jImprimir.setText("Imprimir");
+        jImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jImprimirActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Emitente:");
 
@@ -181,6 +188,11 @@ public class JDExibirRecibo extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jImprimirActionPerformed
+        this.isClose = true;
+        this.dispose();
+    }//GEN-LAST:event_jImprimirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jImprimir;
