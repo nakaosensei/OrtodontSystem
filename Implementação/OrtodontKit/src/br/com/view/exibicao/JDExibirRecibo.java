@@ -19,17 +19,18 @@ public class JDExibirRecibo extends javax.swing.JDialog {
      */
     public boolean isClose;
     public JDExibirRecibo(java.awt.Frame parent, boolean modal,int id, String nomeCliente,String nomeDentista,Float valor,
-            String descricao, Date dia) {
+            String descricao, Date dia, String cpf) {
         super(parent, modal);
         initComponents();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         isClose = false;
         jLCliente.setText(nomeCliente);
-        jLDentista.setText(nomeDentista);
+        jLCPFDentista.setText(nomeDentista);
         jLDia.setText(sdf.format(dia));
         jLID.setText(String.valueOf(id));
         jTAT.setText(descricao);
         jLValor.setText(String.valueOf(valor));
+        jLCPFDentista.setText(cpf);
     }
 
     /**
@@ -57,7 +58,10 @@ public class JDExibirRecibo extends javax.swing.JDialog {
         jLabel12 = new javax.swing.JLabel();
         jImprimir = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        jLCPFDentista = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jLDentista = new javax.swing.JLabel();
+        jISair = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -103,7 +107,18 @@ public class JDExibirRecibo extends javax.swing.JDialog {
 
         jLabel13.setText("Emitente:");
 
+        jLCPFDentista.setText("Dentista");
+
+        jLabel14.setText("CPF:");
+
         jLDentista.setText("Dentista");
+
+        jISair.setText("Sair");
+        jISair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jISairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,7 +132,13 @@ public class JDExibirRecibo extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jImprimir)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jISair)
+                                        .addGap(79, 79, 79))
+                                    .addComponent(jLabel12))
                                 .addGap(0, 59, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -139,10 +160,6 @@ public class JDExibirRecibo extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(173, 173, 173)
-                .addComponent(jImprimir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -151,8 +168,12 @@ public class JDExibirRecibo extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLDentista)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLDentista)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLCPFDentista)))
+                .addGap(0, 240, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,8 +191,12 @@ public class JDExibirRecibo extends javax.swing.JDialog {
                     .addComponent(jLCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLDentista))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(jLDentista))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLCPFDentista)
+                        .addComponent(jLabel14)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -183,7 +208,9 @@ public class JDExibirRecibo extends javax.swing.JDialog {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel12)
                 .addGap(32, 32, 32)
-                .addComponent(jImprimir))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jImprimir)
+                    .addComponent(jISair)))
         );
 
         pack();
@@ -194,8 +221,14 @@ public class JDExibirRecibo extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jImprimirActionPerformed
 
+    private void jISairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jISairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jISairActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jISair;
     private javax.swing.JButton jImprimir;
+    private javax.swing.JLabel jLCPFDentista;
     private javax.swing.JLabel jLCliente;
     private javax.swing.JLabel jLDentista;
     private javax.swing.JLabel jLDia;
@@ -205,6 +238,7 @@ public class JDExibirRecibo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
