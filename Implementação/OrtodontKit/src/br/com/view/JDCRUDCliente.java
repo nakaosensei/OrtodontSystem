@@ -1,8 +1,8 @@
 
 package br.com.view;
 
-import br.com.DAO.DAOCliente;
-import br.com.DAO.DAOEndereco;
+import br.com.controller.DAO.DAOCliente;
+import br.com.controller.DAO.DAOEndereco;
 import br.com.model.bd.Cliente;
 
 import br.com.model.bd.Endereco;

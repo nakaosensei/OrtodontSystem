@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.DAO;
+package br.com.controller.DAO;
 
-import static br.com.DAO.DAOGenerico.em;
+import static br.com.controller.DAO.DAOGenerico.em;
 import br.com.model.bd.Dentista;
 import br.com.model.bd.Evento;
 import java.util.List;

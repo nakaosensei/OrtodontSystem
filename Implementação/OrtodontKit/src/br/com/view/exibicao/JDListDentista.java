@@ -1,8 +1,8 @@
 
 package br.com.view.exibicao;
 
-import br.com.DAO.DAOCliente;
-import br.com.DAO.DAODentista;
+import br.com.controller.DAO.DAOCliente;
+import br.com.controller.DAO.DAODentista;
 import br.com.model.bd.Cliente;
 import br.com.model.bd.Dentista;
 import br.com.model.tables.ModelTabelaListCliente;

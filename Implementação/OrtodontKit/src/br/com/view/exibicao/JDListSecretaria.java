@@ -1,7 +1,7 @@
 
 package br.com.view.exibicao;
 
-import br.com.DAO.DAOSecretaria;
+import br.com.controller.DAO.DAOSecretaria;
 import br.com.model.bd.Secretaria;
 import br.com.model.tables.ModelTabelaListSecretaria;
 import java.awt.event.WindowEvent;

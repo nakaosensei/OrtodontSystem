@@ -5,7 +5,7 @@
  */
 package br.com.view;
 
-import br.com.DAO.DAORecibo;
+import br.com.controller.DAO.DAORecibo;
 import br.com.model.bd.Cliente;
 import br.com.model.bd.Dentista;
 import br.com.model.bd.Recibo;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.DAO;
+package br.com.controller.DAO;
 
 import br.com.model.bd.Recibo;
 

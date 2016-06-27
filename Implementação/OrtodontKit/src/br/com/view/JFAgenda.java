@@ -2,7 +2,7 @@
 package br.com.view;
 
 
-import br.com.DAO.DAOEvento;
+import br.com.controller.DAO.DAOEvento;
 import br.com.model.HorarioFilter;
 import br.com.model.bd.Cliente;
 import br.com.model.bd.Dentista;

@@ -3,8 +3,8 @@ package br.com.view;
 
 
 
-import br.com.DAO.DAODentista;
-import br.com.DAO.DAOSecretaria;
+import br.com.controller.DAO.DAODentista;
+import br.com.controller.DAO.DAOSecretaria;
 import br.com.model.bd.Dentista;
 import br.com.model.bd.Secretaria;
 import com.sun.glass.events.KeyEvent;

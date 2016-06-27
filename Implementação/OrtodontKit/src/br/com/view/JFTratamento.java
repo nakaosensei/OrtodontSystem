@@ -1,11 +1,10 @@
 
 package br.com.view;
 
-import br.com.DAO.DAOFichaAnamnese;
-
-import br.com.DAO.DAOOdontograma;
-import br.com.DAO.DAOProcedimento;
-import br.com.DAO.DAOTratamento;
+import br.com.controller.DAO.DAOFichaAnamnese;
+import br.com.controller.DAO.DAOOdontograma;
+import br.com.controller.DAO.DAOProcedimento;
+import br.com.controller.DAO.DAOTratamento;
 import br.com.model.bd.Cliente;
 import br.com.model.bd.Fichaanamnese;
 import br.com.model.bd.Odontograma;
@@ -139,7 +138,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jCBHasTensaoArterial = new javax.swing.JCheckBox();
         jCBHasProblemasArticularesReumaticos = new javax.swing.JCheckBox();
         jPanel71 = new javax.swing.JPanel();
-        jTFTelefoneMedico = new javax.swing.JTextField();
+        jTFTelefoneMedico = validator.getTelefoneTextField();
         jPanel63 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTBProcedimento = new javax.swing.JTable();
@@ -220,7 +219,7 @@ public class JFTratamento extends javax.swing.JFrame {
         jCBS30 = new javax.swing.JCheckBox();
         jCBS31 = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jBCancelar.setText("Cancelar");
         jBCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -1853,7 +1852,7 @@ public class JFTratamento extends javax.swing.JFrame {
         ficha.setDoencaAtual(jTFDoenca.getText());
         ficha.setDoencaInfectocontagiosa(jTFDoencaInfectoContagiosa.getText());
         ficha.setNomeMedicoAssistente(jTFNomeMedico.getText());
-        ficha.setTelefoneMedicoAssistente(jTFTelefoneMedico.getText());        
+        ficha.setTelefoneMedicoAssistente(validator.unmaskTelefone(jTFTelefoneMedico.getText()));        
         ficha.setEstatratamentoMedico(jCBEstaTratamento.isSelected()?1:0);
         ficha.setIsfUmante(jCBFuma.isSelected()?1:0);
         ficha.setHasAlergia(jCBHasAlergia.isSelected()?1:0);
@@ -2330,7 +2329,7 @@ public class JFTratamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jBEditActionPerformed
 
     private void jBAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddActionPerformed
-        jLMsg.setText("");
+        jLMsg.setText("Preencha os campos e grave");
         this.clearComponents();
         this.setAddState();
         this.operacao=OperacaoCrud.ADICIONAR;

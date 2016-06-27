@@ -8,7 +8,7 @@ import javax.swing.UIManager;
  *
  * @author a1061712
  */
-public class main {
+public class Main {
     public static void main(String[] args) {
         //MetalLookAndFeel.setCurrentTheme(new OceanTheme());
         int useNimbus=0;
@@ -24,8 +24,6 @@ public class main {
         //JDCRUDDentista cd = new JDCRUDDentista(null, true);
         //cd.setVisible(true);
         JFLogin jf = new JFLogin();        
-        jf.setVisible(true);
-        
-        
+        jf.setVisible(true);       
     }
 }

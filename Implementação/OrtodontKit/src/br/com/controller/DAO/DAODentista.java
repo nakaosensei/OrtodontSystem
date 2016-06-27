@@ -1,4 +1,4 @@
-package br.com.DAO;
+package br.com.controller.DAO;
 
 import br.com.model.bd.Dentista;
 import javax.persistence.Query;

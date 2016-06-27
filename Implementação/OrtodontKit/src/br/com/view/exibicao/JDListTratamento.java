@@ -1,7 +1,7 @@
 
 package br.com.view.exibicao;
 
-import br.com.DAO.DAOTratamento;
+import br.com.controller.DAO.DAOTratamento;
 import br.com.model.TratamentoFilter;
 import br.com.model.bd.Tratamento;
 import br.com.model.tables.ModelTabelaListTratamento;

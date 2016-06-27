@@ -1,7 +1,7 @@
 
 package br.com.view.exibicao;
 
-import br.com.DAO.DAOCliente;
+import br.com.controller.DAO.DAOCliente;
 import br.com.model.bd.Cliente;
 import br.com.model.tables.ModelTabelaListCliente;
 import java.awt.event.WindowEvent;
